@@ -18,12 +18,10 @@ class ViewModelFactory : ViewModelProvider.Factory {
 
         return when {
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel(
-                loginRepository = LoginRepository(
-                )
+                loginRepository = LoginRepository
             ) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(
-                homeRepository = HomeRepository(
-                )
+                homeRepository = HomeRepository
             ) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

@@ -3,14 +3,13 @@ package com.event.reminder.data.repository
 import com.event.reminder.common.Result
 import com.event.reminder.data.BaseRepository
 import com.event.reminder.data.model.LoggedInUser
-import java.io.IOException
 
 /**
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository() : BaseRepository() {
+object LoginRepository : BaseRepository() {
 
     // in-memory cache of the loggedInUser object
     var user: LoggedInUser? = null

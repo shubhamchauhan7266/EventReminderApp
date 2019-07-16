@@ -3,7 +3,7 @@
           package="com.event.reminder">
 
     <application
-            android:allowBackup="true"
+            android:name=".EventReminderApplication"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
@@ -20,6 +20,14 @@
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "reminder://event.notification” -->
+                <data android:scheme="reminder"
+                      android:host="event.notification" />
             </intent-filter>
         </activity>
     </application>
