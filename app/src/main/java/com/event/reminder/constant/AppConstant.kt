@@ -1,4 +1,4 @@
-package com.event.reminder.common
+package com.event.reminder.constant
 
 object AppConstant {
 

@@ -1,8 +1,9 @@
 package com.event.reminder.data.repository
 
-import com.event.reminder.common.Result
-import com.event.reminder.data.BaseRepository
-import com.event.reminder.data.model.LoggedInUser
+import com.android.mvvmandroidlib.common.Result
+import com.android.mvvmandroidlib.repository.BaseRepository
+import com.event.reminder.data.model.response.LoggedInUser
+import java.util.*
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -33,7 +34,8 @@ object LoginRepository : BaseRepository() {
         var result : Result<LoggedInUser>
         try {
             // TODO: handle loggedInUser authentication
-            val fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), "Jane Doe")
+            val fakeUser =
+                LoggedInUser(UUID.randomUUID().toString(), "Jane Doe")
             fakeUser.status = true
             result =  Result.Success(fakeUser)
         } catch (e: Throwable) {

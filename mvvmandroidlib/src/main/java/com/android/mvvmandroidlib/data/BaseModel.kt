@@ -1,4 +1,4 @@
-package com.event.reminder.data
+package com.android.mvvmandroidlib.data
 
 import java.io.Serializable
 

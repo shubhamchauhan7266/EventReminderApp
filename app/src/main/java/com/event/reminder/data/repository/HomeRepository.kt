@@ -1,6 +1,6 @@
 package com.event.reminder.data.repository
 
-import com.event.reminder.data.BaseRepository
+import com.android.mvvmandroidlib.repository.BaseRepository
 
 object HomeRepository : BaseRepository() {
 }

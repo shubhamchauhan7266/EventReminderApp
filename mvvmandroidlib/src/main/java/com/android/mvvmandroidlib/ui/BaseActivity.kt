@@ -1,9 +1,10 @@
-package com.event.reminder.ui
+package com.android.mvvmandroidlib.ui
 
 import android.arch.lifecycle.Observer
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> : AppCompatActivity() {
 

@@ -1,6 +1,6 @@
 package com.event.reminder.ui.login
 
-import com.event.reminder.data.model.LoggedInUser
+import com.event.reminder.data.model.response.LoggedInUser
 
 /**
  * Authentication result : success (user details) or error message.

@@ -1,4 +1,4 @@
-package com.event.reminder.common
+package com.android.mvvmandroidlib.common
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData

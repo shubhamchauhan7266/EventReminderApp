@@ -5,9 +5,9 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.view.inputmethod.EditorInfo
+import com.android.mvvmandroidlib.ui.BaseActivity
 import com.event.reminder.R
 import com.event.reminder.databinding.LoginActivityBinding
-import com.event.reminder.ui.BaseActivity
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.HomeActivity
 

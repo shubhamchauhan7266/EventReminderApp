@@ -1,6 +1,7 @@
-package com.event.reminder.common
+package com.android.mvvmandroidlib.common
 
-import com.event.reminder.data.BaseModel
+import com.android.mvvmandroidlib.data.BaseModel
+
 
 /**
  * A generic class that holds a value with its loading status.

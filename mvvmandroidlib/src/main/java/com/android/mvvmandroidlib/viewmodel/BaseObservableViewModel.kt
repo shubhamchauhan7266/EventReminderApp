@@ -1,9 +1,9 @@
-package com.event.reminder.ui
+package com.android.mvvmandroidlib.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.Observable
 import android.databinding.PropertyChangeRegistry
-import com.event.reminder.common.EventLiveData
+import com.android.mvvmandroidlib.common.EventLiveData
 
 open class BaseObservableViewModel : ViewModel(), Observable {
 

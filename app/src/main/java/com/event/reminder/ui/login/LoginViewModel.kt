@@ -4,12 +4,12 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.Bindable
 import android.util.Patterns
+import com.android.mvvmandroidlib.common.Result
+import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
 import com.event.reminder.R
-import com.event.reminder.common.Result
-import com.event.reminder.data.model.LoggedInUser
+import com.event.reminder.data.model.response.LoggedInUser
 import com.event.reminder.data.repository.LoginRepository
-import com.event.reminder.ui.BaseObservableViewModel
 
 class LoginViewModel(private val loginRepository: LoginRepository) : BaseObservableViewModel() {
 

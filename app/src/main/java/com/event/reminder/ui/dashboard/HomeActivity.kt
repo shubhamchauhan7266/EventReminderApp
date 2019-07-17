@@ -3,9 +3,9 @@ package com.event.reminder.ui.dashboard
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.support.design.widget.BottomNavigationView
+import com.android.mvvmandroidlib.ui.BaseActivity
 import com.event.reminder.R
 import com.event.reminder.databinding.HomeActivityBinding
-import com.event.reminder.ui.BaseActivity
 import com.event.reminder.ui.ViewModelFactory
 
 class HomeActivity : BaseActivity<HomeActivityBinding, HomeViewModel>() {

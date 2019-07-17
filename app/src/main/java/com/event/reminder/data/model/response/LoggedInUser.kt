@@ -1,6 +1,6 @@
-package com.event.reminder.data.model
+package com.event.reminder.data.model.response
 
-import com.event.reminder.data.BaseModel
+import com.android.mvvmandroidlib.data.BaseModel
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

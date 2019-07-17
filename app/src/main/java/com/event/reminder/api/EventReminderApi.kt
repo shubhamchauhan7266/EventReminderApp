@@ -1,6 +1,6 @@
 package com.event.reminder.api
 
-import com.event.reminder.common.AppConstant
+import com.event.reminder.constant.AppConstant
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,7 +30,7 @@ object EventReminderApi {
         service = retrofitBuilder.build().create(ApiService::class.java)
     }
 
-    public fun getService() : ApiService? {
+    fun getService(): ApiService? {
         return service
     }
 }
