@@ -19,11 +19,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
     private val _loginResult = MutableLiveData<LoggedInUser>()
     val loginResult: LiveData<LoggedInUser> = _loginResult
 
-    var visible: Boolean? = null
+    var valid: Boolean? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.visible)
+            notifyPropertyChanged(BR.valid)
         }
 
     var username: String? = null
@@ -37,11 +37,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
         @Bindable get
         set(value) {
             field = value
+            valid = false
             loginDataChanged()
             notifyPropertyChanged(BR.password)
         }
 
-    public fun login() {
+    fun login() {
         // can be launched in a separate asynchronous job
         val result = username?.let { password?.let { it1 -> loginRepository.login(it, it1) } }
 
@@ -58,7 +59,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
         } else if (!isPasswordValid(password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
         } else {
-            visible = true
+            valid = true
             _loginForm.value = LoginFormState(isDataValid = true)
         }
     }
@@ -74,6 +75,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String?): Boolean {
-        return password!!.length > 5;
+        return password!!.length > 5
     }
 }

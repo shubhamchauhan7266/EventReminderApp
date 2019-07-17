@@ -20,7 +20,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> : 
 
     protected abstract fun onCreateBinding()
 
-    protected abstract fun setupToolbar()
+    protected open fun setupToolbar() {
+
+    }
 
     protected open fun initMembers(){
         viewModel.startProgressEvent.observe(this, Observer {
