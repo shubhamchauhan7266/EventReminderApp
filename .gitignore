@@ -3,6 +3,8 @@
 */build/*
 /local.properties
 /.idea/caches
+/.idea/gradle
+/.idea/misc
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
@@ -11,5 +13,6 @@
 .DS_Store
 /build
 /app/build
+/mvvmandroidlib/build
 /captures
 .externalNativeBuild
