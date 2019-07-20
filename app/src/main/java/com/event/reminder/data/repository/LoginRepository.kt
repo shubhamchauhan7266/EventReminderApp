@@ -1,9 +1,11 @@
 package com.event.reminder.data.repository
 
+import com.android.mvvmandroidlib.api.RequestNetworkManager
+import com.android.mvvmandroidlib.api.SubscriptionCallback
 import com.android.mvvmandroidlib.common.Result
 import com.android.mvvmandroidlib.repository.BaseRepository
+import com.event.reminder.api.EventReminderApiHandler
 import com.event.reminder.data.model.response.LoggedInUser
-import java.util.*
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -29,22 +31,32 @@ object LoginRepository : BaseRepository() {
         user = null
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String): Result<LoggedInUser>? {
         // handle login
-        var result : Result<LoggedInUser>
+        var result: Result<LoggedInUser>? = null
         try {
-            // TODO: handle loggedInUser authentication
-            val fakeUser =
-                LoggedInUser(UUID.randomUUID().toString(), "Jane Doe")
-            fakeUser.status = true
-            result =  Result.Success(fakeUser)
+
+            RequestNetworkManager.addRequest(100, EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.logout(),
+                object : SubscriptionCallback<LoggedInUser> {
+                    override fun onSuccess(requestCode: Int, response: LoggedInUser) {
+                        result = Result.Success(response)
+                    }
+
+                    override fun onError(requestCode: Int, errCode: Int, errorMsg: String) {
+                    }
+
+                })
+//            val fakeUser =
+//                LoggedInUser(UUID.randomUUID().toString(), "Jane Doe")
+//            fakeUser.status = true
+//            result =  Result.Success(fakeUser)
         } catch (e: Throwable) {
             result = Result.Error("Error : $e")
         }
 
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
-        }
+//        if (result is Result.Success) {
+//            setLoggedInUser(result.data)
+//        }
 
         return result
     }
