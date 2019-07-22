@@ -1,6 +1,7 @@
 package com.android.mvvmandroidlib.ui
 
 import android.arch.lifecycle.Observer
+import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,8 +15,14 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     protected lateinit var binding: T
     protected lateinit var viewModel: V
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        this.viewModel = getObservableViewModel()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        this.binding = getViewDataBinding()
         onCreateViewBinding(inflater, container)
         setupToolbar()
         initMembers()
@@ -25,13 +32,17 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
 
     protected abstract fun onCreateViewBinding(inflater: LayoutInflater, container: ViewGroup?)
 
+    protected abstract fun getObservableViewModel(): V
+
+    protected abstract fun getViewDataBinding(): T
+
     protected open fun setupToolbar() {
 
     }
 
     protected open fun initMembers() {
         viewModel.startProgressEvent.observe(this, Observer {
-            //            DialogUtils.showProgressDialog(this, it!!)
+            //                        DialogUtils.showProgressDialog(activity, it!!)
         })
 
         viewModel.stopProgressEvent.observe(this, Observer {

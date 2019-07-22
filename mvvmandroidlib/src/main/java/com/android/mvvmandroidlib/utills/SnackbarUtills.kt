@@ -1,4 +1,4 @@
-package com.event.reminder.utills
+package com.android.mvvmandroidlib.utills
 
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
@@ -8,6 +8,6 @@ object SnackbarUtills{
 
     fun showMessage(view: View, @StringRes message: Int) {
 
-        Snackbar.make(view,message,Snackbar.LENGTH_LONG).show();
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
     }
 }

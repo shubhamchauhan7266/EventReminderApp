@@ -10,10 +10,16 @@ import com.event.reminder.ui.ViewModelFactory
 
 class HomeActivity : BaseActivity<HomeActivityBinding, HomeViewModel>() {
 
-    override fun onCreateBinding() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-        viewModel = ViewModelProviders.of(this, ViewModelFactory())
+    override fun getViewDataBinding(): HomeActivityBinding {
+        return DataBindingUtil.setContentView(this, R.layout.activity_home)
+    }
+
+    override fun getObservableViewModel(): HomeViewModel {
+        return ViewModelProviders.of(this, ViewModelFactory())
             .get(HomeViewModel::class.java)
+    }
+
+    override fun onCreateBinding() {
         binding.viewModel = viewModel
     }
 

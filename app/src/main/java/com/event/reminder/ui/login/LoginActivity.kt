@@ -13,10 +13,16 @@ import com.event.reminder.ui.dashboard.HomeActivity
 
 class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
 
-    override fun onCreateBinding() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        viewModel = ViewModelProviders.of(this, ViewModelFactory())
+    override fun getViewDataBinding(): LoginActivityBinding {
+        return DataBindingUtil.setContentView(this, R.layout.activity_login)
+    }
+
+    override fun getObservableViewModel(): LoginViewModel {
+        return ViewModelProviders.of(this, ViewModelFactory())
             .get(LoginViewModel::class.java)
+    }
+
+    override fun onCreateBinding() {
         binding.viewModel = viewModel
     }
 

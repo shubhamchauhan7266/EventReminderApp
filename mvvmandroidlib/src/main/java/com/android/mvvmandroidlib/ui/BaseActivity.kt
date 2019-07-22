@@ -14,12 +14,18 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> : 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        this.viewModel = getObservableViewModel()
+        this.binding = getViewDataBinding()
         onCreateBinding()
         setupToolbar()
         initMembers()
     }
 
     protected abstract fun onCreateBinding()
+
+    protected abstract fun getObservableViewModel(): V
+
+    protected abstract fun getViewDataBinding(): T
 
     protected open fun setupToolbar() {
 
