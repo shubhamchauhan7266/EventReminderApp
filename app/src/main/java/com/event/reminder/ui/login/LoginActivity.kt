@@ -6,6 +6,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.view.inputmethod.EditorInfo
 import com.android.mvvmandroidlib.ui.BaseActivity
+import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.databinding.LoginActivityBinding
 import com.event.reminder.ui.ViewModelFactory
@@ -27,7 +28,7 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
     }
 
     override fun setupToolbar() {
-
+        ToastUtils.showMessage(application, R.string.app_name)
     }
 
     override fun initMembers() {
