@@ -1,6 +1,13 @@
 package com.event.reminder
 
-import android.support.multidex.MultiDexApplication
+import android.content.Context
+import android.support.multidex.MultiDex
+import com.android.mvvmandroidlib.BaseApplication
 
-class EventReminderApplication : MultiDexApplication() {
+class EventReminderApplication : BaseApplication() {
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 }
