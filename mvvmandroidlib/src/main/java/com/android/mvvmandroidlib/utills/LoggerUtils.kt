@@ -3,7 +3,7 @@ package com.android.mvvmandroidlib.utills
 import android.util.Log
 import com.android.mvvmandroidlib.BuildConfig
 
-object LoggerUtills {
+object LoggerUtils {
 
     fun verbose(tag: String, msg: String) {
 

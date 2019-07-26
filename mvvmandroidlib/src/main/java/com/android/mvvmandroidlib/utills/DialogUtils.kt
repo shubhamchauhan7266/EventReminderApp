@@ -1,5 +1,5 @@
 package com.android.mvvmandroidlib.utills
 
-object StringUtills {
+object DialogUtils {
 
 }

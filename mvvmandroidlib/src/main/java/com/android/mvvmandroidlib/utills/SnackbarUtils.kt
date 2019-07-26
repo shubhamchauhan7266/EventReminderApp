@@ -4,7 +4,7 @@ import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.view.View
 
-object SnackbarUtills{
+object SnackbarUtils {
 
     fun showMessage(view: View, @StringRes message: Int) {
 
