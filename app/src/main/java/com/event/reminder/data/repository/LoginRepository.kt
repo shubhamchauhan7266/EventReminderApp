@@ -3,8 +3,11 @@ package com.event.reminder.data.repository
 import com.android.mvvmandroidlib.api.RequestNetworkManager
 import com.android.mvvmandroidlib.api.SubscriptionCallback
 import com.android.mvvmandroidlib.common.Result
+import com.android.mvvmandroidlib.data.BaseErrorModel
+import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
+import com.event.reminder.data.model.EventErrorModel
 import com.event.reminder.data.model.response.LoggedInUser
 
 /**
@@ -36,13 +39,22 @@ object LoginRepository : BaseRepository() {
         var result: Result<LoggedInUser>? = null
         try {
 
-            RequestNetworkManager.addRequest(100, EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.logout(),
-                object : SubscriptionCallback<LoggedInUser> {
-                    override fun onSuccess(requestCode: Int, response: LoggedInUser) {
-                        result = Result.Success(response)
+            RequestNetworkManager.addRequest(
+                100,
+                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.logout(),
+                EventErrorModel::class.java,
+                object : SubscriptionCallback<LoggedInUser, EventErrorModel> {
+                    override fun onServerError(requestCode: Int, response: BaseErrorModel) {
+
                     }
 
-                    override fun onError(requestCode: Int, errCode: Int, errorMsg: String) {
+                    override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
+
+                        if (response is LoggedInUser)
+                            result = Result.Success(response)
+                    }
+
+                    override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
                     }
 
                 })

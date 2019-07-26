@@ -1,5 +1,8 @@
 package com.android.mvvmandroidlib.api
 
+import com.android.mvvmandroidlib.data.BaseErrorModel
+import com.android.mvvmandroidlib.data.BaseResponseModel
+import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -9,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
+
 
 object RequestNetworkManager {
 
@@ -21,10 +25,11 @@ object RequestNetworkManager {
         return disposable
     }
 
-    private fun <T> getRequest(
+    private fun <T : BaseResponseModel, V : BaseErrorModel> getRequest(
         requestCode: Int,
         observable: Observable<T>,
-        callback: SubscriptionCallback<T>
+        clazz: Class<V>,
+        callback: SubscriptionCallback<T, V>
     ): Disposable {
         //create error if network is not available to propagate to observer
 //        if (!DeviceManager.isNetworkAvailable()) {
@@ -40,20 +45,36 @@ object RequestNetworkManager {
                 callback.onSuccess(requestCode, it)
             }, {
                 if (it is NetworkException) {
-                    callback.onError(requestCode, it.exceptionCode, it.exceptionMessage)
+
+                    // TODO Handle expiry token or unauthorised case
+                    if (it.exceptionCode == NetworkConstant.ERROR_CODE_SERVER) {
+                        val x = Gson().fromJson(it.exceptionMessage, clazz)
+                        callback.onServerError(requestCode, x)
+                    } else {
+                        callback.onException(requestCode, it.exceptionCode, it.exceptionMessage)
+                    }
                 } else {
-                    callback.onError(requestCode, NetworkConstant.ERROR_CODE_EXCEPTION, it.localizedMessage)
+                    callback.onException(requestCode, NetworkConstant.ERROR_CODE_EXCEPTION, it.localizedMessage)
                 }
 //                callback.onError(400, "Server Error")
             })
     }
 
-    fun <T> addRequest(
+    fun <T : BaseResponseModel, V : BaseErrorModel> addRequest(
         requestCode: Int,
         observable: Observable<T>,
-        callback: SubscriptionCallback<T>
+        clazz: Class<V>,
+        callback: SubscriptionCallback<T, V>
     ) {
-        getDisposable()?.add(getRequest(requestCode, observable, callback))
+        getDisposable()?.add(getRequest(requestCode, observable, clazz, callback))
+    }
+
+    fun <T : BaseResponseModel, V : BaseErrorModel> addRequest(
+        requestCode: Int,
+        observable: Observable<T>,
+        callback: SubscriptionCallback<T, V>
+    ) {
+        getDisposable()?.add(getRequest(requestCode, observable, BaseErrorModel::class.java, callback))
     }
 
     /**
@@ -64,20 +85,34 @@ object RequestNetworkManager {
     private fun <T> processNetworkError(e: Throwable): Observable<T> {
 
         //TODO Need to be changed
-        if (e is HttpException) {
-            val response = e.response()
-            var error: String? = null
-            try {
-                error = response.errorBody()!!.string()
-                if (error!!.isNotEmpty()) {
-                    return Observable.error(NetworkException(NetworkConstant.ERROR_CODE_SERVER_DOWN, error))
+        when (e) {
+            is HttpException -> {
+                val response = e.response()
+                var error: String? = null
+                try {
+                    response.headers()
+                    error = response.errorBody()!!.string()
+                    if (error!!.isNotEmpty()) {
+                        return Observable.error(
+                            NetworkException(
+                                NetworkConstant.ERROR_CODE_SERVER,
+                                error,
+                                response.headers()
+                            )
+                        )
+                    }
+                } catch (e1: IOException) {
+                    return Observable.error(NetworkException(NetworkConstant.ERROR_CODE_IO_EXCEPTION, ""))
                 }
-            } catch (e1: IOException) {
-                return Observable.error(NetworkException(NetworkConstant.ERROR_CODE_IO_EXCEPTION, ""))
-            }
 
-        } else if (e is SocketTimeoutException) {
-            return Observable.error(NetworkException(NetworkConstant.ERROR_CODE_TIMEOUT, ""))
+            }
+            is SocketTimeoutException -> return Observable.error(
+                NetworkException(
+                    NetworkConstant.ERROR_CODE_TIMEOUT,
+                    ""
+                )
+            )
+            is IOException -> return Observable.error(NetworkException(NetworkConstant.ERROR_CODE_IO_EXCEPTION, ""))
         }
         return Observable.error(e)
     }

@@ -9,4 +9,5 @@ object NetworkConstant {
     const val ERROR_CODE_SERVER_DOWN: Int = 1004
     const val ERROR_CODE_EXPIRE_TOKEN: Int = 1005
     const val ERROR_CODE_EXCEPTION: Int = 1006
+    const val ERROR_CODE_SERVER: Int = 1006
 }
