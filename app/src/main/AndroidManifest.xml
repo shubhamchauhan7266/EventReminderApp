@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".ui.login.SignUpActivity">
+        </activity>
         <activity
                 android:name=".ui.dashboard.HomeActivity"
                 android:label="@string/title_activity_home">
@@ -22,12 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
                 <!-- Accepts URIs that begin with "reminder://event.notification” -->
-                <data android:scheme="reminder"
-                      android:host="event.notification" />
+                <data
+                        android:host="event.notification"
+                        android:scheme="reminder"/>
             </intent-filter>
         </activity>
     </application>
