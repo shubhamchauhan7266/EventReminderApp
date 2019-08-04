@@ -4,6 +4,7 @@ import java.io.Serializable
 
 open class BaseResponseModel(
     var status: Boolean = false,
-    var responseCode: Int = 0,
-    var responseMessage: String = ""
+    var statusCode: Int = 0,
+    var errorMessage: String = "",
+    var response: Any? = null
 ) : Serializable

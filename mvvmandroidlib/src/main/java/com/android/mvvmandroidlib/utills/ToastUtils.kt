@@ -9,4 +9,8 @@ object ToastUtils {
     fun showMessage(context: Context, @StringRes message: Int) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
+
+    fun showMessage(context: Context, message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
 }

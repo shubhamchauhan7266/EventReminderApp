@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#008577</color>
+    <color name="colorPrimary">#1e7b1e</color>
+    <color name="colorPrimaryDark">#196619</color>
+    <color name="colorAccent">#196619</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <color name="lightGreen">#32CD32</color>
+    <color name="fadeGreen">#601e7b1e</color>
 
     <!-- Black Color -->
     <color name="black80">#111111</color>
@@ -38,4 +41,8 @@
     <color name="fontBlack80">#CC0c1e37</color>
     <color name="fontBlack90">#E60c1e37</color>
     <color name="fontBlack100">#FF0c1e37</color>
+
+    <color name="colorTextUnchecked">#6b6d73</color>
+    <color name="colorTextChecked">#262933</color>
+    <color name="colorTextHeading">#262933</color>
 </resources>

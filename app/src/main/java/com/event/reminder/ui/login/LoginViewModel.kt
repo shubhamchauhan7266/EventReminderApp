@@ -4,10 +4,11 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.Bindable
 import android.util.Patterns
-import com.android.mvvmandroidlib.common.Result
+import com.android.mvvmandroidlib.common.ApiResult
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
 import com.event.reminder.R
+import com.event.reminder.constant.AppConstant
 import com.event.reminder.data.model.response.LoggedInUser
 import com.event.reminder.data.repository.LoginRepository
 
@@ -16,8 +17,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
-    private val _loginResult = MutableLiveData<LoggedInUser>()
-    val loginResult: LiveData<LoggedInUser> = _loginResult
+    val _loginResult: MutableLiveData<ApiResult<LoggedInUser>> = MutableLiveData()
+    val loginResult: LiveData<ApiResult<LoggedInUser>>? = _loginResult
 
     var valid: Boolean? = null
         @Bindable get
@@ -44,13 +45,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     fun login() {
         // can be launched in a separate asynchronous job
-        val result = username?.let { password?.let { it1 -> loginRepository.login(it, it1) } }
-
-        if (result is Result.Success) {
-            _loginResult.value = result.data
-        } else {
-            failedEvent.sendEvent(R.string.login_failed)
-        }
+        username?.let { password?.let { it1 -> loginRepository.login(it, it1, _loginResult) } }
     }
 
     private fun loginDataChanged() {
@@ -66,7 +61,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     // A placeholder username validation check
     private fun isUserNameValid(username: String?): Boolean {
-        return if (username!!.contains('@')) {
+        return if (username!!.matches(AppConstant.EMAIL_PATTERN.toRegex())) {
             Patterns.EMAIL_ADDRESS.matcher(username).matches()
         } else {
             username.isNotBlank()

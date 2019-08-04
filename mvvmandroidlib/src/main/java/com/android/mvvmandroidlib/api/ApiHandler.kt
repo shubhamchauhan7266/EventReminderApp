@@ -1,5 +1,6 @@
 package com.android.mvvmandroidlib.api
 
+import com.android.mvvmandroidlib.BuildConfig
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -23,7 +24,11 @@ abstract class ApiHandler {
     fun getRetrofitBuilder(): Retrofit.Builder {
 
         val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        if (BuildConfig.DEBUG)
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+        else
+            interceptor.level = HttpLoggingInterceptor.Level.NONE
 
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)

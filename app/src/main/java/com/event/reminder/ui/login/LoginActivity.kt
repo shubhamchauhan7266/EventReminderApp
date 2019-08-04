@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import com.android.mvvmandroidlib.ui.BaseActivity
 import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
+import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.databinding.LoginActivityBinding
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.HomeActivity
@@ -48,14 +49,30 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
             }
         })
 
-        viewModel.loginResult.observe(this@LoginActivity, Observer {
-            val loggedInUser = it ?: return@Observer
+        viewModel.loginResult?.observe(this@LoginActivity, Observer {
+            val result = it ?: return@Observer
 
-            if (loggedInUser.status) {
-                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                finish()
-            } else {
-                // TODO Show alert
+            when {
+                result.success != null -> {
+
+                    val loggedInUser = result.success
+                    if (loggedInUser!!.status) {
+
+                        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                        finish()
+                    } else {
+                        result.success!!.errorMessage.let { it1 -> ToastUtils.showMessage(application, it1) }
+                    }
+                }
+                result.errorMessage != null -> {
+                    result.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
+                }
+                result.errorCode != ErrorConstant.SERVER_ERROR_FROM_API -> {
+                    result.errorCode.let { ToastUtils.showMessage(application, R.string.server_error) }
+                }
+                else -> {
+                    result.errorCode.let { ToastUtils.showMessage(application, R.string.server_error) }
+                }
             }
         })
 

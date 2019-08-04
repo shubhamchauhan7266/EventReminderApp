@@ -7,5 +7,7 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
  */
 data class LoggedInUser(
     val userId: String,
-    val displayName: String
+    val userName: String,
+    val emailId: String,
+    val phoneNumber: String
 ) : BaseResponseModel()

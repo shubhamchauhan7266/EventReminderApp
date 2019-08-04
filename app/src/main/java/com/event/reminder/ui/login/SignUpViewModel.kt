@@ -1,8 +1,12 @@
 package com.event.reminder.ui.login
 
+import android.arch.lifecycle.LiveData
 import android.databinding.Bindable
+import com.android.mvvmandroidlib.common.ApiResult
+import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
+import com.event.reminder.data.model.request.SignUpRequest
 import com.event.reminder.data.repository.SignUpRepository
 
 class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObservableViewModel() {
@@ -56,7 +60,10 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObse
             notifyPropertyChanged(BR.confirmPassword)
         }
 
-    fun signUp() {
+    fun signUp(): LiveData<ApiResult<BaseResponseModel>>? {
 
+        val request = SignUpRequest(fullName, emailId, phoneNumber, password, gender, dateOfBirth, image = null)
+
+        return signUpRepository.signUp(request)
     }
 }

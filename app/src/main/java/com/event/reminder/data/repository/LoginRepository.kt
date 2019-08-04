@@ -1,13 +1,14 @@
 package com.event.reminder.data.repository
 
+import android.arch.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.api.RequestNetworkManager
 import com.android.mvvmandroidlib.api.SubscriptionCallback
-import com.android.mvvmandroidlib.common.Result
-import com.android.mvvmandroidlib.data.BaseErrorModel
+import com.android.mvvmandroidlib.common.ApiResult
 import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
-import com.event.reminder.data.model.EventErrorModel
+import com.event.reminder.constant.ErrorConstant
+import com.event.reminder.data.model.request.LoginRequest
 import com.event.reminder.data.model.response.LoggedInUser
 
 /**
@@ -34,43 +35,38 @@ object LoginRepository : BaseRepository() {
         user = null
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser>? {
+    fun login(
+        username: String,
+        password: String,
+        _loginResult: MutableLiveData<ApiResult<LoggedInUser>>
+    ) {
         // handle login
-        var result: Result<LoggedInUser>? = null
+        val request = LoginRequest(username, password)
+        val result: MutableLiveData<ApiResult<LoggedInUser>>? = MutableLiveData()
         try {
 
             RequestNetworkManager.addRequest(
-                100,
-                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.logout(),
-                EventErrorModel::class.java,
-                object : SubscriptionCallback<LoggedInUser, EventErrorModel> {
-                    override fun onServerError(requestCode: Int, response: BaseErrorModel) {
-
-                    }
+                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.login(request),
+                object : SubscriptionCallback<LoggedInUser> {
 
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
-                        if (response is LoggedInUser)
-                            result = Result.Success(response)
+                        if (response is LoggedInUser) {
+                            _loginResult.value = ApiResult(success = response)
+                        } else {
+                            _loginResult.value =
+                                ApiResult(errorMessage = response.errorMessage, errorCode = response.statusCode)
+                        }
                     }
 
                     override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
+                        _loginResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
                     }
 
                 })
-//            val fakeUser =
-//                LoggedInUser(UUID.randomUUID().toString(), "Jane Doe")
-//            fakeUser.status = true
-//            result =  Result.Success(fakeUser)
         } catch (e: Throwable) {
-            result = Result.Error("Error : $e")
+            _loginResult.value = ApiResult(errorCode = ErrorConstant.SERVER_ERROR_FROM_API)
         }
-
-//        if (result is Result.Success) {
-//            setLoggedInUser(result.data)
-//        }
-
-        return result
     }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
