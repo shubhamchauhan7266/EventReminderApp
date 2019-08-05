@@ -8,7 +8,6 @@ import android.view.inputmethod.EditorInfo
 import com.android.mvvmandroidlib.ui.BaseActivity
 import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
-import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.databinding.LoginActivityBinding
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.HomeActivity
@@ -61,17 +60,11 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
                         startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                         finish()
                     } else {
-                        result.success!!.errorMessage.let { it1 -> ToastUtils.showMessage(application, it1) }
+                        result.success!!.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
                     }
                 }
                 result.errorMessage != null -> {
                     result.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
-                }
-                result.errorCode != ErrorConstant.SERVER_ERROR_FROM_API -> {
-                    result.errorCode.let { ToastUtils.showMessage(application, R.string.server_error) }
-                }
-                else -> {
-                    result.errorCode.let { ToastUtils.showMessage(application, R.string.server_error) }
                 }
             }
         })

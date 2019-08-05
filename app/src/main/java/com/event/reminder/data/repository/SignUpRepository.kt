@@ -8,7 +8,6 @@ import com.android.mvvmandroidlib.common.ApiResult
 import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
-import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.request.SignUpRequest
 
 object SignUpRepository : BaseRepository() {
@@ -33,7 +32,7 @@ object SignUpRepository : BaseRepository() {
 
                 })
         } catch (e: Throwable) {
-            result?.value = ApiResult(errorCode = ErrorConstant.SERVER_ERROR_FROM_API)
+            result?.value = ApiResult(errorMessage = e.localizedMessage)
         }
 
         return result

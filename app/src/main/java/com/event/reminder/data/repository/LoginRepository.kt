@@ -7,7 +7,6 @@ import com.android.mvvmandroidlib.common.ApiResult
 import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
-import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.request.LoginRequest
 import com.event.reminder.data.model.response.LoggedInUser
 
@@ -42,7 +41,6 @@ object LoginRepository : BaseRepository() {
     ) {
         // handle login
         val request = LoginRequest(username, password)
-        val result: MutableLiveData<ApiResult<LoggedInUser>>? = MutableLiveData()
         try {
 
             RequestNetworkManager.addRequest(
@@ -65,7 +63,7 @@ object LoginRepository : BaseRepository() {
 
                 })
         } catch (e: Throwable) {
-            _loginResult.value = ApiResult(errorCode = ErrorConstant.SERVER_ERROR_FROM_API)
+            _loginResult.value = ApiResult(errorMessage = e.localizedMessage)
         }
     }
 
