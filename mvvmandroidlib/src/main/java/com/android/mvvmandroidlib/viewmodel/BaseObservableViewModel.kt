@@ -3,7 +3,7 @@ package com.android.mvvmandroidlib.viewmodel
 import android.arch.lifecycle.ViewModel
 import android.databinding.Observable
 import android.databinding.PropertyChangeRegistry
-import com.android.mvvmandroidlib.common.EventLiveData
+import com.android.mvvmandroidlib.helper.EventLiveData
 
 open class BaseObservableViewModel : ViewModel(), Observable {
 

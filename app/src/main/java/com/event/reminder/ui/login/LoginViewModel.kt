@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.Bindable
 import android.util.Patterns
-import com.android.mvvmandroidlib.common.ApiResult
+import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
 import com.event.reminder.R

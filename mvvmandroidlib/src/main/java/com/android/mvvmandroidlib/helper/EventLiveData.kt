@@ -1,4 +1,4 @@
-package com.android.mvvmandroidlib.common
+package com.android.mvvmandroidlib.helper
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData

@@ -3,8 +3,8 @@ package com.event.reminder.data.repository
 import android.arch.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.api.RequestNetworkManager
 import com.android.mvvmandroidlib.api.SubscriptionCallback
-import com.android.mvvmandroidlib.common.ApiResult
 import com.android.mvvmandroidlib.data.BaseResponseModel
+import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
 import com.event.reminder.data.model.request.LoginRequest
