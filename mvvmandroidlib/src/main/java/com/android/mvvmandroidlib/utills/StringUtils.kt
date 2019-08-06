@@ -6,7 +6,7 @@ object StringUtils {
 
     fun isPasswordValid(password: String): Boolean {
 
-        if (password.length >= 8) {
+        return if (password.length >= 8) {
             val letter = Pattern.compile("[a-zA-z]")
             val digit = Pattern.compile("[0-9]")
             val special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]")
@@ -17,10 +17,10 @@ object StringUtils {
             val hasDigit = digit.matcher(password)
             val hasSpecial = special.matcher(password)
 
-            return hasLetter.find() && hasDigit.find() && hasSpecial.find()
+            hasLetter.find() && hasDigit.find() && hasSpecial.find()
 
         } else
-            return false
+            false
 
     }
 }
