@@ -1,6 +1,5 @@
 package com.event.reminder.data.repository
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.api.RequestNetworkManager
 import com.android.mvvmandroidlib.api.SubscriptionCallback
@@ -12,29 +11,28 @@ import com.event.reminder.data.model.request.SignUpRequest
 
 object SignUpRepository : BaseRepository() {
 
-    fun signUp(signUpRequest: SignUpRequest): LiveData<ApiResult<BaseResponseModel>>? {
+    fun signUp(
+        signUpRequest: SignUpRequest,
+        _signUpResult: MutableLiveData<ApiResult<BaseResponseModel>>
+    ) {
 
-        val result: MutableLiveData<ApiResult<BaseResponseModel>>? = MutableLiveData()
         try {
-
             RequestNetworkManager.addRequest(
                 EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.signUp(signUpRequest),
                 object : SubscriptionCallback<BaseResponseModel> {
 
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
-                        result?.value = ApiResult(success = response)
+                        _signUpResult.value = ApiResult(success = response)
                     }
 
                     override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        result?.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                        _signUpResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
                     }
 
                 })
         } catch (e: Throwable) {
-            result?.value = ApiResult(errorMessage = e.localizedMessage)
+            _signUpResult.value = ApiResult(errorMessage = e.localizedMessage)
         }
-
-        return result
     }
 }

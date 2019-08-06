@@ -28,7 +28,7 @@ class SignUpActivity : BaseActivity<SignUpActivityBinding, SignUpViewModel>() {
     override fun initMembers() {
         super.initMembers()
 
-        viewModel.signUp()!!.observe(this@SignUpActivity, Observer {
+        viewModel.signUpResult!!.observe(this@SignUpActivity, Observer {
             val result = it ?: return@Observer
 
             when {

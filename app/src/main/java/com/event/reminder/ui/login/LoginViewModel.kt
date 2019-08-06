@@ -17,7 +17,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
-    val _loginResult: MutableLiveData<ApiResult<LoggedInUser>> = MutableLiveData()
+    private val _loginResult: MutableLiveData<ApiResult<LoggedInUser>> = MutableLiveData()
     val loginResult: LiveData<ApiResult<LoggedInUser>>? = _loginResult
 
     var valid: Boolean? = null
@@ -61,15 +61,16 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     // A placeholder username validation check
     private fun isUserNameValid(username: String?): Boolean {
-        return if (username!!.matches(AppConstant.EMAIL_PATTERN.toRegex())) {
+        return if (username!!.contains(AppConstant.EMAIL_SYMBOL)) {
             Patterns.EMAIL_ADDRESS.matcher(username).matches()
         } else {
-            username.isNotBlank()
+            Patterns.PHONE.matcher(username).matches()
         }
     }
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String?): Boolean {
         return password!!.length > 5
+                && password.contains()
     }
 }
