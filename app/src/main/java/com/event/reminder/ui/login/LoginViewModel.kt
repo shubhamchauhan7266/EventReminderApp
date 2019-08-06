@@ -71,6 +71,5 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
     // A placeholder password validation check
     private fun isPasswordValid(password: String?): Boolean {
         return password!!.length > 5
-                && password.contains()
     }
 }
