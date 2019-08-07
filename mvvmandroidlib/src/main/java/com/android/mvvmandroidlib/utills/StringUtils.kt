@@ -10,21 +10,21 @@ object StringUtils {
     private const val ALPHABET_SMALL: String = "[a-z]"
     private const val ALPHABET_CAPS: String = "[A-Z]"
 
-    enum class PASSWORD_TYPE {
+    enum class PasswordType {
         ONLY_DIGIT,
         ONLY_ALPHABET,
         DIGIT_WITH_ALPHABET,
         DIGIT_WITH_SPECIAL_CHARACTER,
         ALPHABET_WITH_SPECIAL_CHARACTER,
         DIGIT_WITH_ALPHABET_AND_SPECIAL_CHARACTER,
-        DIGIT_WITH_ATLEAST_ONE_CAPS_ALPHABET,
-        DIGIT_WITH_ATLEAST_ONE_CAPS_ALPHABET_AND_SPECIAL_CHARACTER
+        DIGIT_WITH_AT_LEAST_ONE_CAPS_ALPHABET,
+        DIGIT_WITH_AT_LEAST_ONE_CAPS_ALPHABET_AND_SPECIAL_CHARACTER
     }
 
     /**
      * Method is used to check whether is password valid or not.
      */
-    fun isPasswordValid(password: String, length: Int, type: PASSWORD_TYPE): Boolean {
+    fun isPasswordValid(password: String, length: Int, type: PasswordType): Boolean {
 
         val letter = Pattern.compile(ALPHABET)
         val letterCaps = Pattern.compile(ALPHABET_CAPS)
@@ -43,28 +43,28 @@ object StringUtils {
         }
 
         return when (type) {
-            PASSWORD_TYPE.ONLY_DIGIT -> {
+            PasswordType.ONLY_DIGIT -> {
                 hasDigit.find()
             }
-            PASSWORD_TYPE.ONLY_ALPHABET -> {
+            PasswordType.ONLY_ALPHABET -> {
                 hasLetter.find()
             }
-            PASSWORD_TYPE.DIGIT_WITH_ALPHABET -> {
+            PasswordType.DIGIT_WITH_ALPHABET -> {
                 hasDigit.find() && hasLetter.find()
             }
-            PASSWORD_TYPE.DIGIT_WITH_SPECIAL_CHARACTER -> {
+            PasswordType.DIGIT_WITH_SPECIAL_CHARACTER -> {
                 hasDigit.find() && hasSpecial.find()
             }
-            PASSWORD_TYPE.ALPHABET_WITH_SPECIAL_CHARACTER -> {
+            PasswordType.ALPHABET_WITH_SPECIAL_CHARACTER -> {
                 hasLetter.find() && hasSpecial.find()
             }
-            PASSWORD_TYPE.DIGIT_WITH_ALPHABET_AND_SPECIAL_CHARACTER -> {
+            PasswordType.DIGIT_WITH_ALPHABET_AND_SPECIAL_CHARACTER -> {
                 hasDigit.find() && hasLetter.find() && hasSpecial.find()
             }
-            PASSWORD_TYPE.DIGIT_WITH_ATLEAST_ONE_CAPS_ALPHABET -> {
+            PasswordType.DIGIT_WITH_AT_LEAST_ONE_CAPS_ALPHABET -> {
                 hasDigit.find() && hasLetterCaps.find()
             }
-            PASSWORD_TYPE.DIGIT_WITH_ATLEAST_ONE_CAPS_ALPHABET_AND_SPECIAL_CHARACTER -> {
+            PasswordType.DIGIT_WITH_AT_LEAST_ONE_CAPS_ALPHABET_AND_SPECIAL_CHARACTER -> {
                 hasDigit.find() && hasLetterCaps.find() && hasSpecial.find()
             }
         }
