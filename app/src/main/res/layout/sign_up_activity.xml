@@ -18,154 +18,124 @@
                 android:layout_margin="@dimen/_20sdp">
 
             <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_40sdp"
-                    android:background="@drawable/layout_border"
-                    android:padding="@dimen/_20sdp">
+                    style="@style/RoundedContainer"
+                    android:id="@+id/container"
+                    android:layout_marginTop="@dimen/_40sdp">
 
                 <android.support.design.widget.TextInputLayout
+                        style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginTop="@dimen/_30sdp">
 
                     <EditText
+                            style="@style/AppTheme.EditText"
                             android:id="@+id/et_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:hint="@string/full_name"
-                            android:text="@={viewModel.fullName}"
-                            android:inputType="text"
-                            android:singleLine="true"/>
+                            android:text="@={viewModel.fullName}"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                        style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/il_name"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp">
+                        app:layout_constraintEnd_toEndOf="parent">
 
                     <EditText
+                            style="@style/AppTheme.EditText"
                             android:id="@+id/et_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:hint="@string/email_id"
                             android:text="@={viewModel.emailId}"
-                            android:inputType="textEmailAddress"
-                            android:singleLine="true"/>
+                            android:inputType="textEmailAddress"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                        style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_dob"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/il_email"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp">
+                        app:layout_constraintEnd_toEndOf="parent">
 
                     <EditText
+                            style="@style/AppTheme.EditText"
                             android:id="@+id/et_dob"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:hint="@string/date_of_birth"
                             android:text="@={viewModel.dateOfBirth}"
-                            android:inputType="number"
-                            android:singleLine="true"/>
+                            android:inputType="number"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                        style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_gender"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/il_dob"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp">
+                        app:layout_constraintEnd_toEndOf="parent">
 
                     <EditText
+                            style="@style/AppTheme.EditText"
                             android:id="@+id/et_gender"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:hint="@string/gender"
                             android:text="@={viewModel.gender}"
-                            android:inputType="text"
-                            android:singleLine="true"/>
+                            android:inputType="text"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                        style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_phone_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/il_gender"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp">
+                        app:layout_constraintEnd_toEndOf="parent">
 
                     <EditText
+                            style="@style/AppTheme.EditText"
                             android:id="@+id/et_phone_no"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:hint="@string/phone_number"
                             android:text="@={viewModel.phoneNumber}"
-                            android:inputType="phone"
-                            android:singleLine="true"/>
+                            android:inputType="phone"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                        style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/il_phone_no"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp">
+                        app:layout_constraintEnd_toEndOf="parent">
 
                     <EditText
+                            style="@style/AppTheme.EditText"
                             android:id="@+id/et_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:hint="@string/password"
                             android:text="@={viewModel.password}"
-                            android:inputType="textPassword"
-                            android:singleLine="true"/>
+                            android:inputType="textPassword"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                        style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_confirm_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/il_password"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp">
+                        app:layout_constraintEnd_toEndOf="parent">
 
                     <EditText
+                            style="@style/AppTheme.EditText"
                             android:id="@+id/et_confirm_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:hint="@string/confirm_password"
                             android:text="@={viewModel.confirmPassword}"
-                            android:inputType="textPassword"
-                            android:singleLine="true"/>
+                            android:inputType="textPassword"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <Button
+                        style="@style/AppTheme.Button"
                         android:id="@+id/bt_sign_up"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/il_confirm_password"
                         app:layout_constraintStart_toStartOf="parent"
                         android:text="@string/sign_up"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:onClick="@{(v) -> viewModel.signUp()}"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="@id/container"
                         app:layout_constraintEnd_toEndOf="parent"/>
 
             </android.support.constraint.ConstraintLayout>
@@ -177,7 +147,7 @@
                     android:layout_centerHorizontal="true"
                     app:civ_border_width="2dp"
                     android:src="@drawable/profile"
-                    app:civ_border_color="#FF000000"/>
+                    app:civ_border_color="@color/colorLightGrey60"/>
         </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>

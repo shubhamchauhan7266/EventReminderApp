@@ -7,8 +7,19 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
+    <!-- Green Color -->
+    <color name="green">#1e7b1e</color>
+    <color name="fontGreen">#1e7b1e</color>
+    <color name="darkGreen">#196619</color>
     <color name="lightGreen">#32CD32</color>
     <color name="fadeGreen">#601e7b1e</color>
+
+    <!-- Red Color -->
+    <color name="red">#FF0000</color>
+    <color name="lightRed">#80FF0000</color>
+    <color name="fadeRed">#60FF0000</color>
+    <color name="darkRed">#8B0000</color>
+    <color name="maroon">#800000</color>
 
     <!-- Black Color -->
     <color name="black80">#111111</color>
@@ -45,4 +56,16 @@
     <color name="colorTextUnchecked">#6b6d73</color>
     <color name="colorTextChecked">#262933</color>
     <color name="colorTextHeading">#262933</color>
+
+    <!-- Blue Color -->
+    <color name="cadetBlue">#5f9ea0</color>
+    <color name="steelBlue">#4682b4</color>
+    <color name="mediumBlue">#0000cd</color>
+    <color name="royalBlue">#4169e1</color>
+    <color name="blue">#0000ff</color>
+    <color name="navyBlue">#000080</color>
+    <color name="LightStaleBlue">#8470ff</color>
+    <color name="mediumStaleBlue">#7b68ee</color>
+    <color name="staleBlue">#6a5acd</color>
+    <color name="darkStaleBlue">#483d8b</color>
 </resources>

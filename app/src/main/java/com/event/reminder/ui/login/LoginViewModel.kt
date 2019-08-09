@@ -48,6 +48,14 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
         username?.let { password?.let { it1 -> loginRepository.login(it, it1, _loginResult) } }
     }
 
+    fun forgetPassword() {
+
+    }
+
+    fun signUp() {
+
+    }
+
     private fun loginDataChanged() {
         if (!isUserNameValid(username)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)

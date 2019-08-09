@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
-         xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="LoginActivityBinding">
         <import type="android.view.View"/>
         <variable name="viewModel" type="com.event.reminder.ui.login.LoginViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
-            android:id="@+id/container"
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin">
+            android:background="@color/fadeGreen">
 
-        <EditText
-                android:id="@+id/et_username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="96dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/prompt_email"
-                android:text="@={viewModel.username}"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <android.support.constraint.ConstraintLayout
+                style="@style/RoundedContainer"
+                android:id="@+id/container"
+                android:elevation="@dimen/_7sdp"
+                android:layout_margin="@dimen/_20sdp"
+                android:layout_centerInParent="true">
 
-        <EditText
-                android:id="@+id/et_password"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/prompt_password"
-                android:text="@={viewModel.password}"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:selectAllOnFocus="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_username"/>
+            <android.support.design.widget.TextInputLayout
+                    style="@style/TextInputLayoutAppearance"
+                    android:id="@+id/il_username"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-                android:id="@+id/bt_login"
-                android:enabled="@{viewModel.valid}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="48dp"
-                android:layout_marginBottom="64dp"
-                android:text="@string/action_sign_in"
-                android:onClick="@{(v) -> viewModel.login()}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_password"
-                app:layout_constraintVertical_bias="0.2"/>
+                <EditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/et_username"
+                        android:hint="@string/email_id"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.username}"/>
+            </android.support.design.widget.TextInputLayout>
 
-        <ProgressBar
-                android:id="@+id/loading"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="64dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/et_password"
-                app:layout_constraintStart_toStartOf="@+id/et_password"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3"/>
-    </android.support.constraint.ConstraintLayout>
+            <android.support.design.widget.TextInputLayout
+                    style="@style/TextInputLayoutAppearance"
+                    android:id="@+id/il_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/il_username">
+
+                <EditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/et_password"
+                        android:hint="@string/prompt_password"
+                        android:text="@={viewModel.password}"
+                        android:imeActionLabel="@string/sign_in"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                    style="@style/AppTheme.TextView.Link"
+                    android:id="@+id/tv_forget_password"
+                    app:layout_constraintTop_toBottomOf="@id/il_password"
+                    app:layout_constraintEnd_toEndOf="@id/il_password"
+                    app:layout_constraintStart_toStartOf="@id/il_password"
+                    android:text="@string/forget_password"
+                    android:onClick="@{(v) -> viewModel.forgetPassword()}"
+                    app:layout_constraintHorizontal_bias="1.0"/>
+
+            <Button
+                    style="@style/AppTheme.Button"
+                    android:id="@+id/bt_login"
+                    android:enabled="@{viewModel.valid}"
+                    android:text="@string/sign_in"
+                    android:onClick="@{(v) -> viewModel.login()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_forget_password"/>
+
+            <TextView
+                    style="@style/AppTheme.TextView.Link"
+                    app:layout_constraintTop_toBottomOf="@id/bt_login"
+                    android:onClick="@{(v) -> viewModel.signUp()}"
+                    android:text="@string/don_t_have_an_account"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:layout_constraintStart_toStartOf="@id/container"
+                    app:layout_constraintEnd_toEndOf="@id/container"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
 </layout>

@@ -10,4 +10,11 @@ class EventReminderApplication : BaseApplication() {
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
+
+    companion object {
+
+        fun getInstance(): EventReminderApplication {
+            return EventReminderApplication()
+        }
+    }
 }
