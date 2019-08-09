@@ -35,12 +35,10 @@ object LoginRepository : BaseRepository() {
     }
 
     fun login(
-        username: String,
-        password: String,
+        request: LoginRequest,
         _loginResult: MutableLiveData<ApiResult<LoggedInUser>>
     ) {
         // handle login
-        val request = LoginRequest(username, password)
         try {
 
             RequestNetworkManager.addRequest(

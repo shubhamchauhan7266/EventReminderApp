@@ -66,6 +66,7 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObse
 
     fun signUp() {
 
+        // TODO Change Request
         val request = SignUpRequest(fullName, emailId, phoneNumber, password, gender, dateOfBirth, image = null)
         signUpRepository.signUp(request, _signUpResult)
     }

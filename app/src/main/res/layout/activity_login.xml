@@ -31,7 +31,7 @@
                         android:id="@+id/et_username"
                         android:hint="@string/email_id"
                         android:inputType="textEmailAddress"
-                        android:text="@={viewModel.username}"/>
+                        android:text="@={viewModel.userName}"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout

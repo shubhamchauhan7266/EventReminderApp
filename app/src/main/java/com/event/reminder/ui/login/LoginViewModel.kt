@@ -5,10 +5,13 @@ import android.arch.lifecycle.MutableLiveData
 import android.databinding.Bindable
 import android.util.Patterns
 import com.android.mvvmandroidlib.helper.ApiResult
+import com.android.mvvmandroidlib.helper.EventLiveData
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
 import com.event.reminder.R
 import com.event.reminder.constant.AppConstant
+import com.event.reminder.constant.NavigationConstant
+import com.event.reminder.data.model.request.LoginRequest
 import com.event.reminder.data.model.response.LoggedInUser
 import com.event.reminder.data.repository.LoginRepository
 
@@ -20,6 +23,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
     private val _loginResult: MutableLiveData<ApiResult<LoggedInUser>> = MutableLiveData()
     val loginResult: LiveData<ApiResult<LoggedInUser>>? = _loginResult
 
+    val navigationEvent = EventLiveData<NavigationConstant>()
+
     var valid: Boolean? = null
         @Bindable get
         set(value) {
@@ -27,11 +32,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
             notifyPropertyChanged(BR.valid)
         }
 
-    var username: String? = null
+    var userName: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.username)
+            notifyPropertyChanged(BR.userName)
         }
 
     var password: String? = null
@@ -45,19 +50,22 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     fun login() {
         // can be launched in a separate asynchronous job
-        username?.let { password?.let { it1 -> loginRepository.login(it, it1, _loginResult) } }
+        val request = LoginRequest(userName, password)
+        loginRepository.login(request, _loginResult)
     }
 
     fun forgetPassword() {
 
+        navigationEvent.sendEvent(NavigationConstant.FORGET_PASSWORD_SCREEN)
     }
 
     fun signUp() {
 
+        navigationEvent.sendEvent(NavigationConstant.SIGN_UP_SCREEN)
     }
 
     private fun loginDataChanged() {
-        if (!isUserNameValid(username)) {
+        if (!isUserNameValid(userName)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         } else if (!isPasswordValid(password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
