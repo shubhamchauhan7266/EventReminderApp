@@ -22,19 +22,19 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        this.binding = getViewDataBinding()
-        onCreateViewBinding(inflater, container)
+        this.binding = getViewDataBinding(inflater, container)
+        onCreateViewBinding()
         setupToolbar()
         initMembers()
 
         return binding.root
     }
 
-    protected abstract fun onCreateViewBinding(inflater: LayoutInflater, container: ViewGroup?)
+    protected abstract fun onCreateViewBinding()
 
     protected abstract fun getObservableViewModel(): V
 
-    protected abstract fun getViewDataBinding(): T
+    protected abstract fun getViewDataBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
     protected open fun setupToolbar() {
 

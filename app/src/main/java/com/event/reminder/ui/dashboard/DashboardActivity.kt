@@ -5,18 +5,18 @@ import android.databinding.DataBindingUtil
 import android.support.design.widget.BottomNavigationView
 import com.android.mvvmandroidlib.ui.BaseActivity
 import com.event.reminder.R
-import com.event.reminder.databinding.HomeActivityBinding
+import com.event.reminder.databinding.DashboardActivityBinding
 import com.event.reminder.ui.ViewModelFactory
 
-class HomeActivity : BaseActivity<HomeActivityBinding, HomeViewModel>() {
+class DashboardActivity : BaseActivity<DashboardActivityBinding, DashboardViewModel>() {
 
-    override fun getViewDataBinding(): HomeActivityBinding {
-        return DataBindingUtil.setContentView(this, R.layout.activity_home)
+    override fun getViewDataBinding(): DashboardActivityBinding {
+        return DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
     }
 
-    override fun getObservableViewModel(): HomeViewModel {
+    override fun getObservableViewModel(): DashboardViewModel {
         return ViewModelProviders.of(this, ViewModelFactory())
-            .get(HomeViewModel::class.java)
+            .get(DashboardViewModel::class.java)
     }
 
     override fun onCreateBinding() {

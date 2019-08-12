@@ -12,7 +12,7 @@ import com.event.reminder.R
 import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.LoginActivityBinding
 import com.event.reminder.ui.ViewModelFactory
-import com.event.reminder.ui.dashboard.HomeActivity
+import com.event.reminder.ui.dashboard.DashboardActivity
 
 class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
 
@@ -60,7 +60,7 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
                     val loggedInUser = result.success
                     if (loggedInUser!!.status) {
 
-                        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                         finish()
                     } else {
                         result.success!!.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
@@ -79,7 +79,7 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
                     startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
                 }
                 NavigationConstant.HOME_SCREEN -> {
-                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                 }
                 NavigationConstant.FORGET_PASSWORD_SCREEN -> {
                     ToastUtils.showMessage(this@LoginActivity, R.string.under_development)
