@@ -2,11 +2,9 @@ package com.event.reminder.ui
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.event.reminder.data.repository.DashboardRepository
-import com.event.reminder.data.repository.HomeRepository
-import com.event.reminder.data.repository.LoginRepository
-import com.event.reminder.data.repository.SignUpRepository
+import com.event.reminder.data.repository.*
 import com.event.reminder.ui.dashboard.DashboardViewModel
+import com.event.reminder.ui.dashboard.FriendDetailsViewModel
 import com.event.reminder.ui.dashboard.HomeViewModel
 import com.event.reminder.ui.login.LoginViewModel
 import com.event.reminder.ui.login.SignUpViewModel
@@ -32,6 +30,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
             ) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(
                 homeRepository = HomeRepository
+            ) as T
+            modelClass.isAssignableFrom(FriendDetailsViewModel::class.java) -> FriendDetailsViewModel(
+                friendDetailsRepository = FriendDetailsRepository
             ) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }
