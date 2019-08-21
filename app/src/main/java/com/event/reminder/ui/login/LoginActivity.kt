@@ -57,17 +57,22 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
             when {
                 result.success != null -> {
 
-                    val loggedInUser = result.success
+                    /*val loggedInUser = result.success
                     if (loggedInUser!!.status) {
 
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                         finish()
                     } else {
                         result.success!!.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
-                    }
+                    }*/
+
+                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    finish()
                 }
                 result.errorMessage != null -> {
                     result.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
+                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    finish()
                 }
             }
         })

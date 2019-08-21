@@ -1,6 +1,5 @@
 package com.android.mvvmandroidlib.ui
 
-import android.arch.lifecycle.Observer
 import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
@@ -41,16 +40,5 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     }
 
     protected open fun initMembers() {
-        viewModel.startProgressEvent.observe(this, Observer {
-            //                        DialogUtils.showProgressDialog(activity, it!!)
-        })
-
-        viewModel.stopProgressEvent.observe(this, Observer {
-            //            DialogUtils.hideProgressDialog()
-        })
-
-        viewModel.failedEvent.observe(this, Observer {
-            //            DialogUtils.hideProgressDialog()
-        })
     }
 }
