@@ -3,7 +3,7 @@
 
     <data class="FriendDetailsFragmentBinding">
         <import type="android.view.View"/>
-        <variable name="viewModel" type="com.event.reminder.ui.dashboard.FriendDetailsViewModel"/>
+        <variable name="viewModel" type="com.event.reminder.ui.dashboard.friends.FriendDetailsViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
