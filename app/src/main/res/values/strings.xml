@@ -122,4 +122,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_friend">Friend</string>
     <string name="title_profile">Profile</string>
+    <string name="request_received">Request Received</string>
+    <string name="request_sent">Request Sent</string>
+    <string name="friends">Friends</string>
 </resources>

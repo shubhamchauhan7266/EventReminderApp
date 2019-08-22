@@ -113,4 +113,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/darkStaleBlue</item>
     </style>
+
+    <style name="TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabBackground">@color/green</item>
+        <item name="tabIndicatorGravity">center</item>
+        <item name="android:elevation">@dimen/_5sdp</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
+        <item name="tabSelectedTextColor">@color/colorLightGrey20</item>
+    </style>
 </resources>
