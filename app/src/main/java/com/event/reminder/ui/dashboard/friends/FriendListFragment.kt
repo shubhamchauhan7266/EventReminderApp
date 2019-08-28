@@ -21,9 +21,9 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
         binding.viewModel = viewModel
 
         val friendDetailsList: ArrayList<FriendDetailsModel> = ArrayList()
-        friendDetailsList.add(FriendDetailsModel(name = "Subham Chauhan"))
-        friendDetailsList.add(FriendDetailsModel(name = "Pulkit"))
-        friendDetailsList.add(FriendDetailsModel(name = "Raghav"))
+        friendDetailsList.add(FriendDetailsModel(name = "Subham Chauhan", age = "25"))
+        friendDetailsList.add(FriendDetailsModel(name = "Pulkit", age = "25"))
+        friendDetailsList.add(FriendDetailsModel(name = "Raghav", age = "25"))
 
         binding.rvFriendList.layoutManager = LinearLayoutManager(activity)
         binding.rvFriendList.itemAnimator = DefaultItemAnimator()

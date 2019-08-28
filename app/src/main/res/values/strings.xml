@@ -125,4 +125,5 @@
     <string name="request_received">Request Received</string>
     <string name="request_sent">Request Sent</string>
     <string name="friends">Friends</string>
+    <string name="age_year">%s Year</string>
 </resources>

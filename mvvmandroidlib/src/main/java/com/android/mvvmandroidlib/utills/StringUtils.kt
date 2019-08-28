@@ -1,5 +1,8 @@
 package com.android.mvvmandroidlib.utills
 
+import android.support.annotation.NonNull
+import android.support.annotation.Nullable
+import android.text.TextUtils
 import java.util.regex.Pattern
 
 object StringUtils {
@@ -68,5 +71,22 @@ object StringUtils {
                 hasDigit.find() && hasLetterCaps.find() && hasSpecial.find()
             }
         }
+    }
+
+    fun isNullOrEmpty(@Nullable str: String?): Boolean {
+        return TextUtils.isEmpty(str)
+    }
+
+    fun nullIfEmpty(@Nullable str: String?): String? {
+        return if (isNullOrEmpty(str)) null else str
+    }
+
+    @NonNull
+    fun emptyIfNull(@Nullable str: String?): String {
+        return str ?: ""
+    }
+
+    fun length(@Nullable str: String?): Int {
+        return if (isNullOrEmpty(str)) 0 else str!!.length
     }
 }

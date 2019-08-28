@@ -1,56 +1,71 @@
 package com.android.mvvmandroidlib.utills
 
+import android.content.Context
+import java.io.BufferedReader
+import java.io.File
+import java.io.InputStreamReader
+
+
 object FileUtils {
 
-    /*fun WriteToFile(context: Context, strFileName: String, strJSONData: String): Boolean {
-        var context = context
-        var bWriteSuccess = true
+    private val TAG: String = FileUtils::class.java.simpleName
+
+    fun writeToFile(context: Context, strFileName: String, strJSONData: String): Boolean {
+        var writeSuccess = true
         try {
-            val fileout = context.openFileOutput(strFileName, context.MODE_PRIVATE)
-            //            OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
-            //            outputWriter.write(strJSONData);
-            //            outputWriter.flush();
-            //            outputWriter.close();
-            fileout.write(strJSONData.toByteArray())
-            val fileDescriptor = fileout.fd
+            val fileOut = context.openFileOutput(strFileName, Context.MODE_PRIVATE)
+            fileOut.write(strJSONData.toByteArray())
+            val fileDescriptor = fileOut.fd
             fileDescriptor.sync()
-            fileout.flush()
-            fileout.close()
+            fileOut.flush()
+            fileOut.close()
         } catch (e: Exception) {
-//            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e))
-            bWriteSuccess = false
+            LoggerUtils.error(TAG, LoggerUtils.getStackTraceString(e))
+            writeSuccess = false
         }
 
-        return bWriteSuccess
-    }*/
+        return writeSuccess
+    }
 
-    /*fun ReadFromFile(context: Context, strFileName: String): String {
-        //reading text from file
+    fun readFromFile(context: Context, strFileName: String): String {
         var strRet = ""
-        if (!CFileSystem.IsFileExist(context, strFileName)) {
+        if (!isFileExist(context, strFileName)) {
             return strRet
         }
 
         try {
             val fileIn = context.openFileInput(strFileName)
-            val InputRead = InputStreamReader(fileIn)
-            val bufferedReader = BufferedReader(InputRead)
+            val inputRead = InputStreamReader(fileIn)
+            val bufferedReader = BufferedReader(inputRead)
 
-            var receiveString: String? = ""
+            var receiveString: String?
             val stringBuilder = StringBuilder()
 
-            while ((receiveString = bufferedReader.readLine()) != null) {
+            receiveString = bufferedReader.readLine()
+            while (receiveString != null) {
                 stringBuilder.append(receiveString)
+                receiveString = bufferedReader.readLine()
             }
             strRet = stringBuilder.toString()
-            receiveString = null
             bufferedReader.close()
-            InputRead.close()
+            inputRead.close()
             fileIn.close()
         } catch (e: Exception) {
-//            CLogger.TraceLog(CLogger.TRACE_TYPE.TRACE_ERROR, "Exception Occurred : " + Log.getStackTraceString(e))
+            LoggerUtils.error(TAG, LoggerUtils.getStackTraceString(e))
         }
-
         return strRet
-    }*/
+    }
+
+    fun isFileExist(context: Context, strFileName: String): Boolean {
+        var isFileExists = false
+        try {
+            val file = File(context.filesDir.toString() + "/" + strFileName)
+            if (file.exists()) {
+                isFileExists = true
+            }
+        } catch (e: Exception) {
+            LoggerUtils.error(TAG, LoggerUtils.getStackTraceString(e))
+        }
+        return isFileExists
+    }
 }

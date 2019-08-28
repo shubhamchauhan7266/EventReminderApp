@@ -20,9 +20,9 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
         binding.viewModel = viewModel
 
         val requestDetailsList: ArrayList<FriendDetailsModel> = ArrayList()
-        requestDetailsList.add(FriendDetailsModel(name = "Subham Chauhan"))
-        requestDetailsList.add(FriendDetailsModel(name = "Pulkit"))
-        requestDetailsList.add(FriendDetailsModel(name = "Raghav"))
+        requestDetailsList.add(FriendDetailsModel(name = "Subham Chauhan", age = "25"))
+        requestDetailsList.add(FriendDetailsModel(name = "Pulkit", age = "25"))
+        requestDetailsList.add(FriendDetailsModel(name = "Raghav", age = "25"))
 
         binding.rvRequestList.layoutManager = LinearLayoutManager(activity)
         binding.rvRequestList.itemAnimator = DefaultItemAnimator()

@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.event.reminder.R
+import com.event.reminder.constant.AppConstant
+import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.response.FriendDetailsModel
-import com.event.reminder.databinding.RequestListAdapterBinding
+import com.event.reminder.databinding.RequestListReceivedBinding
+import com.event.reminder.databinding.RequestListSentBinding
 
 class RequestListAdapter(private val context: Context, private val requestList: ArrayList<FriendDetailsModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -19,21 +22,75 @@ class RequestListAdapter(private val context: Context, private val requestList: 
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
         }
-        val binding: RequestListAdapterBinding? =
-            layoutInflater?.let { DataBindingUtil.inflate(it, R.layout.item_request_details, parent, false) }
-        return RequestDetailsViewHolder(binding)
+
+        when (viewType) {
+
+            AppConstant.REQUEST_TYPE_RECEIVED -> {
+                val binding: RequestListReceivedBinding? =
+                    layoutInflater?.let {
+                        DataBindingUtil.inflate(
+                            it,
+                            R.layout.item_request_received,
+                            parent,
+                            false
+                        )
+                    }
+                return RequestDetailsReceivedViewHolder(binding)
+            }
+            AppConstant.REQUEST_TYPE_SENT -> {
+                val binding: RequestListSentBinding? =
+                    layoutInflater?.let {
+                        DataBindingUtil.inflate(
+                            it,
+                            R.layout.item_request_sent,
+                            parent,
+                            false
+                        )
+                    }
+                return RequestDetailsSentViewHolder(binding)
+            }
+            else -> {
+                val binding: RequestListReceivedBinding? =
+                    layoutInflater?.let {
+                        DataBindingUtil.inflate(
+                            it,
+                            R.layout.item_request_received,
+                            parent,
+                            false
+                        )
+                    }
+                return RequestDetailsReceivedViewHolder(binding)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return requestList.size
     }
 
-    override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
-
-        val requestDetailsViewHolder: RequestDetailsViewHolder = viewholder as RequestDetailsViewHolder
-//        friendDetailsViewHolder.binding!!.ivProfile
+    override fun getItemViewType(position: Int): Int {
+        return when (requestList[position].requestType) {
+            AppConstant.REQUEST_TYPE_RECEIVED -> AppConstant.REQUEST_TYPE_RECEIVED
+            AppConstant.REQUEST_TYPE_SENT -> AppConstant.REQUEST_TYPE_SENT
+            else -> ErrorConstant.INVALID_NUMBER
+        }
     }
 
-    inner class RequestDetailsViewHolder(val binding: RequestListAdapterBinding?) :
+    override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
+
+        when (viewholder) {
+            is RequestDetailsReceivedViewHolder -> {
+                viewholder.binding!!.friendDetail = requestList[position]
+            }
+            is RequestDetailsSentViewHolder -> {
+                viewholder.binding!!.friendDetail = requestList[position]
+            }
+        }
+    }
+
+    inner class RequestDetailsReceivedViewHolder(val binding: RequestListReceivedBinding?) :
+        RecyclerView.ViewHolder(binding!!.root)
+
+    inner class RequestDetailsSentViewHolder(val binding: RequestListSentBinding?) :
         RecyclerView.ViewHolder(binding!!.root)
 }

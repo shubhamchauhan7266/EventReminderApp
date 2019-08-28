@@ -34,5 +34,9 @@ object LoggerUtils {
         if (BuildConfig.DEBUG)
             Log.e(tag, msg)
     }
+
+    fun getStackTraceString(th: Throwable): String {
+        return Log.getStackTraceString(th)
+    }
 }
 
