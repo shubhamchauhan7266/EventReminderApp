@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MVVMAndroidLib</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>
