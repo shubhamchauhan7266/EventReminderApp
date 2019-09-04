@@ -15,6 +15,14 @@ object DeviceInfoUtils {
     }
 
     /**
+     * @return Device Name
+     */
+    fun getDeviceName(): String {
+        LoggerUtils.info(TAG, "Device Name: " + Build.PRODUCT)
+        return Build.PRODUCT
+    }
+
+    /**
      * @return Device Model
      */
     fun getDeviceModel(): String {
@@ -57,7 +65,7 @@ object DeviceInfoUtils {
     /**
      * @return Device Android Version
      */
-    fun getAndroidVersion(): String {
+    fun getAndroidOSVersion(): String {
         LoggerUtils.info(TAG, "Device Android Version: " + Build.VERSION.RELEASE)
         return Build.VERSION.RELEASE
     }
@@ -65,8 +73,16 @@ object DeviceInfoUtils {
     /**
      * @return Device Android Version Code
      */
-    fun getAndroidVersionCode(): Int {
+    fun getAndroidOSVersionCode(): Int {
         LoggerUtils.info(TAG, "Device Android VersionCode: " + Build.VERSION.SDK_INT)
         return Build.VERSION.SDK_INT
+    }
+
+    /**
+     * @return Device Fingerprint
+     */
+    fun getDeviceFingerprint(): String {
+        LoggerUtils.info(TAG, "Device Fingerprint: " + Build.FINGERPRINT)
+        return Build.FINGERPRINT
     }
 }
