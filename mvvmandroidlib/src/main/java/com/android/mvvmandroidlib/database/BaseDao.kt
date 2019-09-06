@@ -2,6 +2,13 @@ package com.android.mvvmandroidlib.database
 
 import android.arch.persistence.room.*
 
+/**
+ * This dao class is used as a base class for all Dao and provide some methods to its subclasses.
+ *
+ * @param <T> The type of data hold by this instance
+ *
+ * @author Shubham Chauhan
+ */
 abstract class BaseDao<T> {
 
     /**

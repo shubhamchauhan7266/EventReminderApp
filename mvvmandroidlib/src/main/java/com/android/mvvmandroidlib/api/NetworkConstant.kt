@@ -1,5 +1,10 @@
 package com.android.mvvmandroidlib.api
 
+/**
+ * This constant class is used to provide some network constant.
+ *
+ * @author Shubham Chauhan
+ */
 object NetworkConstant {
 
     const val ERROR_CODE_INVALID: Int = -1
@@ -14,6 +19,9 @@ object NetworkConstant {
     const val ERROR_CODE_EXCEPTION: Int = 1011
     const val ERROR_CODE_SERVER: Int = 1012
 
+    /**
+     * @return error message with respect to error code.
+     */
     fun getErrorMessage(code: Int): String {
 
         when (code) {

@@ -58,9 +58,8 @@ object LoginRepository : BaseRepository() {
 //                })
 
 
-            // TODO Change logic
-            _loginResult.value =
-                ApiResult(errorMessage = "", errorCode = 100)
+//             TODO Change logic
+            _loginResult.value = ApiResult(errorMessage = "", errorCode = 100)
         } catch (e: Throwable) {
             _loginResult.value = ApiResult(errorMessage = e.localizedMessage)
         }

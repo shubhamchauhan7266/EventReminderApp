@@ -5,6 +5,11 @@ import android.view.View
 
 private const val MIN_SCALE = 0.75f
 
+/**
+ * This class is used to provide depth page animation in ViewPager.
+ *
+ * @author Shubham Chauhan
+ */
 class DepthPageTransformer : ViewPager.PageTransformer {
 
     override fun transformPage(view: View, position: Float) {

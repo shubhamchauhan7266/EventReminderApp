@@ -5,6 +5,14 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.support.annotation.MainThread
 
+/**
+ * This class is used to provide event which is observable.
+ * Any event is trigger by this class will give a callback to whom which have observer to listen.
+ *
+ * @param <T> The type of data hold by this instance
+ *
+ * @author Shubham Chauhan
+ */
 class EventLiveData<T> : MutableLiveData<T>() {
 
     @MainThread
@@ -25,11 +33,17 @@ class EventLiveData<T> : MutableLiveData<T>() {
         })
     }
 
+    /**
+     * Send event when work on Main Thread or UI Thread.
+     */
     @MainThread
     fun sendEvent(data: T) {
         value = data
     }
 
+    /**
+     * Send event when work on worker thread or in background.
+     */
     fun postEvent(data: T) {
         super.postValue(data)
     }

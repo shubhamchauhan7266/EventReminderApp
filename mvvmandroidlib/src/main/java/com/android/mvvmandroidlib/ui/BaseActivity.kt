@@ -12,9 +12,21 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> : AppCompatActivity() {
+/**
+ * This abstract class is used as a base class for all Activity. This class has two property binding and viewModel
+ * which will used by all subclasses.
+ * Also, this class has define some structure which will be followed by its subclasses.
+ * This class has method like onNetworkAvailable(),onNetworkLost() etc... which can be used to detect network connectivity.
+ *
+ * @param <T> ViewDataBinding
+ * @param <V> BaseObservableViewModel
+ *
+ * @author Shubham Chauhan
+ */
+abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> :
+    AppCompatActivity() {
 
-    protected lateinit var binding : T
+    protected lateinit var binding: T
     protected lateinit var viewModel: V
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,29 +45,45 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> : 
 
     protected abstract fun getViewDataBinding(): T
 
+    /**
+     * Method is used to set toolbar.
+     */
     protected open fun setupToolbar() {
 
     }
 
+    /**
+     * Callback to know network is available now.
+     *
+     * @param network network
+     */
     protected open fun onNetworkAvailable(network: Network) {
 
     }
 
+    /**
+     * Callback to know network is lost.
+     *
+     * @param network network
+     */
     protected open fun onNetworkLost(network: Network) {
 
     }
 
-    protected open fun initMembers(){
+    /**
+     * Method is used to initialize and setting initial data.
+     */
+    protected open fun initMembers() {
         viewModel.startProgressEvent.observe(this, Observer {
-//            DialogUtils.showProgressDialog(this, it!!)
+            //            DialogUtils.showProgressDialog(this, it!!)
         })
 
         viewModel.stopProgressEvent.observe(this, Observer {
-//            DialogUtils.hideProgressDialog()
+            //            DialogUtils.hideProgressDialog()
         })
 
         viewModel.failedEvent.observe(this, Observer {
-//            DialogUtils.hideProgressDialog()
+            //            DialogUtils.hideProgressDialog()
         })
     }
 
@@ -71,6 +99,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> : 
         unRegisterNetworkConnectivityCallback()
     }
 
+    /**
+     * Method is used to register for Network connectivity callback.
+     */
     private fun registerNetworkConnectivityCallback() {
         val connectivityManager =
             this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
@@ -84,6 +115,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> : 
         connectivityManager?.registerNetworkCallback(networkRequest, networkConnectivityCallback)
     }
 
+    /**
+     * Method is used to unRegister for Network connectivity callback.
+     */
     private fun unRegisterNetworkConnectivityCallback() {
         val connectivityManager =
             this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?

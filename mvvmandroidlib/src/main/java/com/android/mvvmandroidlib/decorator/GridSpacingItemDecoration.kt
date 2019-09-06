@@ -4,7 +4,15 @@ import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-
+/**
+ * This decorator class is used to provide spacing between Grid Item.
+ *
+ * @param spanCount spanCount
+ * @param spacing spacing
+ * @param includeEdge includeEdge
+ *
+ * @author Shubham Chauhan
+ */
 class GridSpacingItemDecoration(
     private val spanCount: Int,
     private val spacing: Int,

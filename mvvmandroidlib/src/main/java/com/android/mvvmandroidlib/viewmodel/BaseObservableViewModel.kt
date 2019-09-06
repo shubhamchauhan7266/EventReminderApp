@@ -5,6 +5,12 @@ import android.databinding.Observable
 import android.databinding.PropertyChangeRegistry
 import com.android.mvvmandroidlib.helper.EventLiveData
 
+/**
+ * This Observable class is used as a base class for all ViewModel to provide ObservableViewModel.
+ * This class has method notifyPropertyChanged(fieldId), which is used by all subclasses.
+ *
+ * @author Shubham Chauhan
+ */
 open class BaseObservableViewModel : ViewModel(), Observable {
 
     private val callbacks: PropertyChangeRegistry = PropertyChangeRegistry()
@@ -12,13 +18,21 @@ open class BaseObservableViewModel : ViewModel(), Observable {
     val stopProgressEvent = EventLiveData<String>()
     val failedEvent = EventLiveData<Int>()
 
+    /**
+     * Add property change callback
+     */
     override fun addOnPropertyChangedCallback(
-        callback: Observable.OnPropertyChangedCallback) {
+        callback: Observable.OnPropertyChangedCallback
+    ) {
         callbacks.add(callback)
     }
 
+    /**
+     * Remove property change callback.
+     */
     override fun removeOnPropertyChangedCallback(
-        callback: Observable.OnPropertyChangedCallback) {
+        callback: Observable.OnPropertyChangedCallback
+    ) {
         callbacks.remove(callback)
     }
 

@@ -12,6 +12,7 @@ object StringUtils {
     private const val ALPHABET: String = "[a-zA-Z]"
     private const val ALPHABET_SMALL: String = "[a-z]"
     private const val ALPHABET_CAPS: String = "[A-Z]"
+    public const val EMPTY = ""
 
     enum class PasswordType {
         ONLY_DIGIT,

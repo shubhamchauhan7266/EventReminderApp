@@ -6,6 +6,11 @@ import android.view.View
 private const val MIN_SCALE = 0.85f
 private const val MIN_ALPHA = 0.5f
 
+/**
+ * This class is used to provide zoom out animation in ViewPager.
+ *
+ * @author Shubham Chauhan
+ */
 class ZoomOutPageTransformer : ViewPager.PageTransformer {
 
     override fun transformPage(view: View, position: Float) {

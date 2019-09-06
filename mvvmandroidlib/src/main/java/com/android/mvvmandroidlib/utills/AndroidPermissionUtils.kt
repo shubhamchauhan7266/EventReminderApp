@@ -19,6 +19,9 @@ object AndroidPermissionUtils {
      */
     fun checkPermission(context: Context, vararg permissionList: String): Boolean {
 
+        if (ContextUtils.isContextNull(context)) {
+            return false
+        }
         for (permission in permissionList) {
             if (ActivityCompat.checkSelfPermission(
                     context,
@@ -40,6 +43,9 @@ object AndroidPermissionUtils {
      */
     fun requestForPermission(context: Activity, requestCode: Int, vararg permissionList: String) {
 
+        if (ContextUtils.isContextNull(context)) {
+            return
+        }
         requestPermissions(context, permissionList, requestCode)
     }
 
@@ -52,6 +58,9 @@ object AndroidPermissionUtils {
      */
     fun requestForPermission(context: Fragment, requestCode: Int, vararg permissionList: String) {
 
+        if (ContextUtils.isObjectNull(context)) {
+            return
+        }
         context.requestPermissions(permissionList, requestCode)
     }
 }

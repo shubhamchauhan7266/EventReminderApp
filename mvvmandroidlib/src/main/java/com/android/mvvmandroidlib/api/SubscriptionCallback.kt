@@ -4,6 +4,8 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 
 /**
  * Subscription Callback interface to be implemented by callers
+ *
+ * @author Shubham Chauhan
  */
 interface SubscriptionCallback<out T : BaseResponseModel> {
     fun onSuccess(requestCode: Int, response: BaseResponseModel)

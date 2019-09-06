@@ -5,6 +5,11 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.android.mvvmandroidlib.data.FragmentModel
 
+/**
+ * This adapter class is used by ViewPager to add fragment.
+ *
+ * @author Shubham Chauhan
+ */
 class ViewPagerAdapter(
     fragmentManager: FragmentManager,
     private val fragmentList: ArrayList<FragmentModel>

@@ -11,6 +11,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
+/**
+ * This handler class is used as a base class for Retrofit Api handler and has method to give retrofit builder.
+ *
+ * @author Shubham Chauhan
+ */
 abstract class ApiHandler {
 
     abstract fun getBaseUrl(): String
@@ -21,6 +26,11 @@ abstract class ApiHandler {
 
     abstract fun getInterceptor(): Interceptor
 
+    /**
+     * Method is used to return Retrofit Builder
+     *
+     * @return Retrofit.Builder
+     */
     fun getRetrofitBuilder(): Retrofit.Builder {
 
         val interceptor = HttpLoggingInterceptor()

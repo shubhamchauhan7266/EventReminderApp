@@ -15,10 +15,19 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 
+/**
+ * This class is used to add all request to fetch data from server and provide corresponding response.
+ * It have SubscriptionCallback which will give callback when any response and error come.
+ *
+ * @author Shubham Chauhan
+ */
 object RequestNetworkManager {
 
     private var disposable: CompositeDisposable? = null
 
+    /**
+     * @return CompositeDisposable instance
+     */
     private fun getDisposable(): CompositeDisposable? {
         if (disposable == null) {
             disposable = CompositeDisposable()
@@ -26,6 +35,16 @@ object RequestNetworkManager {
         return disposable
     }
 
+    /**
+     * Used to make request to fetch data
+     *
+     * @param requestCode  requestCode
+     * @param observable observable
+     * @param clazz clazz
+     * @param callback callback
+     *
+     * @return disposable request
+     */
     private fun <T : BaseResponseModel> getRequest(
         requestCode: Int,
         observable: Observable<T>,
@@ -51,19 +70,43 @@ object RequestNetworkManager {
                         callback.onException(requestCode, it.exceptionCode, it.exceptionMessage)
                     }
                 } else {
-                    callback.onException(requestCode, NetworkConstant.ERROR_CODE_EXCEPTION, it.localizedMessage)
+                    callback.onException(
+                        requestCode,
+                        NetworkConstant.ERROR_CODE_EXCEPTION,
+                        it.localizedMessage
+                    )
                 }
             })
     }
 
+    /**
+     * Method is used to add request in a queue to fetch data from server.
+     *
+     * @param requestCode requestCode
+     * @param observable observable
+     * @param callback SubscriptionCallback
+     */
     fun <T : BaseResponseModel> addRequest(
         requestCode: Int,
         observable: Observable<T>,
         callback: SubscriptionCallback<T>
     ) {
-        getDisposable()?.add(getRequest(requestCode, observable, BaseResponseModel::class.java, callback))
+        getDisposable()?.add(
+            getRequest(
+                requestCode,
+                observable,
+                BaseResponseModel::class.java,
+                callback
+            )
+        )
     }
 
+    /**
+     * Method is used to add request in a queue to fetch data from server.
+     *
+     * @param observable observable
+     * @param callback SubscriptionCallback
+     */
     fun <T : BaseResponseModel> addRequest(
         observable: Observable<T>,
         callback: SubscriptionCallback<T>
@@ -74,6 +117,7 @@ object RequestNetworkManager {
     /**
      * create observable if network error(socket timeout etc) or error code(other than 200) occur
      * @param e network error
+     *
      * @return Observable
      */
     private fun <T> processNetworkError(e: Throwable): Observable<T> {

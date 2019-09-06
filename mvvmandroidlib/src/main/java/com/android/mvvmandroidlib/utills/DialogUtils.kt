@@ -19,6 +19,9 @@ object DialogUtils {
         onlyOK: Boolean = false
     ) {
 
+        if (ContextUtils.isContextNull(context)) {
+            return
+        }
         val builder = AlertDialog.Builder(context)
         builder.setMessage(message)
         builder.setCancelable(true)

@@ -71,7 +71,10 @@ object LoggerUtils {
      *
      * @return loggable stack trace
      */
-    fun getStackTraceString(th: Throwable): String {
+    fun getStackTraceString(th: Throwable?): String {
+        if (th == null) {
+            return ""
+        }
         return Log.getStackTraceString(th)
     }
 }

@@ -12,4 +12,8 @@ object ContextUtils {
     fun isContextNull(context: Context?): Boolean {
         return context == null
     }
+
+    fun isObjectNull(context: Any?): Boolean {
+        return context == null
+    }
 }

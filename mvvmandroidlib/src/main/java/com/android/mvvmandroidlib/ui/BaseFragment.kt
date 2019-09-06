@@ -9,6 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 
+/**
+ * This abstract class is used as a base class for all Fragment. This class has two property binding and viewModel
+ * which will used by all subclasses.
+ * Also, this class has define some structure which will be followed by its subclasses.
+ *
+ * @param <T> ViewDataBinding
+ * @param <V> BaseObservableViewModel
+ *
+ * @author Shubham Chauhan
+ */
 abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : Fragment() {
 
     protected lateinit var binding: T
@@ -19,7 +29,11 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
         this.viewModel = getObservableViewModel()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         this.binding = getViewDataBinding(inflater, container)
         onCreateViewBinding()
@@ -35,10 +49,16 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
 
     protected abstract fun getViewDataBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
+    /**
+     * Method is used to set toolbar.
+     */
     protected open fun setupToolbar() {
 
     }
 
+    /**
+     * Method is used to initialize and setting initial data.
+     */
     protected open fun initMembers() {
     }
 }
