@@ -6,6 +6,13 @@ import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * This util class is used to provide some common methods related to Date.
+ * It provide some helper method to parse and format date. It will throw DateUtilParseException if any exception occurred.
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object DateUtils {
 
     private val TAG: String = DateUtils::class.java.simpleName

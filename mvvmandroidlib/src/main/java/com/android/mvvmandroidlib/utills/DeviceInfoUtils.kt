@@ -2,6 +2,12 @@ package com.android.mvvmandroidlib.utills
 
 import android.os.Build
 
+/**
+ * This util class is used to provide some methods to know device information.
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object DeviceInfoUtils {
 
     private val TAG: String = DeviceInfoUtils::class.java.simpleName

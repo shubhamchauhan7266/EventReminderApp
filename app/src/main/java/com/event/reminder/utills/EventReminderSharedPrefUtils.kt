@@ -1,7 +1,7 @@
 package com.event.reminder.utills
 
 import com.android.mvvmandroidlib.utills.LoggerUtils
-import com.android.mvvmandroidlib.utills.SharedPrefrenceUtils
+import com.android.mvvmandroidlib.utills.SharedPreferencesUtils
 import com.event.reminder.EventReminderApplication
 
 object EventReminderSharedPrefUtils {
@@ -13,7 +13,7 @@ object EventReminderSharedPrefUtils {
     fun isUserLoggedIn(): Boolean {
 
         LoggerUtils.info(TAG, "isUserLoggedIn")
-        return SharedPrefrenceUtils.getBoolean(
+        return SharedPreferencesUtils.getBoolean(
             EventReminderApplication.getInstance(),
             USER_LOGGED_IN,
             fileName = FILE_NAME
@@ -23,7 +23,7 @@ object EventReminderSharedPrefUtils {
     fun setUserLoggedIn(value: Boolean) {
 
         LoggerUtils.info(TAG, "setUserLoggedIn")
-        SharedPrefrenceUtils.setBoolean(
+        SharedPreferencesUtils.setBoolean(
             EventReminderApplication.getInstance(),
             USER_LOGGED_IN,
             value,

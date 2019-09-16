@@ -5,6 +5,13 @@ import android.support.annotation.Nullable
 import android.text.TextUtils
 import java.util.regex.Pattern
 
+/**
+ * This util class is used to provide methods related to String.
+ * Ex - It is used to check string is empty or not etc..
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object StringUtils {
 
     private const val SPECIAL_CHARACTER: String = "[!@#$%&*()_+=|<>?{}\\[\\]~-]"
@@ -12,8 +19,11 @@ object StringUtils {
     private const val ALPHABET: String = "[a-zA-Z]"
     private const val ALPHABET_SMALL: String = "[a-z]"
     private const val ALPHABET_CAPS: String = "[A-Z]"
-    public const val EMPTY = ""
+    const val EMPTY = ""
 
+    /**
+     * Enum class to represent password type.
+     */
     enum class PasswordType {
         ONLY_DIGIT,
         ONLY_ALPHABET,
@@ -27,6 +37,12 @@ object StringUtils {
 
     /**
      * Method is used to check whether is password valid or not.
+     *
+     * @param password password
+     * @param length length of password
+     * @param type password type
+     *
+     * @return true if password is valid otherwise false.
      */
     fun isPasswordValid(password: String, length: Int, type: PasswordType): Boolean {
 
@@ -74,19 +90,43 @@ object StringUtils {
         }
     }
 
+    /**
+     * Method is used to know that given string is null or empty.
+     *
+     * @param str string
+     * @return true if data is null or empty otherwise else.
+     */
     fun isNullOrEmpty(@Nullable str: String?): Boolean {
         return TextUtils.isEmpty(str)
     }
 
+    /**
+     * Method is used to set data null if it is empty.
+     *
+     * @param str string
+     * @return null if empty otherwise return actual data.
+     */
     fun nullIfEmpty(@Nullable str: String?): String? {
         return if (isNullOrEmpty(str)) null else str
     }
 
+    /**
+     * Method is used to set data empty if it is null.
+     *
+     * @param str string
+     * @return empty if null otherwise return actual data.
+     */
     @NonNull
     fun emptyIfNull(@Nullable str: String?): String {
-        return str ?: ""
+        return str ?: EMPTY
     }
 
+    /**
+     * Method is used to get length of data.
+     *
+     * @param str string
+     * @return length of data.
+     */
     fun length(@Nullable str: String?): Int {
         return if (isNullOrEmpty(str)) 0 else str!!.length
     }

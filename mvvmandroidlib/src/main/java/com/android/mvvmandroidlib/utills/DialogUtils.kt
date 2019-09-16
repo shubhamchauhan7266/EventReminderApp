@@ -4,11 +4,28 @@ import android.app.AlertDialog
 import android.content.Context
 import com.android.mvvmandroidlib.R
 
-
+/**
+ * This util class is used to show different type of dialog.
+ * It will provide dialog to show some alert or to ask user for some confirmation.
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object DialogUtils {
 
     private const val INVALID_RESOURCE_ID: Int = -1
 
+    /**
+     * Method is used to show dialog.
+     *
+     * @param context
+     * @param title
+     * @param message
+     * @param okText
+     * @param cancelText
+     * @param callback
+     * @param onlyOK true if you want only ok or +ve button else set false.
+     */
     fun showDialog(
         context: Context,
         title: Int,
@@ -48,6 +65,15 @@ object DialogUtils {
         alertDialog.show()
     }
 
+    /**
+     * Method is used to show dialog.
+     *
+     * @param context
+     * @param message
+     * @param okText
+     * @param cancelText
+     * @param callback
+     */
     fun showDialog(
         context: Context,
         message: Int,
@@ -58,6 +84,14 @@ object DialogUtils {
         showDialog(context, INVALID_RESOURCE_ID, message, okText, cancelText, callback, false)
     }
 
+    /**
+     * Method is used to show dialog.
+     *
+     * @param context
+     * @param title
+     * @param message
+     * @param callback
+     */
     fun showDialog(
         context: Context,
         title: Int,
@@ -75,6 +109,13 @@ object DialogUtils {
         )
     }
 
+    /**
+     * Method is used to show dialog.
+     *
+     * @param context
+     * @param message
+     * @param callback
+     */
     fun showDialog(
         context: Context,
         message: Int,
@@ -83,6 +124,13 @@ object DialogUtils {
         showDialog(context, INVALID_RESOURCE_ID, message, callback)
     }
 
+    /**
+     * Method is used to show dialog.
+     *
+     * @param context
+     * @param title
+     * @param message
+     */
     fun showDialog(
         context: Context,
         title: Int,
@@ -91,6 +139,12 @@ object DialogUtils {
         showDialog(context, title, message, null)
     }
 
+    /**
+     * Method is used to show dialog.
+     *
+     * @param context
+     * @param message
+     */
     fun showDialog(
         context: Context,
         message: Int
@@ -98,10 +152,12 @@ object DialogUtils {
         showDialog(context, INVALID_RESOURCE_ID, message)
     }
 
+    /**
+     * Callback for ok and cancel.
+     */
     interface IDialogUtilsCallback {
         fun onOK()
         fun onCancel() {
-
         }
     }
 }

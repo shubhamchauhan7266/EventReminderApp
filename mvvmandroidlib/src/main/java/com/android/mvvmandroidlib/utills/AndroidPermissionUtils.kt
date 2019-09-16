@@ -7,7 +7,13 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityCompat.requestPermissions
 import android.support.v4.app.Fragment
 
-
+/**
+ * This util class is used to provide some common methods related to Android Permission.
+ * Ex - Camera, internal and external storage permission etc..
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object AndroidPermissionUtils {
 
     /**

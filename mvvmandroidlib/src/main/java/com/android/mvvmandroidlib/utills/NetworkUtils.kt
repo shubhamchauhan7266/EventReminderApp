@@ -9,7 +9,13 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.support.annotation.RequiresPermission
 
-
+/**
+ * This util class is used to provide methods related to network or internet.
+ * It will provide methods to know connectivity with wifi, bluetooth etc..
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object NetworkUtils {
 
     private val TAG: String = NetworkUtils::class.java.simpleName
@@ -17,6 +23,12 @@ object NetworkUtils {
     private const val DISABLED: String = "Disabled"
     private const val NOT_SUPPORTED: String = "Not supported"
 
+    /**
+     * Checks if the device has network connection.
+     *
+     * @param context context
+     * @return true if has network connection otherwise false.
+     */
     @RequiresPermission(value = Manifest.permission.ACCESS_NETWORK_STATE)
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager =
@@ -27,6 +39,9 @@ object NetworkUtils {
 
     /**
      * Checks if the device has Wifi connection.
+     *
+     * @param context context
+     * @return true if has wifi connection otherwise false.
      */
     @RequiresPermission(value = Manifest.permission.ACCESS_NETWORK_STATE)
     fun isWifiNetworkAvailable(context: Context): Boolean {
@@ -46,6 +61,9 @@ object NetworkUtils {
 
     /**
      * Checks if the device has 3G or other mobile data connection.
+     *
+     * @param context context
+     * @return true if has mobile data connection otherwise false.
      */
     @RequiresPermission(value = Manifest.permission.ACCESS_NETWORK_STATE)
     fun isMobileNetworkAvailable(context: Context): Boolean {
@@ -65,6 +83,9 @@ object NetworkUtils {
 
     /**
      * Checks if the device has bluetooth connection.
+     *
+     * @param context context
+     * @return true if has bluetooth connection otherwise false.
      */
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.BLUETOOTH])
     fun isBluetoothConnected(context: Context): Boolean {
@@ -86,6 +107,9 @@ object NetworkUtils {
 
     /**
      * Checks if the device has bluetooth connection.
+     *
+     * @param context context
+     * @return true if device is connected with ethernet otherwise false.
      */
     @RequiresPermission(value = Manifest.permission.ACCESS_NETWORK_STATE)
     fun isEthernetConnected(context: Context): Boolean {
@@ -104,6 +128,11 @@ object NetworkUtils {
         }
     }
 
+    /**
+     * Method is used to know bluetooth connection status.
+     *
+     * @return bluetooth status.
+     */
     @RequiresPermission(value = Manifest.permission.BLUETOOTH)
     private fun getBluetoothConnectionStatus(): String {
         val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()

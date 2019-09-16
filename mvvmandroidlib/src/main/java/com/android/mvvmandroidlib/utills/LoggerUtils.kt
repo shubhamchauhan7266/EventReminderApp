@@ -3,6 +3,13 @@ package com.android.mvvmandroidlib.utills
 import android.util.Log
 import com.android.mvvmandroidlib.BuildConfig
 
+/**
+ * This util class is used to provide methods to print logs.
+ * This logs will print only in debug mode.
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object LoggerUtils {
 
     /**
