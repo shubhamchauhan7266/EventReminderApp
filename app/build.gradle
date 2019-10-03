@@ -22,13 +22,13 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("../event_reminder_debug.jks")
+            storeFile file("debug.keystore")
             storePassword "testing@123"
             keyAlias "eventreminderdebug"
             keyPassword "testing@123"
         }
         release {
-            storeFile file("../event_reminder.jks")
+            storeFile file("release.keystore")
             storePassword "Event@987"
             keyAlias "eventreminder"
             keyPassword "Event@123"
