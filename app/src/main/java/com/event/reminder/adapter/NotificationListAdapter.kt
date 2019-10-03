@@ -34,7 +34,7 @@ class NotificationListAdapter(
     override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
 
         val notificationDetailsViewHolder: NotificationDetailsViewHolder = viewholder as NotificationDetailsViewHolder
-//        friendDetailsViewHolder.binding!!.ivProfile
+        notificationDetailsViewHolder.binding!!.notificationDetail = notificationList[position]
     }
 
     inner class NotificationDetailsViewHolder(val binding: NotificationListAdapterBinding?) :

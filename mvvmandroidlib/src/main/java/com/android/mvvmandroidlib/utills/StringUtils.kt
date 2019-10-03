@@ -3,6 +3,7 @@ package com.android.mvvmandroidlib.utills
 import android.support.annotation.NonNull
 import android.support.annotation.Nullable
 import android.text.TextUtils
+import android.util.Patterns
 import java.util.regex.Pattern
 
 /**
@@ -19,6 +20,7 @@ object StringUtils {
     private const val ALPHABET: String = "[a-zA-Z]"
     private const val ALPHABET_SMALL: String = "[a-z]"
     private const val ALPHABET_CAPS: String = "[A-Z]"
+    private const val EMAIL_SYMBOL: String = "@"
     const val EMPTY = ""
 
     /**
@@ -44,7 +46,11 @@ object StringUtils {
      *
      * @return true if password is valid otherwise false.
      */
-    fun isPasswordValid(password: String, length: Int, type: PasswordType): Boolean {
+    fun isPasswordValid(
+        password: String?,
+        length: Int = 7,
+        type: PasswordType = PasswordType.ONLY_ALPHABET
+    ): Boolean {
 
         val letter = Pattern.compile(ALPHABET)
         val letterCaps = Pattern.compile(ALPHABET_CAPS)
@@ -58,7 +64,7 @@ object StringUtils {
         val hasDigit = digit.matcher(password)
         val hasSpecial = special.matcher(password)
 
-        if (password.length < length) {
+        if (isNullOrEmpty(password) || password?.length ?: 0 < length) {
             return false
         }
 
@@ -88,6 +94,40 @@ object StringUtils {
                 hasDigit.find() && hasLetterCaps.find() && hasSpecial.find()
             }
         }
+    }
+
+    /**
+     * Method is used to check that user name is valid or not.
+     *
+     * @param username username
+     * @return true if valid otherwise false
+     */
+    fun isUserNameValid(username: String?): Boolean {
+        return if (username!!.contains(EMAIL_SYMBOL)) {
+            !isNullOrEmpty(username) && Patterns.EMAIL_ADDRESS.matcher(username).matches()
+        } else {
+            !isNullOrEmpty(username) && Patterns.PHONE.matcher(username).matches()
+        }
+    }
+
+    /**
+     * Method is used to check that email id is valid or not.
+     *
+     * @param emailId emailId
+     * @return true if valid otherwise false
+     */
+    fun isEmailValid(emailId: String?): Boolean {
+        return !isNullOrEmpty(emailId) && Patterns.EMAIL_ADDRESS.matcher(emailId).matches()
+    }
+
+    /**
+     * Method is used to check that phone number is valid or not.
+     *
+     * @param phoneNumber phoneNumber
+     * @return true if valid otherwise false
+     */
+    fun isPhoneNumberValid(phoneNumber: String?): Boolean {
+        return !isNullOrEmpty(phoneNumber) && Patterns.PHONE.matcher(phoneNumber).matches()
     }
 
     /**

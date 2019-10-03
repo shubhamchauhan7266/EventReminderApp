@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProvider
 import com.event.reminder.data.repository.*
 import com.event.reminder.ui.dashboard.DashboardViewModel
 import com.event.reminder.ui.dashboard.friends.FriendDetailsViewModel
+import com.event.reminder.ui.dashboard.friends.FriendListViewModel
+import com.event.reminder.ui.dashboard.friends.RequestListViewModel
 import com.event.reminder.ui.dashboard.home.HomeViewModel
 import com.event.reminder.ui.dashboard.notification.NotificationViewModel
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel
@@ -41,6 +43,12 @@ class ViewModelFactory : ViewModelProvider.Factory {
             ) as T
             modelClass.isAssignableFrom(ProfileDetailsViewModel::class.java) -> ProfileDetailsViewModel(
                 profileDetailsRepository = ProfileDetailsRepository
+            ) as T
+            modelClass.isAssignableFrom(RequestListViewModel::class.java) -> RequestListViewModel(
+                requestListRepository = RequestListRepository
+            ) as T
+            modelClass.isAssignableFrom(FriendListViewModel::class.java) -> FriendListViewModel(
+                friendListRepository = FriendListRepository
             ) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

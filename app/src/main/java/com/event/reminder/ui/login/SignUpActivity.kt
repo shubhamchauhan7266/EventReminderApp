@@ -34,7 +34,7 @@ class SignUpActivity : BaseActivity<SignUpActivityBinding, SignUpViewModel>() {
             when {
                 result.success != null -> {
 
-                    if (result.success!!.status) {
+                    if (result.success!!.success) {
 
                         startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
                         finish()

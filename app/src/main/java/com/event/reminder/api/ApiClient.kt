@@ -10,9 +10,9 @@ import retrofit2.http.POST
 
 interface ApiClient {
 
-    @POST("user/login")
+    @POST(ApiConstant.LOGIN_API)
     fun login(@Body loginRequest: LoginRequest): Observable<LoggedInUser>
 
-    @POST("user/signup")
-    fun signUp(@Body loginRequest: SignUpRequest): Observable<BaseResponseModel>
+    @POST(ApiConstant.SIGN_UP_API)
+    fun signUp(@Body signUpRequest: SignUpRequest): Observable<BaseResponseModel>
 }

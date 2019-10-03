@@ -1,23 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="ProfileDetailsFragmentBinding">
-        <import type="android.view.View"/>
-        <variable name="viewModel" type="com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel"/>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
-                                                 android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fadeGreenLight">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:background="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-                android:id="@+id/message"
+                android:id="@+id/tv_name"
+                style="@style/AppTheme.TextView.Large"
+                android:layout_marginTop="8dp"
+                android:text="Profile Shubham"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="@dimen/_96sdp"
+                android:layout_height="@dimen/_96sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/profile"
+                app:civ_border_color="@color/colorLightGrey60"
+                app:civ_border_width="@dimen/_2sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/profile" />
+
+        <TextView
+                android:id="@+id/tv_email_id_text"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="@string/email_id"
+                android:textColor="@color/fontBlack40"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <TextView
+                android:id="@+id/tv_email_id"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email_id_text" />
+
+        <TextView
+                android:id="@+id/tv_date_of_birth_text"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/date_of_birth"
+                android:textColor="@color/fontBlack40"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email_id" />
+
+        <TextView
+                android:id="@+id/tv_date_of_birth"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth_text" />
+
+        <TextView
+                android:id="@+id/tv_gender_text"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/gender"
+                android:textColor="@color/fontBlack40"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth" />
+
+        <TextView
+                android:id="@+id/tv_gender"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gender_text" />
+
+        <TextView
+                android:id="@+id/tv_phone_number_text"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/phone_number"
+                android:textColor="@color/fontBlack40"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+
+        <TextView
+                android:id="@+id/tv_phone_number"
+                style="@style/AppTheme.TextView.ExtraSmall"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone_number_text" />
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Profile Shubham"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/_24sdp" />
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/_24sdp" />
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>

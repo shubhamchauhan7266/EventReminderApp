@@ -13,6 +13,7 @@
     <color name="darkGreen">#196619</color>
     <color name="lightGreen">#32CD32</color>
     <color name="fadeGreen">#601e7b1e</color>
+    <color name="fadeGreenLight">#301e7b1e</color>
 
     <!-- Red Color -->
     <color name="red">#FF0000</color>

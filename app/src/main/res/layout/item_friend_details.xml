@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="FriendListAdapterBinding">
         <import type="android.view.View"/>
@@ -12,15 +13,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerCrop"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:src="@drawable/profile"
+                android:layout_margin="@dimen/_16sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                style="@style/AppTheme.TextView.Normal"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@{friendDetail.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+        <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="0dp"
+                style="@style/AppTheme.TextView.Small"
+                android:text="@{String.format(@string/age_year,friendDetail.age)"
+                app:layout_constraintEnd_toEndOf="@+id/tv_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

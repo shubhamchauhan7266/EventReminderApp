@@ -32,7 +32,7 @@ class FriendListAdapter(private val context: Context, private val friendList: Ar
     override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
 
         val friendDetailsViewHolder: FriendDetailsViewHolder = viewholder as FriendDetailsViewHolder
-//        friendDetailsViewHolder.binding!!.ivProfile
+        friendDetailsViewHolder.binding!!.friendDetail = friendList[position]
     }
 
     inner class FriendDetailsViewHolder(val binding: FriendListAdapterBinding?) :

@@ -20,9 +20,9 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
         binding.viewModel = viewModel
 
         val requestDetailsList: ArrayList<NotificationDetailsModel> = ArrayList()
-        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
-        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
-        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
+//        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
+//        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
+//        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
 
         binding.rvNotificationList.layoutManager = LinearLayoutManager(activity)
         binding.rvNotificationList.itemAnimator = DefaultItemAnimator()

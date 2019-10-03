@@ -60,7 +60,7 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
          */
         @JvmStatic
         fun newInstance() =
-            FriendDetailsFragment().apply {
+            FriendListFragment().apply {
                 arguments = Bundle().apply {
                     //                    putString(ARG_PARAM1, param1)
 //                    putString(ARG_PARAM2, param2)

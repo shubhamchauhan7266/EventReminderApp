@@ -66,8 +66,19 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObse
 
     fun signUp() {
 
-        // TODO Change Request
-        val request = SignUpRequest(fullName, emailId, phoneNumber, password, gender, dateOfBirth, image = null)
-        signUpRepository.signUp(request, _signUpResult)
+        if (isDataValid()) {
+            // TODO Change Request
+            val request = SignUpRequest(
+                firstName = fullName, emailAddress = emailId,
+                phoneNumber = phoneNumber, password = password, gender = gender, image = null
+            )
+            signUpRepository.signUp(request, _signUpResult)
+        }
+    }
+
+    fun isDataValid(): Boolean {
+//        return !StringUtils.isNullOrEmpty(fullName) && StringUtils.isEmailValid(emailId) && StringUtils.isPhoneNumberValid(phoneNumber)
+//                && StringUtils.isPasswordValid(password) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(dateOfBirth)
+        return true
     }
 }

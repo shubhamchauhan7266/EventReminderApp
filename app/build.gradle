@@ -21,8 +21,14 @@ android {
     }
 
     signingConfigs {
+        debug {
+            storeFile file("../event_reminder_debug.jks")
+            storePassword "testing@123"
+            keyAlias "eventreminderdebug"
+            keyPassword "testing@123"
+        }
         release {
-            storeFile file("password.keystore")
+            storeFile file("../event_reminder.jks")
             storePassword "Event@987"
             keyAlias "eventreminder"
             keyPassword "Event@123"
@@ -30,12 +36,46 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
             signingConfig signingConfigs.release
         }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def project = "Event_Reminder"
+            def SEP = "_"
+            def buildType = variant.variantData.variantConfiguration.buildType.name
+            def version = variant.versionName
+            def version_code = variant.versionCode
+            def date = new Date();
+            def formattedDate = date.format('ddMMyy_HHmm')
+            def newApkName = project + SEP + buildType + SEP + version + '.' + version_code + SEP + formattedDate + ".apk"
+
+            output.outputFileName = new File(newApkName)
+        }
+    }
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE.txt'
+        pickFirst 'META-INF/NOTICE.txt'
+        pickFirst 'META-INF/MANIFEST.MF'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        javaMaxHeapSize "4g" // 2g should be also OK
     }
 
     dataBinding {
