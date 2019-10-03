@@ -9,15 +9,11 @@ import android.support.v4.view.ViewPager
  *
  * @author Shubham Chauhan
  */
-class ViewPagerPageChangeListener(private val onPageSelected: (Int) -> Unit = {}) :
+abstract class ViewPagerPageChangeListener() :
     ViewPager.OnPageChangeListener {
     override fun onPageScrollStateChanged(state: Int) {
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-    }
-
-    override fun onPageSelected(position: Int) {
-        onPageSelected(position)
     }
 }

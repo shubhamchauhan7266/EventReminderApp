@@ -45,7 +45,10 @@ class FriendDetailsFragment : BaseFragment<FriendDetailsFragmentBinding, FriendD
         binding.viewPager.adapter = ViewPagerAdapter(activity!!.supportFragmentManager, fragmentModelList)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
         binding.viewPager.setPageTransformer(true, ZoomOutPageTransformer())
-        binding.viewPager.addOnPageChangeListener(ViewPagerPageChangeListener {
+        binding.viewPager.addOnPageChangeListener(object : ViewPagerPageChangeListener() {
+            override fun onPageSelected(position: Int) {
+
+            }
         })
     }
 
