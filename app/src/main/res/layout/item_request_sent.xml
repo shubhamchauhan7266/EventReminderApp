@@ -75,7 +75,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.8"/>
         <TextView
-                style="@style/AppTheme.TextView.Normal"
+                style="@style/AppTheme.TextView.ExtraSmall"
                 android:text="@{DateUtils.INSTANCE.formatDate(friendDetail.timeStamp, DateUtils.HH_MM_AA)}"
                 android:layout_width="0dp"
                 android:textStyle="bold"

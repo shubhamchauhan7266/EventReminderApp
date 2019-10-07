@@ -95,7 +95,7 @@
 
         <TextView
                 android:id="@+id/tv_date"
-                style="@style/AppTheme.TextView.Normal"
+                style="@style/AppTheme.TextView.ExtraSmall"
                 android:layout_width="0dp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="@{DateUtils.INSTANCE.formatDate(friendDetail.timeStamp, DateUtils.HH_MM_AA)}"

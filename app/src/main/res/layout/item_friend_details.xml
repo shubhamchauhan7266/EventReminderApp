@@ -33,6 +33,7 @@
                 android:layout_width="0dp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="@{friendDetail.name}"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_profile"
                 app:layout_constraintTop_toTopOf="@+id/iv_profile" />

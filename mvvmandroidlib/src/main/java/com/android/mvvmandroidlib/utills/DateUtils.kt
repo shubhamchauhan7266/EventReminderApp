@@ -18,6 +18,7 @@ object DateUtils {
     private val TAG: String = DateUtils::class.java.simpleName
     const val DD_MMM_YYYY = "dd MMM yyyy"
     const val HH_MM_AA = "hh:mm aa"
+    const val DD_MMM_YYYY_HH_MM_AA = "dd MMM yyyy hh:mm aa"
 
     /**
      * Method is used to parse date from date in specific format.
