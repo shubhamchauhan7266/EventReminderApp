@@ -17,6 +17,7 @@
 
     <!-- Red Color -->
     <color name="red">#FF0000</color>
+    <color name="fontRed">#8B0000</color>
     <color name="lightRed">#80FF0000</color>
     <color name="fadeRed">#60FF0000</color>
     <color name="darkRed">#8B0000</color>

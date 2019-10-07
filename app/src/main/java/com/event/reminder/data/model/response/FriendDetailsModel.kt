@@ -7,7 +7,7 @@ data class FriendDetailsModel(
     val name: String,
     val age: String,
     val city: String = "Haridwar",
-    val date: String = "",
+    val timeStamp: Long? = 1570406400,
     val requestStatus: String = "Pending",
     val requestType: Int = AppConstant.REQUEST_TYPE_RECEIVED,
     val imageUrl: String? = null

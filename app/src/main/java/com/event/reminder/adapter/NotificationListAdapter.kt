@@ -11,7 +11,7 @@ import com.event.reminder.databinding.NotificationListAdapterBinding
 
 class NotificationListAdapter(
     private val context: Context,
-    private val notificationList: ArrayList<NotificationDetailsModel>
+    private val notificationList: ArrayList<NotificationDetailsModel>?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -28,15 +28,15 @@ class NotificationListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return notificationList.size
+        return notificationList?.size ?: 0
     }
 
     override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
 
         val notificationDetailsViewHolder: NotificationDetailsViewHolder = viewholder as NotificationDetailsViewHolder
-        notificationDetailsViewHolder.binding!!.notificationDetail = notificationList[position]
+        notificationDetailsViewHolder.binding?.notificationDetail = notificationList?.get(position)
     }
 
     inner class NotificationDetailsViewHolder(val binding: NotificationListAdapterBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding?.root!!)
 }

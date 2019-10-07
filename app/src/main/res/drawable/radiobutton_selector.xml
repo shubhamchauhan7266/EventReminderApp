@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/radio_button_nonsel" android:state_checked="false"/>
-    <item android:drawable="@drawable/radio_button_sel" android:state_checked="true"/>
-    <item android:drawable="@drawable/radio_button_nonsel"/>
+    <item android:drawable="@drawable/ic_radio_button_unchecked_24dp" android:state_checked="false" />
+    <item android:drawable="@drawable/ic_radio_button_checked_24dp" android:state_checked="true" />
+    <item android:drawable="@drawable/ic_radio_button_unchecked_24dp" />
 </selector>

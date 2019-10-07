@@ -16,6 +16,8 @@ import java.util.*
 object DateUtils {
 
     private val TAG: String = DateUtils::class.java.simpleName
+    const val DD_MMM_YYYY = "dd MMM yyyy"
+    const val HH_MM_AA = "hh:mm aa"
 
     /**
      * Method is used to parse date from date in specific format.
@@ -116,7 +118,7 @@ object DateUtils {
      * @param outputFormat outputFormat
      * @return date in String with required format.
      */
-    @Throws(DateUtilParseException::class)
+//    @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(timeStamp: Long?, outputFormat: String?): String {
         LoggerUtils.debug(TAG, "formatDate($timeStamp, $outputFormat)")

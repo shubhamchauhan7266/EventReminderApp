@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -27,6 +28,12 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
 
         binding.rvFriendList.layoutManager = LinearLayoutManager(activity)
         binding.rvFriendList.itemAnimator = DefaultItemAnimator()
+        binding.rvFriendList.addItemDecoration(
+            DividerItemDecoration(
+                activity,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         binding.rvFriendList.adapter = FriendListAdapter(activity!!, friendDetailsList)
     }
 

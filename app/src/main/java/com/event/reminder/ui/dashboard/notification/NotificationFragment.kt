@@ -4,6 +4,7 @@ package com.event.reminder.ui.dashboard.notification
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,12 +21,33 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
         binding.viewModel = viewModel
 
         val requestDetailsList: ArrayList<NotificationDetailsModel> = ArrayList()
-//        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
-//        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
-//        requestDetailsList.add(NotificationDetailsModel(title = "Friend Request Received"))
+        requestDetailsList.add(
+            NotificationDetailsModel(
+                title = "Friend Request Accepted",
+                description = "Your friend request has been accepted by raghav Singh"
+            )
+        )
+        requestDetailsList.add(
+            NotificationDetailsModel(
+                title = "Friend Request Sent",
+                description = "You have sent request to Vaibhav padalia"
+            )
+        )
+        requestDetailsList.add(
+            NotificationDetailsModel(
+                title = "Friend Request Received",
+                description = "You have receive friend request from Shubham Chauhan."
+            )
+        )
 
         binding.rvNotificationList.layoutManager = LinearLayoutManager(activity)
         binding.rvNotificationList.itemAnimator = DefaultItemAnimator()
+        binding.rvNotificationList.addItemDecoration(
+            DividerItemDecoration(
+                activity,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         binding.rvNotificationList.adapter = NotificationListAdapter(activity!!, requestDetailsList)
     }
 
