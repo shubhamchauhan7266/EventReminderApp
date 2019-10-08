@@ -18,28 +18,30 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile"
-                android:layout_width="@dimen/_47sdp"
-                android:layout_height="@dimen/_47sdp"
+                android:layout_width="@dimen/_33sdp"
+                android:layout_height="@dimen/_33sdp"
                 android:src="@drawable/profile"
+                placeholder="@{@drawable/profile}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"/>
+                app:layout_constraintHorizontal_bias="0.04"/>
 
         <TextView
-                style="@style/AppTheme.TextView.Normal"
+                style="@style/AppTheme.TextView.Large"
                 android:text="@{friendDetail.name}"
                 android:layout_width="0dp"
                 android:id="@+id/tv_name"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/iv_profile"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 app:layout_constraintTop_toTopOf="@+id/iv_profile"
                 app:layout_constraintEnd_toStartOf="@+id/divider" />
         <TextView
                 style="@style/AppTheme.TextView.Small"
                 android:layout_width="0dp"
                 android:id="@+id/tv_age"
+                android:textColor="@color/fontBlack70"
                 android:text="@{String.format(@string/age_year,friendDetail.age)}"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
@@ -49,6 +51,7 @@
                 android:text="@{friendDetail.city}"
                 android:layout_width="0dp"
                 android:id="@+id/tv_city"
+                android:textColor="@color/fontBlack70"
                 app:layout_constraintStart_toStartOf="@+id/tv_age"
                 app:layout_constraintTop_toBottomOf="@+id/tv_age"
                 app:layout_constraintEnd_toStartOf="@+id/divider"
@@ -74,15 +77,22 @@
                 app:layout_constraintVertical_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.8"/>
+
         <TextView
-                style="@style/AppTheme.TextView.ExtraSmall"
-                android:text="@{DateUtils.INSTANCE.formatDate(friendDetail.timeStamp, DateUtils.HH_MM_AA)}"
+                android:id="@+id/tv_date"
+                style="@style/AppTheme.TextView.Smallest"
                 android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:text="@{DateUtils.INSTANCE.formatDate(friendDetail.timeStamp, DateUtils.HH_MM_AA)}"
+                android:textColor="@color/fontBlack40"
                 android:textStyle="bold"
-                android:id="@+id/tv_date" app:layout_constraintStart_toStartOf="@+id/iv_profile"
-                app:layout_constraintEnd_toEndOf="@+id/tv_city" android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_city"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_profile"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

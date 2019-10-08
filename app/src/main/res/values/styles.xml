@@ -57,6 +57,9 @@
         <item name="android:paddingBottom">@dimen/_2sdp</item>
         <item name="android:textColor">@color/darkStaleBlue</item>
     </style>
+    <style name="AppTheme.TextView.Smallest" parent="AppTheme.TextView.Normal">
+    <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
     <style name="AppTheme.TextView.ExtraSmall" parent="AppTheme.TextView.Normal">
         <item name="android:textSize">@dimen/_10sdp</item>
     </style>
