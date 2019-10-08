@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
 
     <data class="NotificationListAdapterBinding">
 
@@ -20,14 +21,16 @@
 
         <TextView
                 android:id="@+id/tv_time"
-                style="@style/AppTheme.TextView.Small"
+                style="@style/AppTheme.TextView.Smallest"
                 android:layout_width="0dp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:gravity="center_horizontal"
-                android:text="@{DateUtils.INSTANCE.formatDate(notificationDetail.timeStamp, DateUtils.HH_MM_AA)}"
                 android:textStyle="bold"
+                android:textColor="@color/fontBlack40"
+                bind:timeStamp="@{notificationDetail.timeStamp}"
+                bind:timeFormat="@{DateUtils.HH_MM_AA}"
                 app:layout_constraintEnd_toStartOf="@+id/divider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_profile" />

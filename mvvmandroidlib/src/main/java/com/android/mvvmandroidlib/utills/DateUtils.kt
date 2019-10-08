@@ -119,7 +119,7 @@ object DateUtils {
      * @param outputFormat outputFormat
      * @return date in String with required format.
      */
-//    @Throws(DateUtilParseException::class)
+    @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(timeStamp: Long?, outputFormat: String?): String {
         LoggerUtils.debug(TAG, "formatDate($timeStamp, $outputFormat)")
