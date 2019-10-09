@@ -70,7 +70,7 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObse
             // TODO Change Request
             val request = SignUpRequest(
                 firstName = fullName, emailAddress = emailId,
-                phoneNumber = phoneNumber, password = password, gender = gender, image = null
+                phoneNumber = phoneNumber, password = password, gender = gender, imageUrl = null
             )
             signUpRepository.signUp(request, _signUpResult)
         }

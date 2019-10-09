@@ -3,6 +3,7 @@ package com.android.mvvmandroidlib.viewmodel
 import android.arch.lifecycle.ViewModel
 import android.databinding.Observable
 import android.databinding.PropertyChangeRegistry
+import com.android.mvvmandroidlib.data.ProgressEvent
 import com.android.mvvmandroidlib.helper.EventLiveData
 
 /**
@@ -14,8 +15,7 @@ import com.android.mvvmandroidlib.helper.EventLiveData
 open class BaseObservableViewModel : ViewModel(), Observable {
 
     private val callbacks: PropertyChangeRegistry = PropertyChangeRegistry()
-    val startProgressEvent = EventLiveData<String>()
-    val stopProgressEvent = EventLiveData<String>()
+    val progressEvent = EventLiveData<ProgressEvent>()
     val failedEvent = EventLiveData<Int>()
 
     /**

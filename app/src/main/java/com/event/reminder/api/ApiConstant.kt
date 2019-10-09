@@ -9,6 +9,7 @@ object ApiConstant {
 
     const val LOGIN_API: String = "User/login"
     const val SIGN_UP_API: String = "User/signup"
+    const val USER_DETAILS_API: String = "User/userDetails"
 
     var API_BASE_URL = if (BuildConfig.DEBUG) DEV_BASE_URL else PROD_BASE_URL
 }

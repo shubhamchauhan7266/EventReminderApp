@@ -74,12 +74,8 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> :
      * Method is used to initialize and setting initial data.
      */
     protected open fun initMembers() {
-        viewModel.startProgressEvent.observe(this, Observer {
+        viewModel.progressEvent.observe(this, Observer {
             //            DialogUtils.showProgressDialog(this, it!!)
-        })
-
-        viewModel.stopProgressEvent.observe(this, Observer {
-            //            DialogUtils.hideProgressDialog()
         })
 
         viewModel.failedEvent.observe(this, Observer {

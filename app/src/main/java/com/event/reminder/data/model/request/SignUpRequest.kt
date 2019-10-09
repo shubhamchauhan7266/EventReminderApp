@@ -11,7 +11,7 @@ data class SignUpRequest(
     var password: String? = null,
     var gender: String? = null,
     var dateOfBirth: String? = "2019-09-29T08:08:20.150Z",
-    var image: String? = null,
+    var imageUrl: String? = null,
     var streetAddress: String? = "736",
     var city: String? = "Haridwar",
     var state: String? = "Uttarakhand",
