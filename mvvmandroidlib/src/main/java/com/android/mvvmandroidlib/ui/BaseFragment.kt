@@ -36,11 +36,14 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     ): View? {
 
         this.binding = getViewDataBinding(inflater, container)
+        return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         onCreateViewBinding()
         setupToolbar()
         initMembers()
-
-        return binding.root
     }
 
     protected abstract fun onCreateViewBinding()

@@ -13,8 +13,7 @@ import com.event.reminder.databinding.RequestListReceivedBinding
 import com.event.reminder.databinding.RequestListSentBinding
 
 class RequestListAdapter(
-    private val context: Context,
-    private val requestList: ArrayList<FriendRequestDetails>
+    private var requestList: ArrayList<FriendRequestDetails>?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -68,11 +67,11 @@ class RequestListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return requestList.size
+        return requestList?.size ?: 0
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (requestList[position].requestType) {
+        return when (requestList?.get(position)?.requestType) {
             AppConstant.REQUEST_TYPE_RECEIVED -> AppConstant.REQUEST_TYPE_RECEIVED
             AppConstant.REQUEST_TYPE_SENT -> AppConstant.REQUEST_TYPE_SENT
             else -> ErrorConstant.INVALID_NUMBER
@@ -83,12 +82,20 @@ class RequestListAdapter(
 
         when (viewholder) {
             is RequestDetailsReceivedViewHolder -> {
-                viewholder.binding!!.friendDetail = requestList[position]
+                viewholder.binding!!.friendDetail = requestList?.get(position)
             }
             is RequestDetailsSentViewHolder -> {
-                viewholder.binding!!.friendDetail = requestList[position]
+                viewholder.binding!!.friendDetail = requestList?.get(position)
             }
         }
+    }
+
+    fun getFriendRequestList() : ArrayList<FriendRequestDetails>?{
+        return requestList
+    }
+
+    fun setFriendRequestList(requestList: ArrayList<FriendRequestDetails>?) {
+        this.requestList = requestList
     }
 
     inner class RequestDetailsReceivedViewHolder(val binding: RequestListReceivedBinding?) :

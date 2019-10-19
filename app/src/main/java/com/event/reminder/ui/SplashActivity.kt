@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        if(EventReminderSharedPrefUtils.isUserLoggedIn()){
+        if(/*EventReminderSharedPrefUtils.isUserLoggedIn()*/true){
             startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
             finish()
         }else{

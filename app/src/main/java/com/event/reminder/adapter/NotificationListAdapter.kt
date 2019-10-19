@@ -11,8 +11,7 @@ import com.event.reminder.data.model.response.NotificationDetailsModel
 import com.event.reminder.databinding.NotificationListAdapterBinding
 
 class NotificationListAdapter(
-    private val context: Context,
-    private val notificationList: ArrayList<NotificationDetails>?
+    private var notificationList: ArrayList<NotificationDetails>?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -36,6 +35,14 @@ class NotificationListAdapter(
 
         val notificationDetailsViewHolder: NotificationDetailsViewHolder = viewholder as NotificationDetailsViewHolder
         notificationDetailsViewHolder.binding?.notificationDetail = notificationList?.get(position)
+    }
+
+    fun getNotificationList() : ArrayList<NotificationDetails>?{
+        return notificationList
+    }
+
+    fun setNotificationList(notificationList: ArrayList<NotificationDetails>?) {
+        this.notificationList = notificationList
     }
 
     inner class NotificationDetailsViewHolder(val binding: NotificationListAdapterBinding?) :

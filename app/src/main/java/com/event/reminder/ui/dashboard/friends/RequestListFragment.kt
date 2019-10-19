@@ -27,35 +27,7 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
 
-        val requestDetailsList: ArrayList<FriendRequestDetails> = ArrayList()
-
-        if (requestType == AppConstant.REQUEST_TYPE_SENT) {
-            requestDetailsList.add(
-                FriendRequestDetails(
-                    name = "Subham Chauhan",
-                    age = "25",
-                    requestType = AppConstant.REQUEST_TYPE_SENT
-                )
-            )
-            requestDetailsList.add(
-                FriendRequestDetails(
-                    name = "Pulkit",
-                    age = "25",
-                    requestType = AppConstant.REQUEST_TYPE_SENT
-                )
-            )
-            requestDetailsList.add(
-                FriendRequestDetails(
-                    name = "Raghav",
-                    age = "25",
-                    requestType = AppConstant.REQUEST_TYPE_SENT
-                )
-            )
-        } else {
-            requestDetailsList.add(FriendRequestDetails(name = "Subham Chauhan", age = "25"))
-            requestDetailsList.add(FriendRequestDetails(name = "Pulkit", age = "25"))
-            requestDetailsList.add(FriendRequestDetails(name = "Raghav", age = "25"))
-        }
+        initializeAdapter()
 
         viewModel.getFriendRequestDetailsApiResult().observe(this@RequestListFragment, Observer {
             val result = it ?: return@Observer
@@ -66,7 +38,10 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
                     val friendRequestDetails = result.success
                     if (friendRequestDetails?.success == true) {
 
-                        // TODO set adapter here.
+                        val adapter: RequestListAdapter =
+                            binding.rvRequestList.adapter as RequestListAdapter
+                        adapter.setFriendRequestList(friendRequestDetails.friendDetailsList)
+                        adapter.notifyDataSetChanged()
                     } else {
                         result.success!!.errorMessage?.let { it1 ->
                             ToastUtils.showMessage(
@@ -86,7 +61,12 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
                 }
             }
         })
+    }
 
+    /**
+     * Method is used to initialize adapter list
+     */
+    private fun initializeAdapter() {
         binding.rvRequestList.layoutManager = LinearLayoutManager(activity)
         binding.rvRequestList.itemAnimator = DefaultItemAnimator()
         binding.rvRequestList.addItemDecoration(
@@ -95,7 +75,7 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
                 DividerItemDecoration.VERTICAL
             )
         )
-        binding.rvRequestList.adapter = RequestListAdapter(activity!!, requestDetailsList)
+        binding.rvRequestList.adapter = RequestListAdapter(null)
     }
 
     override fun getObservableViewModel(): RequestListViewModel {

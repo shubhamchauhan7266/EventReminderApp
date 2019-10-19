@@ -17,23 +17,6 @@ import com.event.reminder.data.model.response.LoggedInUserModel
 
 object LoginRepository : BaseRepository() {
 
-    // in-memory cache of the loggedInUser object
-    var userModel: LoggedInUserModel? = null
-        private set
-
-    val isLoggedIn: Boolean
-        get() = userModel != null
-
-    init {
-        // If userModel credentials will be cached in local storage, it is recommended it be encrypted
-        // @see https://developer.android.com/training/articles/keystore
-        userModel = null
-    }
-
-    fun logout() {
-        userModel = null
-    }
-
     fun login(
         request: LoginRequest,
         _loginResult: MutableLiveData<ApiResult<LoggedInUserModel>>
@@ -67,11 +50,5 @@ object LoginRepository : BaseRepository() {
         } catch (e: Throwable) {
             _loginResult.value = ApiResult(errorMessage = e.localizedMessage)
         }
-    }
-
-    private fun setLoggedInUser(loggedInUserModel: LoggedInUserModel) {
-        this.userModel = loggedInUserModel
-        // If userModel credentials will be cached in local storage, it is recommended it be encrypted
-        // @see https://developer.android.com/training/articles/keystore
     }
 }

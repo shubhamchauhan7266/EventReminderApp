@@ -14,34 +14,16 @@ import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.adapter.NotificationListAdapter
 import com.event.reminder.data.model.response.NotificationDetails
-import com.event.reminder.data.model.response.NotificationDetailsModel
 import com.event.reminder.databinding.NotificationFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
+import java.util.*
 
 class NotificationFragment : BaseFragment<NotificationFragmentBinding, NotificationViewModel>() {
 
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
 
-        val notificationDetailsList: ArrayList<NotificationDetails> = ArrayList()
-        notificationDetailsList.add(
-            NotificationDetails(
-                title = "Friend Request Accepted",
-                description = "Your friend request has been accepted by raghav Singh"
-            )
-        )
-        notificationDetailsList.add(
-            NotificationDetails(
-                title = "Friend Request Sent",
-                description = "You have sent request to Vaibhav padalia"
-            )
-        )
-        notificationDetailsList.add(
-            NotificationDetails(
-                title = "Friend Request Received",
-                description = "You have receive friend request from Shubham Chauhan."
-            )
-        )
+        initializeAdapter()
 
         viewModel.getNotificationDetailsApiResult().observe(this@NotificationFragment, Observer {
             val result = it ?: return@Observer
@@ -49,10 +31,12 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
             when {
                 result.success != null -> {
 
-                    val userDetails = result.success
-                    if (userDetails?.success == true) {
-
-                        // TODO set adapter here.
+                    val notificationDetails = result.success
+                    if (notificationDetails?.success == true) {
+                        val adapter: NotificationListAdapter =
+                            binding.rvNotificationList.adapter as NotificationListAdapter
+                        adapter.setNotificationList(notificationDetails.notificationDetailsList)
+                        adapter.notifyDataSetChanged()
                     } else {
                         result.success!!.errorMessage?.let { it1 ->
                             ToastUtils.showMessage(
@@ -72,8 +56,12 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
                 }
             }
         })
+    }
 
-
+    /**
+     * Method is used to initialize adapter list
+     */
+    private fun initializeAdapter() {
         binding.rvNotificationList.layoutManager = LinearLayoutManager(activity)
         binding.rvNotificationList.itemAnimator = DefaultItemAnimator()
         binding.rvNotificationList.addItemDecoration(
@@ -82,7 +70,7 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
                 DividerItemDecoration.VERTICAL
             )
         )
-        binding.rvNotificationList.adapter = NotificationListAdapter(activity!!, notificationDetailsList)
+        binding.rvNotificationList.adapter = NotificationListAdapter(null)
     }
 
     override fun getObservableViewModel(): NotificationViewModel {
@@ -90,7 +78,10 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
             .get(NotificationViewModel::class.java)
     }
 
-    override fun getViewDataBinding(inflater: LayoutInflater, container: ViewGroup?): NotificationFragmentBinding {
+    override fun getViewDataBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): NotificationFragmentBinding {
         return DataBindingUtil.inflate(
             inflater, R.layout.fragment_notification, container, false
         )

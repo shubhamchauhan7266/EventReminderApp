@@ -5,7 +5,7 @@ import com.event.reminder.constant.AppConstant
 import java.io.Serializable
 
 data class FriendRequestDetailsModel(
-    var friendDetailsList: ArrayList<FriendDetails>
+    var friendDetailsList: ArrayList<FriendRequestDetails>
 ) : BaseResponseModel()
 
 data class FriendRequestDetails(

@@ -14,8 +14,6 @@ import com.android.mvvmandroidlib.ui.BaseFragment
 import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.adapter.FriendListAdapter
-import com.event.reminder.data.model.response.FriendDetails
-import com.event.reminder.data.model.response.FriendDetailsModel
 import com.event.reminder.databinding.FriendListFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
 
@@ -24,11 +22,7 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
 
-        val friendDetailsList: ArrayList<FriendDetails> = ArrayList()
-        friendDetailsList.add(FriendDetails(name = "Subham Chauhan", age = "25"))
-        friendDetailsList.add(FriendDetails(name = "Pulkit", age = "25"))
-        friendDetailsList.add(FriendDetails(name = "Raghav", age = "25"))
-
+        initializeAdapter()
 
         viewModel.getFriendDetailsApiResult().observe(this@FriendListFragment, Observer {
             val result = it ?: return@Observer
@@ -38,8 +32,10 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
 
                     val friendDetails = result.success
                     if (friendDetails?.success == true) {
-
-                        // TODO set adapter here.
+                        val adapter: FriendListAdapter =
+                            binding.rvFriendList.adapter as FriendListAdapter
+                        adapter.setFriendDetailsList(friendDetails.friendDetailsList)
+                        adapter.notifyDataSetChanged()
                     } else {
                         result.success!!.errorMessage?.let { it1 ->
                             ToastUtils.showMessage(
@@ -59,7 +55,12 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
                 }
             }
         })
+    }
 
+    /**
+     * Method is used to initialize adapter list
+     */
+    private fun initializeAdapter() {
         binding.rvFriendList.layoutManager = LinearLayoutManager(activity)
         binding.rvFriendList.itemAnimator = DefaultItemAnimator()
         binding.rvFriendList.addItemDecoration(
@@ -68,7 +69,7 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
                 DividerItemDecoration.VERTICAL
             )
         )
-        binding.rvFriendList.adapter = FriendListAdapter(activity!!, friendDetailsList)
+        binding.rvFriendList.adapter = FriendListAdapter(null)
     }
 
     override fun getObservableViewModel(): FriendListViewModel {
@@ -76,7 +77,10 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
             .get(FriendListViewModel::class.java)
     }
 
-    override fun getViewDataBinding(inflater: LayoutInflater, container: ViewGroup?): FriendListFragmentBinding {
+    override fun getViewDataBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FriendListFragmentBinding {
         return DataBindingUtil.inflate(
             inflater, R.layout.fragment_friend_list, container, false
         )
