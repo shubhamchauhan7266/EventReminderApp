@@ -1,6 +1,7 @@
 package com.event.reminder.ui.dashboard.friends
 
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -10,8 +11,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.mvvmandroidlib.ui.BaseFragment
+import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.adapter.FriendListAdapter
+import com.event.reminder.data.model.response.FriendDetails
 import com.event.reminder.data.model.response.FriendDetailsModel
 import com.event.reminder.databinding.FriendListFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
@@ -21,10 +24,41 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
 
-        val friendDetailsList: ArrayList<FriendDetailsModel> = ArrayList()
-        friendDetailsList.add(FriendDetailsModel(name = "Subham Chauhan", age = "25"))
-        friendDetailsList.add(FriendDetailsModel(name = "Pulkit", age = "25"))
-        friendDetailsList.add(FriendDetailsModel(name = "Raghav", age = "25"))
+        val friendDetailsList: ArrayList<FriendDetails> = ArrayList()
+        friendDetailsList.add(FriendDetails(name = "Subham Chauhan", age = "25"))
+        friendDetailsList.add(FriendDetails(name = "Pulkit", age = "25"))
+        friendDetailsList.add(FriendDetails(name = "Raghav", age = "25"))
+
+
+        viewModel.getFriendDetailsApiResult().observe(this@FriendListFragment, Observer {
+            val result = it ?: return@Observer
+
+            when {
+                result.success != null -> {
+
+                    val friendDetails = result.success
+                    if (friendDetails?.success == true) {
+
+                        // TODO set adapter here.
+                    } else {
+                        result.success!!.errorMessage?.let { it1 ->
+                            ToastUtils.showMessage(
+                                activity?.application!!,
+                                it1
+                            )
+                        }
+                    }
+                }
+                result.errorMessage != null -> {
+                    result.errorMessage?.let { it1 ->
+                        ToastUtils.showMessage(
+                            activity?.application!!,
+                            it1
+                        )
+                    }
+                }
+            }
+        })
 
         binding.rvFriendList.layoutManager = LinearLayoutManager(activity)
         binding.rvFriendList.itemAnimator = DefaultItemAnimator()

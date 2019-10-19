@@ -10,9 +10,11 @@ import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.constant.NavigationConstant
+import com.event.reminder.data.model.response.LoggedInUserModel
 import com.event.reminder.databinding.LoginActivityBinding
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.DashboardActivity
+import com.event.reminder.utills.EventReminderSharedPrefUtils
 
 class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
 
@@ -58,21 +60,16 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
                 result.success != null -> {
 
                     val loggedInUser = result.success
-                    if (loggedInUser!!.success) {
-
+                    if (loggedInUser?.success == true) {
+                        savedDataToLocalStorage(loggedInUser)
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                         finish()
                     } else {
                         result.success!!.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
                     }
-
-//                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-//                    finish()
                 }
                 result.errorMessage != null -> {
                     result.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
-//                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-//                    finish()
                 }
             }
         })
@@ -104,6 +101,21 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
                 }
                 false
             }
+        }
+    }
+
+    /**
+     * Method is used to set data to local storage.
+     *
+     *@param loggedInUser: logged in user details
+     */
+    private fun savedDataToLocalStorage(loggedInUser: LoggedInUserModel) {
+        EventReminderSharedPrefUtils.setUserLoggedIn(true)
+        loggedInUser.accessToken?.let { accessToken ->
+            EventReminderSharedPrefUtils.setAccessToken(accessToken)
+        }
+        loggedInUser.userDetails?.userId?.let { userId ->
+            EventReminderSharedPrefUtils.setUserId(userId)
         }
     }
 }

@@ -25,7 +25,7 @@ class ProfileDetailsFragment : BaseFragment<ProfileDetailsFragmentBinding, Profi
 
                     val userDetails = result.success
                     if (userDetails?.success == true) {
-                        viewModel.userDetails.value = userDetails
+                        viewModel.userDetails.value = userDetails.userDetails
                     } else {
                         result.success!!.errorMessage?.let { it1 ->
                             ToastUtils.showMessage(
@@ -42,8 +42,6 @@ class ProfileDetailsFragment : BaseFragment<ProfileDetailsFragmentBinding, Profi
                             it1
                         )
                     }
-//                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-//                    finish()
                 }
             }
         })

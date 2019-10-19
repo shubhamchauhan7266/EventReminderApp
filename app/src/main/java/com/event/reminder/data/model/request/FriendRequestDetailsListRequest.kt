@@ -2,7 +2,8 @@ package com.event.reminder.data.model.request
 
 import java.io.Serializable
 
-data class UserDetailsRequest(
+class FriendRequestDetailsListRequest (
     var accessToken: String?,
-    var userId: String?
+    var userId: String?,
+    var requestType: Int = 0
 ) : Serializable

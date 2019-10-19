@@ -11,13 +11,19 @@ object NetworkConstant {
     const val ERROR_CODE_IO_EXCEPTION: Int = 1001
     const val ERROR_CODE_SOCKET_TIMEOUT_EXCEPTION: Int = 1002
     const val ERROR_CODE_NO_INTERNET: Int = 1003
-    const val ERROR_CODE_SERVER_DOWN: Int = 1004
     const val ERROR_CODE_UNKNOWN_HOST_EXCEPTION: Int = 1005
     const val ERROR_CODE_SOCKET_EXCEPTION: Int = 1006
 
-    const val ERROR_CODE_EXPIRE_TOKEN: Int = 1010
-    const val ERROR_CODE_EXCEPTION: Int = 1011
-    const val ERROR_CODE_SERVER: Int = 1012
+    const val ERROR_CODE_BAD_REQUEST: Int = 400
+    const val ERROR_CODE_UNAUTHORISED: Int = 401
+    const val ERROR_CODE_FORBIDDEN: Int = 403
+    const val ERROR_CODE_URL_NOT_FOUND: Int = 404
+    const val ERROR_CODE_GONE: Int = 410
+    const val ERROR_CODE_SERVER_DOWN: Int = 500
+    const val ERROR_CODE_SERVICE_UNAVAILABLE: Int = 503
+
+    const val ERROR_CODE_EXPIRE_TOKEN: Int = 2000
+    const val ERROR_CODE_EXCEPTION: Int = 2001
 
     /**
      * @return error message with respect to error code.
@@ -51,9 +57,6 @@ object NetworkConstant {
             }
             ERROR_CODE_EXCEPTION -> {
                 return "Exception Occurred"
-            }
-            ERROR_CODE_SERVER -> {
-                return "Server Error From Api"
             }
             else -> {
                 return "Something Went Wrong"

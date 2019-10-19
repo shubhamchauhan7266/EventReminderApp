@@ -4,16 +4,18 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import java.io.Serializable
 
 /**
- * Data class that captures user information for logged in users retrieved from LoginRepository
+ * Data class that captures userModel information for logged in users retrieved from LoginRepository
  */
-data class LoggedInUser(
+data class LoggedInUserModel(
     val accessToken: String?,
     val userDetails: LoggedInUserDetails?
 ) : BaseResponseModel()
 
 data class LoggedInUserDetails(
     val userId: String?,
-    val userName: String?,
-    val emailId: String?,
-    val phoneNumber: String?
+    val firstName: String?,
+    val lastName: String?,
+    val emailAddress: String?,
+    val phoneNumber: String?,
+    val gender: String?  // TODO change gender in integer form.
 ) : Serializable

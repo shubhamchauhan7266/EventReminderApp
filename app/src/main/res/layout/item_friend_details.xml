@@ -8,7 +8,7 @@
 
         <variable
                 name="friendDetail"
-                type="com.event.reminder.data.model.response.FriendDetailsModel" />
+                type="com.event.reminder.data.model.response.FriendDetails" />
     </data>
 
     <android.support.constraint.ConstraintLayout

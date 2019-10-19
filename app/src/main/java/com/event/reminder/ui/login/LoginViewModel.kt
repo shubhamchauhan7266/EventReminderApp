@@ -11,7 +11,7 @@ import com.event.reminder.BR
 import com.event.reminder.R
 import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.data.model.request.LoginRequest
-import com.event.reminder.data.model.response.LoggedInUser
+import com.event.reminder.data.model.response.LoggedInUserModel
 import com.event.reminder.data.repository.LoginRepository
 
 class LoginViewModel(private val loginRepository: LoginRepository) : BaseObservableViewModel() {
@@ -19,8 +19,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
-    private val _loginResult: MutableLiveData<ApiResult<LoggedInUser>> = MutableLiveData()
-    val loginResult: LiveData<ApiResult<LoggedInUser>>? = _loginResult
+    private val _loginResult: MutableLiveData<ApiResult<LoggedInUserModel>> = MutableLiveData()
+    val loginResult: LiveData<ApiResult<LoggedInUserModel>>? = _loginResult
 
     val navigationEvent = EventLiveData<NavigationConstant>()
 

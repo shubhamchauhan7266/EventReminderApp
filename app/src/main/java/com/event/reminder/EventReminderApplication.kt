@@ -6,8 +6,14 @@ class EventReminderApplication : BaseApplication() {
 
     companion object {
 
+        private var applicationInstance: EventReminderApplication? = null
         fun getInstance(): EventReminderApplication {
-            return EventReminderApplication()
+            return applicationInstance ?: EventReminderApplication()
         }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        applicationInstance = this
     }
 }

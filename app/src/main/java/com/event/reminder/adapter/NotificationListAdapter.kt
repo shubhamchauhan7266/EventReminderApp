@@ -6,12 +6,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.event.reminder.R
+import com.event.reminder.data.model.response.NotificationDetails
 import com.event.reminder.data.model.response.NotificationDetailsModel
 import com.event.reminder.databinding.NotificationListAdapterBinding
 
 class NotificationListAdapter(
     private val context: Context,
-    private val notificationList: ArrayList<NotificationDetailsModel>?
+    private val notificationList: ArrayList<NotificationDetails>?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

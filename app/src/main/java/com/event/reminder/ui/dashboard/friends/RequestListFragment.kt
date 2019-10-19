@@ -1,6 +1,7 @@
 package com.event.reminder.ui.dashboard.friends
 
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -10,10 +11,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.mvvmandroidlib.ui.BaseFragment
+import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.adapter.RequestListAdapter
 import com.event.reminder.constant.AppConstant
 import com.event.reminder.data.model.response.FriendDetailsModel
+import com.event.reminder.data.model.response.FriendRequestDetails
+import com.event.reminder.data.model.response.FriendRequestDetailsModel
 import com.event.reminder.databinding.RequestListFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
 
@@ -23,36 +27,65 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
 
-        val requestDetailsList: ArrayList<FriendDetailsModel> = ArrayList()
+        val requestDetailsList: ArrayList<FriendRequestDetails> = ArrayList()
 
         if (requestType == AppConstant.REQUEST_TYPE_SENT) {
             requestDetailsList.add(
-                FriendDetailsModel(
+                FriendRequestDetails(
                     name = "Subham Chauhan",
                     age = "25",
                     requestType = AppConstant.REQUEST_TYPE_SENT
                 )
             )
             requestDetailsList.add(
-                FriendDetailsModel(
+                FriendRequestDetails(
                     name = "Pulkit",
                     age = "25",
                     requestType = AppConstant.REQUEST_TYPE_SENT
                 )
             )
             requestDetailsList.add(
-                FriendDetailsModel(
+                FriendRequestDetails(
                     name = "Raghav",
                     age = "25",
                     requestType = AppConstant.REQUEST_TYPE_SENT
                 )
             )
         } else {
-            requestDetailsList.add(FriendDetailsModel(name = "Subham Chauhan", age = "25"))
-            requestDetailsList.add(FriendDetailsModel(name = "Pulkit", age = "25"))
-            requestDetailsList.add(FriendDetailsModel(name = "Raghav", age = "25"))
+            requestDetailsList.add(FriendRequestDetails(name = "Subham Chauhan", age = "25"))
+            requestDetailsList.add(FriendRequestDetails(name = "Pulkit", age = "25"))
+            requestDetailsList.add(FriendRequestDetails(name = "Raghav", age = "25"))
         }
 
+        viewModel.getFriendRequestDetailsApiResult().observe(this@RequestListFragment, Observer {
+            val result = it ?: return@Observer
+
+            when {
+                result.success != null -> {
+
+                    val friendRequestDetails = result.success
+                    if (friendRequestDetails?.success == true) {
+
+                        // TODO set adapter here.
+                    } else {
+                        result.success!!.errorMessage?.let { it1 ->
+                            ToastUtils.showMessage(
+                                activity?.application!!,
+                                it1
+                            )
+                        }
+                    }
+                }
+                result.errorMessage != null -> {
+                    result.errorMessage?.let { it1 ->
+                        ToastUtils.showMessage(
+                            activity?.application!!,
+                            it1
+                        )
+                    }
+                }
+            }
+        })
 
         binding.rvRequestList.layoutManager = LinearLayoutManager(activity)
         binding.rvRequestList.itemAnimator = DefaultItemAnimator()

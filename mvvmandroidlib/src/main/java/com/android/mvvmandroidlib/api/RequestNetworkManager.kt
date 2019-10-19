@@ -63,7 +63,7 @@ object RequestNetworkManager {
                 if (it is NetworkException) {
 
                     // TODO Handle expiry token or unauthorised case
-                    if (it.exceptionCode == NetworkConstant.ERROR_CODE_SERVER) {
+                    if (it.exceptionCode == NetworkConstant.ERROR_CODE_UNAUTHORISED) {
                         val x = Gson().fromJson(it.exceptionMessage, clazz)
                         callback.onSuccess(requestCode, x)
                     } else {
@@ -122,32 +122,69 @@ object RequestNetworkManager {
      */
     private fun <T> processNetworkError(e: Throwable): Observable<T> {
 
-        //TODO Need to be changed
         when (e) {
             is HttpException -> {
                 val response = e.response()
-                var error: String? = null
-                try {
-                    response.headers()
-                    error = response.errorBody()!!.string()
-                    if (error!!.isNotEmpty()) {
-                        return Observable.error(
-                            NetworkException(
-                                NetworkConstant.ERROR_CODE_SERVER,
-                                error,
-                                response.headers()
-                            )
-                        )
-                    }
-                } catch (e1: IOException) {
-                    return Observable.error(
+                when(response.code()){
+                    NetworkConstant.ERROR_CODE_BAD_REQUEST -> return Observable.error(
                         NetworkException(
-                            NetworkConstant.ERROR_CODE_IO_EXCEPTION,
-                            NetworkConstant.getErrorMessage(NetworkConstant.ERROR_CODE_IO_EXCEPTION)
+                            NetworkConstant.ERROR_CODE_BAD_REQUEST,
+                            response.message()
+                        )
+                    )
+                    NetworkConstant.ERROR_CODE_FORBIDDEN ->return Observable.error(
+                        NetworkException(
+                            NetworkConstant.ERROR_CODE_FORBIDDEN,
+                            response.message()
+                        )
+                    )
+                    NetworkConstant.ERROR_CODE_URL_NOT_FOUND ->return Observable.error(
+                        NetworkException(
+                            NetworkConstant.ERROR_CODE_URL_NOT_FOUND,
+                            response.message()
+                        )
+                    )
+                    NetworkConstant.ERROR_CODE_SERVER_DOWN ->return Observable.error(
+                        NetworkException(
+                            NetworkConstant.ERROR_CODE_SERVER_DOWN,
+                            response.message()
+                        )
+                    )
+                    NetworkConstant.ERROR_CODE_UNAUTHORISED ->{
+                        var error: String? = null
+                        try {
+                            error = response.errorBody()!!.string()
+                            if (error?.isNotEmpty() == true) {
+                                return Observable.error(
+                                    NetworkException(
+                                        NetworkConstant.ERROR_CODE_UNAUTHORISED,
+                                        error,
+                                        response.headers()
+                                    )
+                                )
+                            }
+                        } catch (e1: IOException) {
+                            return Observable.error(
+                                NetworkException(
+                                    NetworkConstant.ERROR_CODE_IO_EXCEPTION,
+                                    NetworkConstant.getErrorMessage(NetworkConstant.ERROR_CODE_IO_EXCEPTION)
+                                )
+                            )
+                        }
+                    }
+                    NetworkConstant.ERROR_CODE_SERVICE_UNAVAILABLE ->return Observable.error(
+                        NetworkException(
+                            NetworkConstant.ERROR_CODE_SERVICE_UNAVAILABLE,
+                            response.message()
+                        )
+                    )
+                    NetworkConstant.ERROR_CODE_GONE ->return Observable.error(
+                        NetworkException(
+                            NetworkConstant.ERROR_CODE_GONE,
+                            response.message()
                         )
                     )
                 }
-
             }
             is SocketTimeoutException -> return Observable.error(
                 NetworkException(

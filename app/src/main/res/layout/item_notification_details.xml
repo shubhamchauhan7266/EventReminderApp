@@ -11,7 +11,7 @@
 
         <variable
                 name="notificationDetail"
-                type="com.event.reminder.data.model.response.NotificationDetailsModel" />
+                type="com.event.reminder.data.model.response.NotificationDetails" />
     </data>
 
     <android.support.constraint.ConstraintLayout

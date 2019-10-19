@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import com.event.reminder.R
 import com.event.reminder.constant.AppConstant
 import com.event.reminder.constant.ErrorConstant
-import com.event.reminder.data.model.response.FriendDetailsModel
+import com.event.reminder.data.model.response.FriendRequestDetails
 import com.event.reminder.databinding.RequestListReceivedBinding
 import com.event.reminder.databinding.RequestListSentBinding
 
-class RequestListAdapter(private val context: Context, private val requestList: ArrayList<FriendDetailsModel>) :
+class RequestListAdapter(
+    private val context: Context,
+    private val requestList: ArrayList<FriendRequestDetails>
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var layoutInflater: LayoutInflater? = null

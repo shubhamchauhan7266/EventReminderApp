@@ -8,46 +8,46 @@ import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
 import com.event.reminder.data.model.request.LoginRequest
-import com.event.reminder.data.model.response.LoggedInUser
+import com.event.reminder.data.model.response.LoggedInUserModel
 
 /**
- * Class that requests authentication and user information from the remote data source and
- * maintains an in-memory cache of login status and user credentials information.
+ * Class that requests authentication and userModel information from the remote data source and
+ * maintains an in-memory cache of login status and userModel credentials information.
  */
 
 object LoginRepository : BaseRepository() {
 
     // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
+    var userModel: LoggedInUserModel? = null
         private set
 
     val isLoggedIn: Boolean
-        get() = user != null
+        get() = userModel != null
 
     init {
-        // If user credentials will be cached in local storage, it is recommended it be encrypted
+        // If userModel credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
-        user = null
+        userModel = null
     }
 
     fun logout() {
-        user = null
+        userModel = null
     }
 
     fun login(
         request: LoginRequest,
-        _loginResult: MutableLiveData<ApiResult<LoggedInUser>>
+        _loginResult: MutableLiveData<ApiResult<LoggedInUserModel>>
     ) {
         // handle login
         try {
 
             RequestNetworkManager.addRequest(
                 EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.login(request),
-                object : SubscriptionCallback<LoggedInUser> {
+                object : SubscriptionCallback<LoggedInUserModel> {
 
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
-                        if (response is LoggedInUser) {
+                        if (response is LoggedInUserModel) {
                             _loginResult.value = ApiResult(success = response)
                         } else {
                             _loginResult.value =
@@ -69,9 +69,9 @@ object LoginRepository : BaseRepository() {
         }
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user = loggedInUser
-        // If user credentials will be cached in local storage, it is recommended it be encrypted
+    private fun setLoggedInUser(loggedInUserModel: LoggedInUserModel) {
+        this.userModel = loggedInUserModel
+        // If userModel credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
     }
 }

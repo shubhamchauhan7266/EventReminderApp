@@ -7,27 +7,26 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
-import com.event.reminder.data.model.request.UserDetailsRequest
 import com.event.reminder.data.model.response.UserDetailsModel
 
 object ProfileDetailsRepository : BaseRepository() {
 
     fun getUserDetails(
-        request: UserDetailsRequest,
-        _loginResult: MutableLiveData<ApiResult<UserDetailsModel>>
+        userId: String,
+        _userDetailsApiResult: MutableLiveData<ApiResult<UserDetailsModel>>
     ) {
         try {
 
             RequestNetworkManager.addRequest(
-                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.getUserDetails(request),
+                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.getUserDetails(userId),
                 object : SubscriptionCallback<UserDetailsModel> {
 
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
                         if (response is UserDetailsModel) {
-                            _loginResult.value = ApiResult(success = response)
+                            _userDetailsApiResult.value = ApiResult(success = response)
                         } else {
-                            _loginResult.value =
+                            _userDetailsApiResult.value =
                                 ApiResult(
                                     errorMessage = response.errorMessage,
                                     errorCode = response.statusCode
@@ -36,13 +35,13 @@ object ProfileDetailsRepository : BaseRepository() {
                     }
 
                     override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        _loginResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                        _userDetailsApiResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
                     }
 
                 })
 
         } catch (e: Throwable) {
-            _loginResult.value = ApiResult(errorMessage = e.localizedMessage)
+            _userDetailsApiResult.value = ApiResult(errorMessage = e.localizedMessage)
         }
     }
 
