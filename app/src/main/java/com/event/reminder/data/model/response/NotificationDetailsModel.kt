@@ -10,5 +10,5 @@ data class NotificationDetailsModel(
 data class NotificationDetails(
     val title: String = "",
     val description: String = "",
-    val timeStamp: Long? = 1570406400
+    val dateCreated: Long? = 1570406400
 ) : Serializable

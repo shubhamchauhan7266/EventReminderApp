@@ -27,6 +27,7 @@ object StringUtils {
      * Enum class to represent password type.
      */
     enum class PasswordType {
+        ALPHANUMERIC,
         ONLY_DIGIT,
         ONLY_ALPHABET,
         DIGIT_WITH_ALPHABET,
@@ -49,7 +50,7 @@ object StringUtils {
     fun isPasswordValid(
         password: String?,
         length: Int = 7,
-        type: PasswordType = PasswordType.ONLY_ALPHABET
+        type: PasswordType = PasswordType.ALPHANUMERIC
     ): Boolean {
 
         val letter = Pattern.compile(ALPHABET)
@@ -69,11 +70,14 @@ object StringUtils {
         }
 
         return when (type) {
+            PasswordType.ALPHANUMERIC -> {
+                hasDigit.find() || hasLetter.find() || hasLetterCaps.find()
+            }
             PasswordType.ONLY_DIGIT -> {
-                hasDigit.find()
+                hasDigit.find() && !hasLetter.find()
             }
             PasswordType.ONLY_ALPHABET -> {
-                hasLetter.find()
+                hasLetter.find() && !hasDigit.find()
             }
             PasswordType.DIGIT_WITH_ALPHABET -> {
                 hasDigit.find() && hasLetter.find()

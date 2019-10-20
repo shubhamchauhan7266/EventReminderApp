@@ -10,6 +10,8 @@ import android.net.NetworkRequest
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.android.mvvmandroidlib.R
+import com.android.mvvmandroidlib.utills.ToastUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 
 /**
@@ -78,8 +80,12 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> :
             //            DialogUtils.showProgressDialog(this, it!!)
         })
 
-        viewModel.failedEvent.observe(this, Observer {
-            //            DialogUtils.hideProgressDialog()
+        viewModel.failedEventErrorCode.observe(this, Observer {
+            ToastUtils.showMessage(this, it ?: R.string.unknown_error);
+        })
+
+        viewModel.failedEventErrorMessage.observe(this, Observer {
+            ToastUtils.showMessage(this, it ?: getString(R.string.unknown_error));
         })
     }
 

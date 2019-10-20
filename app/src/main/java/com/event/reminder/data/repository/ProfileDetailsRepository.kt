@@ -8,6 +8,7 @@ import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
 import com.event.reminder.data.model.response.UserDetailsModel
+import com.event.reminder.utills.EventReminderSharedPrefUtils
 
 object ProfileDetailsRepository : BaseRepository() {
 

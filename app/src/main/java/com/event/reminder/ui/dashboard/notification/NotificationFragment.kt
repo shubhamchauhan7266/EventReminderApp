@@ -38,20 +38,12 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
                         adapter.setNotificationList(notificationDetails.notificationDetailsList)
                         adapter.notifyDataSetChanged()
                     } else {
-                        result.success!!.errorMessage?.let { it1 ->
-                            ToastUtils.showMessage(
-                                activity?.application!!,
-                                it1
-                            )
+                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
                         }
                     }
                 }
                 result.errorMessage != null -> {
-                    result.errorMessage?.let { it1 ->
-                        ToastUtils.showMessage(
-                            activity?.application!!,
-                            it1
-                        )
+                    result.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
                     }
                 }
             }

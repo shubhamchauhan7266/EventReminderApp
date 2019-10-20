@@ -13,7 +13,6 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
     BaseObservableViewModel() {
 
     private val _userDetailsResult: MutableLiveData<ApiResult<UserDetailsModel>> = MutableLiveData()
-    val userDetails: MutableLiveData<UserDetails> = MutableLiveData()
 
     fun getUserDetailsApiResult(): LiveData<ApiResult<UserDetailsModel>> {
         // can be launched in a separate asynchronous job

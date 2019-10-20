@@ -24,13 +24,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     val navigationEvent = EventLiveData<NavigationConstant>()
 
-    var valid: Boolean? = null
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.valid)
-        }
-
     var userName: String? = null
         @Bindable get
         set(value) {
@@ -42,7 +35,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
         @Bindable get
         set(value) {
             field = value
-            valid = false
             loginDataChanged()
             notifyPropertyChanged(BR.password)
         }
@@ -68,12 +60,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         } else if (!StringUtils.isPasswordValid(
                 password,
-                type = StringUtils.PasswordType.ONLY_DIGIT
+                length = 4
             )
         ) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
         } else {
-            valid = true
             _loginForm.value = LoginFormState(isDataValid = true)
         }
     }

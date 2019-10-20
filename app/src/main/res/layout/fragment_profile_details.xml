@@ -11,6 +11,10 @@
         <variable
                 name="viewModel"
                 type="com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel" />
+
+        <variable
+                name="userDetails"
+                type="com.event.reminder.data.model.response.UserDetails" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -31,7 +35,7 @@
                 android:id="@+id/tv_name"
                 style="@style/AppTheme.TextView.Large"
                 android:layout_marginTop="8dp"
-                android:text="@{viewModel.userDetails.firstName}"
+                android:text="@{userDetails.firstName}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +69,7 @@
         <TextView
                 android:id="@+id/tv_email_id"
                 style="@style/AppTheme.TextView.Small"
-                android:text="@{viewModel.userDetails.emailAddress}"
+                android:text="@{userDetails.emailAddress}"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -86,8 +90,8 @@
         <TextView
                 android:id="@+id/tv_date_of_birth"
                 style="@style/AppTheme.TextView.Small"
-                bind:timeStamp="@{viewModel.userDetails.dateOfBirth}"
-                bind:timeFormat="@{DateUtils.HH_MM_AA}"
+                bind:timeStamp="@{userDetails.dateOfBirth}"
+                bind:timeFormat="@{DateUtils.DD_MMM_YYYY}"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -108,7 +112,7 @@
         <TextView
                 android:id="@+id/tv_gender"
                 style="@style/AppTheme.TextView.Small"
-                android:text="@{viewModel.userDetails.gender}"
+                android:text="@{userDetails.gender}"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -129,7 +133,7 @@
         <TextView
                 android:id="@+id/tv_phone_number"
                 style="@style/AppTheme.TextView.Small"
-                android:text="@{viewModel.userDetails.phoneNumber}"
+                android:text="@{userDetails.phoneNumber}"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline_left"

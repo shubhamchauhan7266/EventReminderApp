@@ -39,11 +39,11 @@ class SignUpActivity : BaseActivity<SignUpActivityBinding, SignUpViewModel>() {
                         startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
                         finish()
                     } else {
-                        result.success!!.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
+                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
                     }
                 }
                 result.errorMessage != null -> {
-                    result.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
+                    result.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)  }
                 }
             }
         })

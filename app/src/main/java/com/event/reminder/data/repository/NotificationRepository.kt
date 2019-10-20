@@ -7,19 +7,18 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
-import com.event.reminder.data.model.request.NotificationDetailsListRequest
 import com.event.reminder.data.model.response.NotificationDetailsModel
 
 object NotificationRepository : BaseRepository() {
 
     fun getNotificationDetails(
-        request: NotificationDetailsListRequest,
+        userId: String,
         _notificationDetailsApiResult: MutableLiveData<ApiResult<NotificationDetailsModel>>
     ) {
         try {
 
             RequestNetworkManager.addRequest(
-                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.getNotificationDetailsList(request),
+                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.getNotificationDetailsList(userId),
                 object : SubscriptionCallback<NotificationDetailsModel> {
 
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {

@@ -16,7 +16,8 @@ open class BaseObservableViewModel : ViewModel(), Observable {
 
     private val callbacks: PropertyChangeRegistry = PropertyChangeRegistry()
     val progressEvent = EventLiveData<ProgressEvent>()
-    val failedEvent = EventLiveData<Int>()
+    val failedEventErrorCode = EventLiveData<Int>()
+    val failedEventErrorMessage = EventLiveData<String>()
 
     /**
      * Add property change callback

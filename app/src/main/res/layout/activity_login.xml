@@ -64,7 +64,6 @@
             <Button
                     style="@style/AppTheme.Button"
                     android:id="@+id/bt_login"
-                    android:enabled="@{viewModel.valid}"
                     android:text="@string/sign_in"
                     android:onClick="@{(v) -> viewModel.login()}"
                     app:layout_constraintEnd_toEndOf="parent"

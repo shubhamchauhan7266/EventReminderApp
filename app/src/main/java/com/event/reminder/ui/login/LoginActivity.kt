@@ -42,15 +42,20 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
         viewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
 
-            // disable login button unless both username / password is valid
-            binding.btLogin.isEnabled = loginState.isDataValid
+            if(loginState.isDataValid){
+                binding.ilUsername.isErrorEnabled = false
+                binding.ilPassword.isErrorEnabled = false
+            }else{
+                if (loginState.usernameError != null) {
+                    binding.ilUsername.isErrorEnabled = true
+                    binding.ilUsername.error = getString(loginState.usernameError)
+                }
+                if (loginState.passwordError != null) {
+                    binding.ilPassword.isErrorEnabled = true
+                    binding.ilPassword.error = getString(loginState.passwordError)
+                }
+            }
 
-            if (loginState.usernameError != null) {
-                binding.etUsername.error = getString(loginState.usernameError)
-            }
-            if (loginState.passwordError != null) {
-                binding.etPassword.error = getString(loginState.passwordError)
-            }
         })
 
         viewModel.loginResult?.observe(this@LoginActivity, Observer {
@@ -65,11 +70,11 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                         finish()
                     } else {
-                        result.success!!.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
+                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
                     }
                 }
                 result.errorMessage != null -> {
-                    result.errorMessage?.let { it1 -> ToastUtils.showMessage(application, it1) }
+                    result.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
                 }
             }
         })

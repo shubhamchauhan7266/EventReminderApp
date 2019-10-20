@@ -1,7 +1,9 @@
 package com.event.reminder.api
 
 import com.android.mvvmandroidlib.api.ApiHandler
+import com.event.reminder.BuildConfig
 import com.event.reminder.constant.AppConstant
+import com.event.reminder.utills.EventReminderSharedPrefUtils
 import okhttp3.Interceptor
 import retrofit2.Retrofit
 
@@ -33,14 +35,11 @@ class EventReminderApiHandler : ApiHandler() {
         return Interceptor { chain ->
             val original = chain.request()
             val requestBuilder = original.newBuilder()
-                .addHeader("Accept", "application/json")
-                .addHeader("Content-Type", "application/json")
-
-            // Adding Authorization token (API Key)
-            // Requests will be denied without API key
-//            if (!TextUtils.isEmpty("sf")) {
-//                requestBuilder.addHeader("Authorization", "sf")
-//            }
+                .addHeader(ApiConstant.HEADER_ACCEPT, ApiConstant.HEADER_TYPE_APPLICATION_JSON)
+                .addHeader(ApiConstant.HEADER_CONTENT_TYPE, ApiConstant.HEADER_TYPE_APPLICATION_JSON)
+                .addHeader(ApiConstant.HEADER_APP_VERSION, BuildConfig.VERSION_NAME)
+                .addHeader(ApiConstant.HEADER_API_VERSION, "")
+                .addHeader(ApiConstant.HEADER_AUTHORIZATION, ApiConstant.BEARER + EventReminderSharedPrefUtils.getAccessToken())
 
             val request = requestBuilder.build()
             chain.proceed(request)

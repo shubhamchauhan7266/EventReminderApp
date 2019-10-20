@@ -4,9 +4,7 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.event.reminder.data.model.request.*
 import com.event.reminder.data.model.response.*
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiClient {
 
@@ -16,14 +14,14 @@ interface ApiClient {
     @POST(ApiConstant.SIGN_UP_API)
     fun signUp(@Body signUpRequest: SignUpRequest): Observable<BaseResponseModel>
 
-    @POST(ApiConstant.USER_DETAILS_API)
+    @GET(ApiConstant.USER_DETAILS_API)
     fun getUserDetails(@Query(ApiConstant.USER_ID) userId: String): Observable<UserDetailsModel>
 
-    @POST(ApiConstant.USER_DETAILS_API)
+    @POST(ApiConstant.UPDATE_USER_DETAILS_API)
     fun updateUserDetails(@Body updateUserDetailsRequest: UpdateUserDetailsRequest): Observable<BaseResponseModel>
 
-    @POST(ApiConstant.NOTIFICATION_DETAILS_LIST_API)
-    fun getNotificationDetailsList(@Body notificationDetailsRequest: NotificationDetailsListRequest): Observable<NotificationDetailsModel>
+    @GET(ApiConstant.NOTIFICATION_DETAILS_LIST_API)
+    fun getNotificationDetailsList(@Query(ApiConstant.USER_ID) userId: String): Observable<NotificationDetailsModel>
 
     @POST(ApiConstant.FRIEND_REQUEST_DETAILS_LIST_API)
     fun getFriendRequestDetailsList(@Body loginRequest: FriendRequestDetailsListRequest): Observable<FriendRequestDetailsModel>
