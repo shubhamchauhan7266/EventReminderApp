@@ -31,7 +31,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun parseDate(date: String?, inputFormat: String?): Date {
-        LoggerUtils.debug(TAG, "parseDate($date , $inputFormat)")
+        LoggerUtils.info(TAG, "parseDate($date , $inputFormat)")
         return try {
             SimpleDateFormat(inputFormat, Locale.US).parse(date)
         } catch (e: Exception) {
@@ -50,7 +50,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun parseDate(timeStamp: Long?): Date {
-        LoggerUtils.debug(TAG, "parseDate($timeStamp)")
+        LoggerUtils.info(TAG, "parseDate($timeStamp)")
         return try {
             if (timeStamp != null && timeStamp != 0L) {
                 Date(timeStamp)
@@ -73,7 +73,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun parseDate(cal: Calendar?): Date {
-        LoggerUtils.debug(TAG, "parseDate(Calender)")
+        LoggerUtils.info(TAG, "parseDate(Calender)")
         return try {
             if (cal != null) {
                 cal.time
@@ -97,7 +97,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(date: Date?, outputFormat: String?): String {
-        LoggerUtils.debug(TAG, "formatDate(Date, $outputFormat)")
+        LoggerUtils.info(TAG, "formatDate(Date, $outputFormat)")
         return try {
             val sdf = SimpleDateFormat(outputFormat, Locale.getDefault())
             if (date != null) {
@@ -122,7 +122,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(timeStamp: Long?, outputFormat: String?): String {
-        LoggerUtils.debug(TAG, "formatDate($timeStamp, $outputFormat)")
+        LoggerUtils.info(TAG, "formatDate($timeStamp, $outputFormat)")
         return try {
             formatDate(parseDate(timeStamp), outputFormat)
         } catch (e: Exception) {
@@ -142,7 +142,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(cal: Calendar?, outputFormat: String?): String {
-        LoggerUtils.debug(TAG, "formatDate(Calender, $outputFormat)")
+        LoggerUtils.info(TAG, "formatDate(Calender, $outputFormat)")
         return try {
             formatDate(parseDate(cal), outputFormat)
         } catch (e: Exception) {
@@ -167,7 +167,7 @@ object DateUtils {
         inputFormat: String,
         outputFormat: String
     ): String {
-        LoggerUtils.debug(
+        LoggerUtils.info(
             TAG,
             "convertDateOneFormatToOther($inputDate, $inputFormat, $outputFormat)"
         )
@@ -185,7 +185,7 @@ object DateUtils {
      */
     @NonNull
     fun getCurrentTimeStamp(): Long {
-        LoggerUtils.debug(TAG, "getCurrentTimeStamp()")
+        LoggerUtils.info(TAG, "getCurrentTimeStamp()")
         return System.currentTimeMillis()
     }
 
@@ -199,7 +199,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getTimeStamp(date: Date?): Long {
-        LoggerUtils.debug(TAG, "getTimeStamp(Date)")
+        LoggerUtils.info(TAG, "getTimeStamp(Date)")
         return try {
             date?.time ?: throw DateUtilParseException("Date can't be null")
         } catch (e: Exception) {
@@ -218,7 +218,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getTimeStamp(cal: Calendar?): Long {
-        LoggerUtils.debug(TAG, "getTimeStamp(Calendar)")
+        LoggerUtils.info(TAG, "getTimeStamp(Calendar)")
         return try {
             getTimeStamp(
                 cal?.time ?: throw DateUtilParseException("Calendar instance can't be null")
@@ -240,7 +240,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getTimeStamp(date: String?, inputFormat: String?): Long {
-        LoggerUtils.debug(TAG, "getTimeStamp($date, $inputFormat)")
+        LoggerUtils.info(TAG, "getTimeStamp($date, $inputFormat)")
         return try {
             getTimeStamp(parseDate(date, inputFormat))
         } catch (e: Exception) {
@@ -259,7 +259,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getCalendar(timeStamp: Long?): Calendar {
-        LoggerUtils.debug(TAG, "getCalendar($timeStamp)")
+        LoggerUtils.info(TAG, "getCalendar($timeStamp)")
         val cal = Calendar.getInstance(Locale.US)
         return try {
             if (timeStamp != null && timeStamp != 0L) {
@@ -284,7 +284,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getCalendar(date: Date?): Calendar {
-        LoggerUtils.debug(TAG, "getCalendar(Date)")
+        LoggerUtils.info(TAG, "getCalendar(Date)")
         val cal = Calendar.getInstance(Locale.US)
         return try {
             if (date != null) {
@@ -310,7 +310,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getCalendar(date: String?, inputFormat: String?): Calendar {
-        LoggerUtils.debug(TAG, "getCalendar($date, $inputFormat)")
+        LoggerUtils.info(TAG, "getCalendar($date, $inputFormat)")
         val cal = Calendar.getInstance(Locale.US)
         return try {
             if (date != null) {
@@ -331,7 +331,7 @@ object DateUtils {
      * @param outputFormat outputFormat
      */
     fun getCurrentTime(outputFormat: String?): String {
-        LoggerUtils.debug(TAG, "getCurrentTime($outputFormat)")
+        LoggerUtils.info(TAG, "getCurrentTime($outputFormat)")
         return formatDate(getCurrentTimeStamp(), outputFormat)
     }
 
@@ -339,7 +339,7 @@ object DateUtils {
      * Method is used to provide current month.
      */
     fun getCurrentMonth(): Int {
-        LoggerUtils.debug(TAG, "getCurrentMonth()")
+        LoggerUtils.info(TAG, "getCurrentMonth()")
         return Calendar.getInstance(Locale.US).get(Calendar.MONTH)
     }
 
@@ -347,7 +347,7 @@ object DateUtils {
      * Method is used to provide current month name.
      */
     fun getCurrentMonthName(): String {
-        LoggerUtils.debug(TAG, "getCurrentMonthName()")
+        LoggerUtils.info(TAG, "getCurrentMonthName()")
         val dfs = DateFormatSymbols(Locale.US)
         return dfs.months[getCurrentMonth()]
     }
@@ -356,7 +356,7 @@ object DateUtils {
      * Method is used to provide current month short name.
      */
     fun getCurrentMonthShortName(): String {
-        LoggerUtils.debug(TAG, "getCurrentMonthShortName()")
+        LoggerUtils.info(TAG, "getCurrentMonthShortName()")
         val dfs = DateFormatSymbols(Locale.US)
         return dfs.shortMonths[getCurrentMonth()]
     }
@@ -365,7 +365,7 @@ object DateUtils {
      * Method is used to provide current year.
      */
     fun getCurrentYear(): Int {
-        LoggerUtils.debug(TAG, "getCurrentYear()")
+        LoggerUtils.info(TAG, "getCurrentYear()")
         return Calendar.getInstance(Locale.US).get(Calendar.YEAR)
     }
 
@@ -373,7 +373,7 @@ object DateUtils {
      * Method is used to provide current week of month.
      */
     fun getCurrentWeekOfMonth(): Int {
-        LoggerUtils.debug(TAG, "getCurrentWeekOfMonth()")
+        LoggerUtils.info(TAG, "getCurrentWeekOfMonth()")
         return Calendar.getInstance(Locale.US).get(Calendar.WEEK_OF_MONTH)
     }
 
@@ -381,7 +381,7 @@ object DateUtils {
      * Method is used to provide current day of month.
      */
     fun getCurrentDayOfMonth(): Int {
-        LoggerUtils.debug(TAG, "getCurrentDayOfMonth()")
+        LoggerUtils.info(TAG, "getCurrentDayOfMonth()")
         return Calendar.getInstance(Locale.US).get(Calendar.DAY_OF_MONTH)
     }
 
@@ -389,7 +389,7 @@ object DateUtils {
      * Method is used to provide current day of year.
      */
     fun getCurrentDayOfYear(): Int {
-        LoggerUtils.debug(TAG, "getCurrentDayOfYear()")
+        LoggerUtils.info(TAG, "getCurrentDayOfYear()")
         return Calendar.getInstance(Locale.US).get(Calendar.DAY_OF_MONTH)
     }
 
@@ -397,7 +397,7 @@ object DateUtils {
      * Method is used to provide current day of week.
      */
     fun getCurrentDayOfWeek(): Int {
-        LoggerUtils.debug(TAG, "getCurrentDayOfWeek()")
+        LoggerUtils.info(TAG, "getCurrentDayOfWeek()")
         return Calendar.getInstance(Locale.US).get(Calendar.DAY_OF_WEEK)
     }
 
@@ -405,7 +405,7 @@ object DateUtils {
      * Method is used to provide current day name of week i.e Sunday, Monday etc... .
      */
     fun getCurrentDayOfWeekName(): String {
-        LoggerUtils.debug(TAG, "getCurrentDayOfWeekName()")
+        LoggerUtils.info(TAG, "getCurrentDayOfWeekName()")
         val dfs = DateFormatSymbols(Locale.US)
         return dfs.weekdays[getCurrentDayOfWeek()]
     }
@@ -414,7 +414,7 @@ object DateUtils {
      * Method is used to provide current short day name of week i.e Sunday, Monday etc... .
      */
     fun getCurrentDayOfWeekShortName(): String {
-        LoggerUtils.debug(TAG, "getCurrentDayOfWeekShortName()")
+        LoggerUtils.info(TAG, "getCurrentDayOfWeekShortName()")
         val dfs = DateFormatSymbols(Locale.US)
         return dfs.shortWeekdays[getCurrentDayOfWeek()]
     }
@@ -423,7 +423,7 @@ object DateUtils {
      * Method is used to provide current hour of day i.e 10:00 PM = 10.
      */
     fun getCurrentHour(): Int {
-        LoggerUtils.debug(TAG, "getCurrentHour()")
+        LoggerUtils.info(TAG, "getCurrentHour()")
         return Calendar.getInstance(Locale.US).get(Calendar.HOUR)
     }
 
@@ -431,7 +431,7 @@ object DateUtils {
      * Method is used to provide current hour of day i.e 10:00 PM = 22.
      */
     fun getCurrentHourOfDay(): Int {
-        LoggerUtils.debug(TAG, "getCurrentHourOfDay()")
+        LoggerUtils.info(TAG, "getCurrentHourOfDay()")
         return Calendar.getInstance(Locale.US).get(Calendar.HOUR_OF_DAY)
     }
 
@@ -439,7 +439,7 @@ object DateUtils {
      * Method is used to provide current minute.
      */
     fun getCurrentMinute(): Int {
-        LoggerUtils.debug(TAG, "getCurrentMinute()")
+        LoggerUtils.info(TAG, "getCurrentMinute()")
         return Calendar.getInstance(Locale.US).get(Calendar.MINUTE)
     }
 
@@ -447,7 +447,7 @@ object DateUtils {
      * Method is used to provide current second.
      */
     fun getCurrentSecond(): Int {
-        LoggerUtils.debug(TAG, "getCurrentSecond()")
+        LoggerUtils.info(TAG, "getCurrentSecond()")
         return Calendar.getInstance(Locale.US).get(Calendar.SECOND)
     }
 
@@ -455,7 +455,7 @@ object DateUtils {
      * Method is used to provide current millisecond.
      */
     fun getCurrentMilliSecond(): Int {
-        LoggerUtils.debug(TAG, "getCurrentMilliSecond()")
+        LoggerUtils.info(TAG, "getCurrentMilliSecond()")
         return Calendar.getInstance(Locale.US).get(Calendar.MILLISECOND)
     }
 }

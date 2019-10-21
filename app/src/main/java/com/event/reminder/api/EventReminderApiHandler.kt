@@ -2,7 +2,6 @@ package com.event.reminder.api
 
 import com.android.mvvmandroidlib.api.ApiHandler
 import com.event.reminder.BuildConfig
-import com.event.reminder.constant.AppConstant
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 import okhttp3.Interceptor
 import retrofit2.Retrofit
@@ -51,11 +50,11 @@ class EventReminderApiHandler : ApiHandler() {
     }
 
     override fun getReadTimeout(): Long {
-        return AppConstant.NETWORK_TIMEOUT
+        return ApiConstant.NETWORK_TIMEOUT
     }
 
     override fun getConnectTimeout(): Long {
-        return AppConstant.NETWORK_TIMEOUT
+        return ApiConstant.NETWORK_TIMEOUT
     }
 
     //get API Client instance with retrofit module(singleton)

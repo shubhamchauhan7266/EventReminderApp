@@ -126,4 +126,5 @@
     <string name="request_sent">Request Sent</string>
     <string name="friends">Friends</string>
     <string name="age_year">%s Year</string>
+    <string name="temp_image_url">https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Hrithik_Rado.jpg/250px-Hrithik_Rado.jpg</string>
 </resources>

@@ -23,6 +23,7 @@
                 android:id="@+id/iv_profile"
                 android:layout_width="@dimen/_33sdp"
                 android:layout_height="@dimen/_33sdp"
+                bind:imageUrl="@{friendDetail.imageUrl}"
                 bind:placeholder="@{@drawable/profile}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

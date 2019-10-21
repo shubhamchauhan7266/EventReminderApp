@@ -14,7 +14,7 @@ class FriendListViewModel(private val friendListRepository: FriendListRepository
 
     fun getFriendDetailsApiResult(): LiveData<ApiResult<FriendDetailsModel>> {
         // can be launched in a separate asynchronous job
-        val request = FriendDetailsListRequest(accessToken = null, userId = "")
+        val request = FriendDetailsListRequest(userId = "")
         friendListRepository.getFriendDetails(request, _friendDetailsResult)
         return _friendDetailsResult
     }

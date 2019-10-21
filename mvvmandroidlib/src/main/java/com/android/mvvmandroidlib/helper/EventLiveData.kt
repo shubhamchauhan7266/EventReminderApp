@@ -19,9 +19,9 @@ class EventLiveData<T> : MutableLiveData<T>() {
     override fun observe(owner: LifecycleOwner, observer: Observer<T?>) {
         // Being strict about the observer numbers is up to you
         // I thought it made sense to only allow one to handle the event
-        if (hasObservers()) {
+        /*if (hasObservers()) {
             throw Throwable("Only one observer at a time may subscribe to a ActionLiveData")
-        }
+        }*/
 
         super.observe(owner, Observer { data ->
             // We ignore any null values and early return

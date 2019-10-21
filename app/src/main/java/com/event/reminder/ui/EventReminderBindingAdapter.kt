@@ -5,23 +5,21 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.mvvmandroidlib.exception.DateUtilParseException
-import com.android.mvvmandroidlib.utills.ContextUtils
 import com.android.mvvmandroidlib.utills.DateUtils
-import com.android.mvvmandroidlib.utills.DisplayUtils
+import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.android.mvvmandroidlib.utills.StringUtils
 import com.squareup.picasso.Picasso
 
 @BindingAdapter(
-    value = ["bind:imageUrl", "bind:placeholder", "android:layout_width", "android:layout_height"],
+    value = ["bind:imageUrl", "bind:placeholder"],
     requireAll = false
 )
 fun loadImage(
     imageView: ImageView,
     url: String?,
-    placeHolder: Drawable?,
-    width: Float,
-    height: Float
+    placeHolder: Drawable?
 ) {
+    LoggerUtils.info("EventReminderBindingAdapter", "url : $url")
     if (StringUtils.isNullOrEmpty(url)) {
         imageView.setImageDrawable(placeHolder)
     } else {
@@ -31,13 +29,16 @@ fun loadImage(
                 .placeholder(placeHolder)
                 .error(placeHolder)
                 .resize(
-                    DisplayUtils.convertDpToPixel(width, imageView.context).toInt(),
-                    DisplayUtils.convertDpToPixel(height, imageView.context).toInt()
+                    320, 320
                 )
                 .centerCrop()
                 .onlyScaleDown()
                 .into(imageView)
         } catch (e: Exception) {
+            LoggerUtils.error(
+                "EventReminderBindingAdapter",
+                "loadImage : " + LoggerUtils.getStackTraceString(e)
+            )
             imageView.setImageDrawable(placeHolder)
         }
     }
@@ -45,9 +46,17 @@ fun loadImage(
 
 @BindingAdapter(value = ["bind:timeStamp", "bind:timeFormat"], requireAll = true)
 fun setDate(view: TextView, timeStamp: Long?, timeFormat: String?) {
+    LoggerUtils.info(
+        "EventReminderBindingAdapter",
+        "timeStamp : $timeStamp , timeFormat : $timeFormat"
+    )
     try {
         view.text = DateUtils.formatDate(timeStamp, timeFormat)
     } catch (e: DateUtilParseException) {
+        LoggerUtils.error(
+            "EventReminderBindingAdapter",
+            "setDate : " + LoggerUtils.getStackTraceString(e)
+        )
         view.text = StringUtils.EMPTY
     }
 }

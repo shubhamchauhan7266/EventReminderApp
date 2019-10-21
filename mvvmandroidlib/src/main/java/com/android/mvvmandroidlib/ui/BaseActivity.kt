@@ -81,11 +81,11 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> :
         })
 
         viewModel.failedEventErrorCode.observe(this, Observer {
-            ToastUtils.showMessage(this, it ?: R.string.unknown_error);
+            ToastUtils.showMessage(this, it ?: R.string.unknown_error)
         })
 
         viewModel.failedEventErrorMessage.observe(this, Observer {
-            ToastUtils.showMessage(this, it ?: getString(R.string.unknown_error));
+            ToastUtils.showMessage(this, it ?: getString(R.string.unknown_error))
         })
     }
 

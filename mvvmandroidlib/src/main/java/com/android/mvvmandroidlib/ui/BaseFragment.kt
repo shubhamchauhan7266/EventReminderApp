@@ -1,5 +1,6 @@
 package com.android.mvvmandroidlib.ui
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
@@ -7,6 +8,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.android.mvvmandroidlib.R
+import com.android.mvvmandroidlib.utills.ToastUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 
 /**
@@ -63,5 +66,16 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
      * Method is used to initialize and setting initial data.
      */
     protected open fun initMembers() {
+        viewModel.progressEvent.observe(this, Observer {
+            //            DialogUtils.showProgressDialog(this, it!!)
+        })
+
+        viewModel.failedEventErrorCode.observe(this, Observer {
+            ToastUtils.showMessage(activity!!, it ?: R.string.unknown_error)
+        })
+
+        viewModel.failedEventErrorMessage.observe(this, Observer {
+            ToastUtils.showMessage(activity!!, it ?: getString(R.string.unknown_error))
+        })
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
 
     <data class="SignUpActivityBinding">
         <import type="android.view.View"/>
@@ -146,7 +147,8 @@
                     android:layout_height="@dimen/_96sdp"
                     android:layout_centerHorizontal="true"
                     app:civ_border_width="@dimen/_2sdp"
-                    android:src="@drawable/profile"
+                    bind:imageUrl="@{@string/temp_image_url}"
+                    bind:placeholder="@{@drawable/profile}"
                     app:civ_border_color="@color/colorLightGrey60"/>
         </RelativeLayout>
 
