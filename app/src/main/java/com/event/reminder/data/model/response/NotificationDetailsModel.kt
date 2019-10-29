@@ -8,8 +8,8 @@ data class NotificationDetailsModel(
 ) : BaseResponseModel()
 
 data class NotificationDetails(
-    val title: String = "",
-    val description: String = "",
-    val imageUrl: String = "",
-    val dateCreated: Long? = 1570406400
+    val title: String,
+    val description: String,
+    val imageUrl: String,
+    val dateCreated: Long?
 ) : Serializable

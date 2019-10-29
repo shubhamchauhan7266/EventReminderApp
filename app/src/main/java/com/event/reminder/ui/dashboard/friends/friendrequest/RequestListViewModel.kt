@@ -1,4 +1,4 @@
-package com.event.reminder.ui.dashboard.friends
+package com.event.reminder.ui.dashboard.friends.friendrequest
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData

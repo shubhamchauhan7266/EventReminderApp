@@ -38,7 +38,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> :
         this.binding = getViewDataBinding()
         onCreateBinding()
         setupToolbar()
-        initMembers()
+        setInitialData()
     }
 
     protected abstract fun onCreateBinding()
@@ -75,7 +75,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseObservableViewModel> :
     /**
      * Method is used to initialize and setting initial data.
      */
-    protected open fun initMembers() {
+    protected open fun setInitialData() {
         viewModel.progressEvent.observe(this, Observer {
             //            DialogUtils.showProgressDialog(this, it!!)
         })

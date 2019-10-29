@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import com.android.mvvmandroidlib.ui.BaseActivity
-import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.databinding.SignUpActivityBinding
 import com.event.reminder.ui.ViewModelFactory
@@ -25,8 +24,8 @@ class SignUpActivity : BaseActivity<SignUpActivityBinding, SignUpViewModel>() {
         return DataBindingUtil.setContentView(this, R.layout.sign_up_activity)
     }
 
-    override fun initMembers() {
-        super.initMembers()
+    override fun setInitialData() {
+        super.setInitialData()
 
         viewModel.signUpResult!!.observe(this@SignUpActivity, Observer {
             val result = it ?: return@Observer

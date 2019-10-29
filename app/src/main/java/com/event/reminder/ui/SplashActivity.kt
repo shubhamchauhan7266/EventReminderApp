@@ -1,12 +1,11 @@
 package com.event.reminder.ui
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.event.reminder.R
 import com.event.reminder.ui.dashboard.DashboardActivity
 import com.event.reminder.ui.login.LoginActivity
-import com.event.reminder.utills.EventReminderSharedPrefUtils
 
 class SplashActivity : AppCompatActivity() {
 
@@ -14,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        if(EventReminderSharedPrefUtils.isUserLoggedIn()){
+        if (/*EventReminderSharedPrefUtils.isUserLoggedIn()*/true) {
             startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
             finish()
         }else{

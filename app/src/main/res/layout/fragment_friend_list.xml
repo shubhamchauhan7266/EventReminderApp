@@ -4,7 +4,10 @@
 
     <data class="FriendListFragmentBinding">
         <import type="android.view.View"/>
-        <variable name="viewModel" type="com.event.reminder.ui.dashboard.friends.FriendListViewModel"/>
+
+        <variable
+                name="viewModel"
+                type="com.event.reminder.ui.dashboard.friends.friends.FriendListViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

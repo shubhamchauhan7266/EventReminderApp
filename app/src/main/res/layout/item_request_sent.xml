@@ -59,7 +59,7 @@
         />
         <TextView
                 style="@style/AppTheme.TextView.Normal"
-                android:text="@{friendDetail.requestStatus}"
+                android:text="@{friendDetail.friendStatus}"
                 android:id="@+id/iv_accept"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"

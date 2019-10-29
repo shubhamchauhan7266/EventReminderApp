@@ -4,9 +4,9 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.event.reminder.data.repository.*
 import com.event.reminder.ui.dashboard.DashboardViewModel
-import com.event.reminder.ui.dashboard.friends.FriendDetailsViewModel
-import com.event.reminder.ui.dashboard.friends.FriendListViewModel
-import com.event.reminder.ui.dashboard.friends.RequestListViewModel
+import com.event.reminder.ui.dashboard.friends.FriendsViewModel
+import com.event.reminder.ui.dashboard.friends.friendrequest.RequestListViewModel
+import com.event.reminder.ui.dashboard.friends.friends.FriendListViewModel
 import com.event.reminder.ui.dashboard.home.HomeViewModel
 import com.event.reminder.ui.dashboard.notification.NotificationViewModel
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel
@@ -35,8 +35,8 @@ class ViewModelFactory : ViewModelProvider.Factory {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(
                 homeRepository = HomeRepository
             ) as T
-            modelClass.isAssignableFrom(FriendDetailsViewModel::class.java) -> FriendDetailsViewModel(
-                friendDetailsRepository = FriendDetailsRepository
+            modelClass.isAssignableFrom(FriendsViewModel::class.java) -> FriendsViewModel(
+                friendsRepository = FriendsRepository
             ) as T
             modelClass.isAssignableFrom(NotificationViewModel::class.java) -> NotificationViewModel(
                 notificationRepository = NotificationRepository

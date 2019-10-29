@@ -11,11 +11,13 @@ import com.android.mvvmandroidlib.listener.ViewPagerPageChangeListener
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.android.mvvmandroidlib.utills.ContextUtils
 import com.event.reminder.R
-import com.event.reminder.constant.AppConstant
-import com.event.reminder.databinding.FriendDetailsFragmentBinding
+import com.event.reminder.databinding.FriendsFragmentBinding
+import com.event.reminder.enum.RequestType
 import com.event.reminder.ui.ViewModelFactory
+import com.event.reminder.ui.dashboard.friends.friendrequest.RequestListFragment
+import com.event.reminder.ui.dashboard.friends.friends.FriendListFragment
 
-class FriendDetailsFragment : BaseFragment<FriendDetailsFragmentBinding, FriendDetailsViewModel>() {
+class FriendsFragment : BaseFragment<FriendsFragmentBinding, FriendsViewModel>() {
 
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
@@ -30,13 +32,13 @@ class FriendDetailsFragment : BaseFragment<FriendDetailsFragmentBinding, FriendD
         fragmentModelList.add(
             FragmentModel(
                 title = getString(R.string.request_received),
-                fragment = RequestListFragment.newInstance(AppConstant.REQUEST_TYPE_RECEIVED)
+                fragment = RequestListFragment.newInstance(RequestType.REQUEST_TYPE_RECEIVED.ordinal)
             )
         )
         fragmentModelList.add(
             FragmentModel(
                 title = getString(R.string.request_sent),
-                fragment = RequestListFragment.newInstance(AppConstant.REQUEST_TYPE_SENT)
+                fragment = RequestListFragment.newInstance(RequestType.REQUEST_TYPE_SENT.ordinal)
             )
         )
 
@@ -53,14 +55,17 @@ class FriendDetailsFragment : BaseFragment<FriendDetailsFragmentBinding, FriendD
         })
     }
 
-    override fun getObservableViewModel(): FriendDetailsViewModel {
+    override fun getObservableViewModel(): FriendsViewModel {
         return ViewModelProviders.of(this, ViewModelFactory())
-            .get(FriendDetailsViewModel::class.java)
+            .get(FriendsViewModel::class.java)
     }
 
-    override fun getViewDataBinding(inflater: LayoutInflater, container: ViewGroup?): FriendDetailsFragmentBinding {
+    override fun getViewDataBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FriendsFragmentBinding {
         return DataBindingUtil.inflate(
-            inflater, R.layout.fragment_friend_details, container, false
+            inflater, R.layout.fragment_friends, container, false
         )
     }
 }

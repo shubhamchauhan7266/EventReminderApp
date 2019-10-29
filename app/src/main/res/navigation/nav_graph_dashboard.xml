@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/nav_graph_dashboard"
-            app:startDestination="@id/homeFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph_dashboard"
+        app:startDestination="@id/homeFragment">
 
-    <fragment android:id="@+id/friendDetailsFragment"
-              android:name="com.event.reminder.ui.dashboard.friends.FriendDetailsFragment"
-              android:label="FriendDetailsFragment"
-              tools:layout="@layout/fragment_friend_details"/>
-    <fragment android:id="@+id/homeFragment" android:name="com.event.reminder.ui.dashboard.home.HomeFragment"
-              android:label="HomeFragment"
-              tools:layout="@layout/fragment_home"/>
-    <fragment android:id="@+id/notificationFragment"
-              android:name="com.event.reminder.ui.dashboard.notification.NotificationFragment"
-              android:label="NotificationFragment"
-              tools:layout="@layout/fragment_notification"/>
-    <fragment android:id="@+id/profileDetailsFragment"
-              android:name="com.event.reminder.ui.dashboard.profile.ProfileDetailsFragment"
-              android:label="ProfileDetailsFragment"
-              tools:layout="@layout/fragment_profile_details"/>
+    <fragment
+            android:id="@+id/friendDetailsFragment"
+            android:name="com.event.reminder.ui.dashboard.friends.FriendsFragment"
+            android:label="FriendDetailsFragment"
+            tools:layout="@layout/fragment_friends" />
+    <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.event.reminder.ui.dashboard.home.HomeFragment"
+            android:label="HomeFragment"
+            tools:layout="@layout/fragment_home" />
+    <fragment
+            android:id="@+id/notificationFragment"
+            android:name="com.event.reminder.ui.dashboard.notification.NotificationFragment"
+            android:label="NotificationFragment"
+            tools:layout="@layout/fragment_notification" />
+    <fragment
+            android:id="@+id/profileDetailsFragment"
+            android:name="com.event.reminder.ui.dashboard.profile.ProfileDetailsFragment"
+            android:label="ProfileDetailsFragment"
+            tools:layout="@layout/fragment_profile_details" />
 </navigation>

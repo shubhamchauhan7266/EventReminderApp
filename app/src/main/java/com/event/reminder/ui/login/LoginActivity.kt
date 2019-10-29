@@ -36,8 +36,8 @@ class LoginActivity : BaseActivity<LoginActivityBinding, LoginViewModel>() {
         ToastUtils.showMessage(application, R.string.app_name)
     }
 
-    override fun initMembers() {
-        super.initMembers()
+    override fun setInitialData() {
+        super.setInitialData()
 
         viewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer

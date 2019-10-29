@@ -14,7 +14,7 @@ data class UserDetails(
     val gender: String,
     val phoneNumber: String?,
     val emailAddress: String,
-    val dateOfBirth: Long? = 1570406400,
+    val dateOfBirth: Long?,
     val imageUrl: String?,
     val streetAddress: String?,
     val city: String?,

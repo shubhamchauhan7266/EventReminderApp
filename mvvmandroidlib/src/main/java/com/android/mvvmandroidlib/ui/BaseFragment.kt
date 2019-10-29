@@ -45,8 +45,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         onCreateViewBinding()
-        setupToolbar()
-        initMembers()
+        setInitialData()
     }
 
     protected abstract fun onCreateViewBinding()
@@ -56,16 +55,9 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     protected abstract fun getViewDataBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
     /**
-     * Method is used to set toolbar.
-     */
-    protected open fun setupToolbar() {
-
-    }
-
-    /**
      * Method is used to initialize and setting initial data.
      */
-    protected open fun initMembers() {
+    protected open fun setInitialData() {
         viewModel.progressEvent.observe(this, Observer {
             //            DialogUtils.showProgressDialog(this, it!!)
         })

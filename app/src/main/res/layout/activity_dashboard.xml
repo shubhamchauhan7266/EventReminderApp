@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
 
     <data class="DashboardActivityBinding">
         <import type="android.view.View"/>
@@ -14,13 +15,32 @@
             android:layout_height="match_parent"
             tools:context=".ui.dashboard.DashboardActivity">
 
+        <android.support.v7.widget.Toolbar
+                style="@style/AppTheme.Toolbar"
+                android:id="@+id/toolbar"
+                android:elevation="@dimen/_10sdp"
+                android:visibility="visible"
+                android:fadingEdgeLength="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:onClick="@{() -> viewModel.onProfileClick()}"
+                    bind:placeholder="@{@drawable/profile}" />
+
+        </android.support.v7.widget.Toolbar>
+
         <fragment
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:id="@+id/nav_dashboard_fragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 app:navGraph="@navigation/nav_graph_dashboard"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/nav_view"
