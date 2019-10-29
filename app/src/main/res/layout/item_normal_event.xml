@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
+
+    <data class="NormalEventTypeBinding">
+
+        <import type="android.view.View" />
+
+        <import type="com.android.mvvmandroidlib.utills.DateUtils" />
+
+        <variable
+                name="homeEventDetails"
+                type="com.event.reminder.data.model.response.HomeEventDetails" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_5sdp"
+            android:padding="@dimen/_15sdp">
+
+        <TextView
+                android:id="@+id/tv_event_details"
+                style="@style/AppTheme.TextView.Small"
+                android:layout_width="0dp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:maxLines="2"
+                android:text="@{homeEventDetails.description}"
+                app:layout_constraintEnd_toStartOf="@+id/tv_time"
+                app:layout_constraintStart_toEndOf="@+id/iv_event_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/iv_event_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_message_black_24dp" />
+
+        <TextView
+                android:id="@+id/tv_time"
+                style="@style/AppTheme.TextView.Smallest"
+                bind:timeFormat="@{DateUtils.HH_MM_AA}"
+                bind:timeStamp="@{homeEventDetails.createdDate}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

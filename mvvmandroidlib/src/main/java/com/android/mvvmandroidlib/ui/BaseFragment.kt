@@ -45,6 +45,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         onCreateViewBinding()
+        setupToolbar()
         setInitialData()
     }
 
@@ -53,6 +54,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     protected abstract fun getObservableViewModel(): V
 
     protected abstract fun getViewDataBinding(inflater: LayoutInflater, container: ViewGroup?): T
+
+    /**
+     * Method is used to set toolbar.
+     */
+    protected open fun setupToolbar() {
+
+    }
 
     /**
      * Method is used to initialize and setting initial data.
