@@ -12,6 +12,7 @@ import com.event.reminder.ui.dashboard.notification.NotificationViewModel
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel
 import com.event.reminder.ui.login.LoginViewModel
 import com.event.reminder.ui.login.SignUpViewModel
+import com.event.reminder.ui.otp.OTPVerificationViewModel
 
 /**
  * ViewModel provider factory to instantiate ViewModel.
@@ -49,6 +50,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
             ) as T
             modelClass.isAssignableFrom(FriendListViewModel::class.java) -> FriendListViewModel(
                 friendListRepository = FriendListRepository
+            ) as T
+            modelClass.isAssignableFrom(OTPVerificationViewModel::class.java) -> OTPVerificationViewModel(
+                otpVerificationRepository = OTPVerificationRepository
             ) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

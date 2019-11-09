@@ -27,5 +27,11 @@ interface ApiClient {
     fun getFriendRequestDetailsList(@Body loginRequest: FriendRequestDetailsListRequest): Observable<FriendRequestDetailsModel>
 
     @POST(ApiConstant.FRIEND_DETAILS_LIST_API)
-    fun getFriendDetailsList(@Body friendDetailsrequest: FriendDetailsListRequest): Observable<FriendDetailsModel>
+    fun getFriendDetailsList(@Body friendDetailsRequest: FriendDetailsListRequest): Observable<FriendDetailsModel>
+
+    @POST(ApiConstant.GET_OTP_API)
+    fun getOTP(@Body getOTPRequest: GetOTPRequest): Observable<BaseResponseModel>
+
+    @POST(ApiConstant.VALIDATE_OTP_API)
+    fun validateOTP(@Body validateOTPRequest: ValidateOTPRequest): Observable<BaseResponseModel>
 }

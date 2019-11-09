@@ -128,4 +128,7 @@
     <string name="age_year">%s Year</string>
     <string name="temp_image_url">https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Hrithik_Rado.jpg/250px-Hrithik_Rado.jpg</string>
     <string name="events">Events</string>
+    <string name="submit">Submit</string>
+    <string name="please_enter_otp">Please enter OTP</string>
+    <string name="resend_otp">Resend OTP</string>
 </resources>
