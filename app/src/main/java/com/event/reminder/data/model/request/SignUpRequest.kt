@@ -11,7 +11,7 @@ data class SignUpRequest(
     var password: String?,
     var gender: String?,
     var dateOfBirth: Long? = 846201600,
-    var imageUrl: String? = "",
+    var imageUrl: String? = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Hrithik_Rado.jpg/250px-Hrithik_Rado.jpg",
     var streetAddress: String? = "736",
     var city: String? = "Haridwar",
     var state: String? = "Uttarakhand",

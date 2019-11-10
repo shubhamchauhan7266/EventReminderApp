@@ -4,7 +4,10 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.event.reminder.data.model.request.*
 import com.event.reminder.data.model.response.*
 import io.reactivex.Observable
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiClient {
 
@@ -29,8 +32,8 @@ interface ApiClient {
     @POST(ApiConstant.FRIEND_DETAILS_LIST_API)
     fun getFriendDetailsList(@Body friendDetailsRequest: FriendDetailsListRequest): Observable<FriendDetailsModel>
 
-    @POST(ApiConstant.GET_OTP_API)
-    fun getOTP(@Body getOTPRequest: GetOTPRequest): Observable<BaseResponseModel>
+    @POST(ApiConstant.GENERATE_OTP_API)
+    fun generateOTP(@Body generateOTPRequest: GenerateOTPRequest): Observable<BaseResponseModel>
 
     @POST(ApiConstant.VALIDATE_OTP_API)
     fun validateOTP(@Body validateOTPRequest: ValidateOTPRequest): Observable<BaseResponseModel>

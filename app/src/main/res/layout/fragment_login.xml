@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
 
     <data class="LoginFragmentBinding">
         <import type="android.view.View"/>
+
+        <import type="com.event.reminder.constant.ValidationTypeConstant" />
 
         <variable
                 name="viewModel"
@@ -25,6 +28,8 @@
             <android.support.design.widget.TextInputLayout
                     style="@style/TextInputLayoutAppearance"
                     android:id="@+id/il_username"
+                    bind:validatorValue="@{viewModel.userName}"
+                    bind:validationType="@{ValidationTypeConstant.USER_NAME}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -40,6 +45,8 @@
             <android.support.design.widget.TextInputLayout
                     style="@style/TextInputLayoutAppearance"
                     android:id="@+id/il_password"
+                    bind:validatorValue="@{viewModel.password}"
+                    bind:validationType="@{ValidationTypeConstant.PASSWORD}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/il_username">

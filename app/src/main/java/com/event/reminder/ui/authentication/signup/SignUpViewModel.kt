@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.databinding.Bindable
 import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
+import com.android.mvvmandroidlib.utills.StringUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
 import com.event.reminder.data.model.request.SignUpRequest
@@ -76,9 +77,13 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObse
         }
     }
 
-    fun isDataValid(): Boolean {
-//        return !StringUtils.isNullOrEmpty(fullName) && StringUtils.isEmailValid(emailId) && StringUtils.isPhoneNumberValid(phoneNumber)
-//                && StringUtils.isPasswordValid(password) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(dateOfBirth)
-        return true
+    private fun isDataValid(): Boolean {
+        return StringUtils.isPhoneNumberValid(phoneNumber)
+                && !StringUtils.isNullOrEmpty(fullName)
+                && !StringUtils.isNullOrEmpty(dateOfBirth)
+                && !StringUtils.isNullOrEmpty(gender)
+                && StringUtils.isEmailIdValid(emailId)
+                && StringUtils.isPasswordValid(password)
+                && StringUtils.isPasswordValid(confirmPassword)
     }
 }

@@ -49,25 +49,23 @@ object StringUtils {
      */
     fun isPasswordValid(
         password: String?,
-        length: Int = 7,
+        length: Int = 4,
         type: PasswordType = PasswordType.ALPHANUMERIC
     ): Boolean {
+
+        if (isNullOrEmpty(password) || password?.length ?: 0 < length) {
+            return false
+        }
 
         val letter = Pattern.compile(ALPHABET)
         val letterCaps = Pattern.compile(ALPHABET_CAPS)
         val digit = Pattern.compile(DIGIT)
         val special = Pattern.compile(SPECIAL_CHARACTER)
-        //Pattern eight = Pattern.compile (".{8}");
-
 
         val hasLetter = letter.matcher(password)
         val hasLetterCaps = letterCaps.matcher(password)
         val hasDigit = digit.matcher(password)
         val hasSpecial = special.matcher(password)
-
-        if (isNullOrEmpty(password) || password?.length ?: 0 < length) {
-            return false
-        }
 
         return when (type) {
             PasswordType.ALPHANUMERIC -> {
@@ -107,10 +105,13 @@ object StringUtils {
      * @return true if valid otherwise false
      */
     fun isUserNameValid(username: String?): Boolean {
+        if (isNullOrEmpty(username)) {
+            return false
+        }
         return if (username!!.contains(EMAIL_SYMBOL)) {
-            !isNullOrEmpty(username) && Patterns.EMAIL_ADDRESS.matcher(username).matches()
+            Patterns.EMAIL_ADDRESS.matcher(username).matches()
         } else {
-            !isNullOrEmpty(username) && Patterns.PHONE.matcher(username).matches()
+            Patterns.PHONE.matcher(username).matches()
         }
     }
 
@@ -120,7 +121,7 @@ object StringUtils {
      * @param emailId emailId
      * @return true if valid otherwise false
      */
-    fun isEmailValid(emailId: String?): Boolean {
+    fun isEmailIdValid(emailId: String?): Boolean {
         return !isNullOrEmpty(emailId) && Patterns.EMAIL_ADDRESS.matcher(emailId).matches()
     }
 

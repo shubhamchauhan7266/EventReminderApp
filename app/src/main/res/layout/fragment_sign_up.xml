@@ -4,6 +4,8 @@
         xmlns:bind="http://schemas.android.com/tools">
 
     <data class="SignUpFragmentBinding">
+
+        <import type="com.event.reminder.constant.ValidationTypeConstant" />
         <import type="android.view.View"/>
 
         <variable
@@ -29,6 +31,8 @@
                 <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_name"
+                        bind:validatorValue="@{viewModel.fullName}"
+                        bind:validationType="@{ValidationTypeConstant.FULL_NAME}"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -38,12 +42,15 @@
                             style="@style/AppTheme.EditText"
                             android:id="@+id/et_name"
                             android:hint="@string/full_name"
+
                             android:text="@={viewModel.fullName}"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_email"
+                        bind:validatorValue="@{viewModel.emailId}"
+                        bind:validationType="@{ValidationTypeConstant.EMAIL_ADDRESS}"
                         app:layout_constraintTop_toBottomOf="@id/il_name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
@@ -59,6 +66,8 @@
                 <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_dob"
+                        bind:validatorValue="@{viewModel.dateOfBirth}"
+                        bind:validationType="@{ValidationTypeConstant.DATE_OF_BIRTH}"
                         app:layout_constraintTop_toBottomOf="@id/il_email"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
@@ -74,6 +83,8 @@
                 <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_gender"
+                        bind:validatorValue="@{viewModel.gender}"
+                        bind:validationType="@{ValidationTypeConstant.GENDER}"
                         app:layout_constraintTop_toBottomOf="@id/il_dob"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
@@ -89,6 +100,8 @@
                 <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_phone_no"
+                        bind:validatorValue="@{viewModel.phoneNumber}"
+                        bind:validationType="@{ValidationTypeConstant.MOBILE_NUMBER}"
                         app:layout_constraintTop_toBottomOf="@id/il_gender"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
@@ -104,6 +117,8 @@
                 <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_password"
+                        bind:validatorValue="@{viewModel.password}"
+                        bind:validationType="@{ValidationTypeConstant.PASSWORD}"
                         app:layout_constraintTop_toBottomOf="@id/il_phone_no"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
@@ -119,6 +134,8 @@
                 <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_confirm_password"
+                        bind:validatorValue="@{viewModel.confirmPassword}"
+                        bind:validationType="@{ValidationTypeConstant.PASSWORD}"
                         app:layout_constraintTop_toBottomOf="@id/il_password"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">

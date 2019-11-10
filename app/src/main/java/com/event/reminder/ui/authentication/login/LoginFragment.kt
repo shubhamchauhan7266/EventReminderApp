@@ -48,25 +48,6 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
     override fun setInitialData() {
         super.setInitialData()
 
-        viewModel.loginFormState.observe(this@LoginFragment, Observer {
-            val loginState = it ?: return@Observer
-
-            if(loginState.isDataValid){
-                binding.ilUsername.isErrorEnabled = false
-                binding.ilPassword.isErrorEnabled = false
-            }else{
-                if (loginState.usernameError != null) {
-                    binding.ilUsername.isErrorEnabled = true
-                    binding.ilUsername.error = getString(loginState.usernameError)
-                }
-                if (loginState.passwordError != null) {
-                    binding.ilPassword.isErrorEnabled = true
-                    binding.ilPassword.error = getString(loginState.passwordError)
-                }
-            }
-
-        })
-
         viewModel.loginResult?.observe(this@LoginFragment, Observer {
             val result = it ?: return@Observer
 
@@ -129,6 +110,9 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         }
         loggedInUser.userDetails?.userId?.let { userId ->
             EventReminderSharedPrefUtils.setUserId(userId)
+        }
+        loggedInUser.userDetails?.phoneNumber?.let { phoneNumber ->
+            EventReminderSharedPrefUtils.setMobileNumber(phoneNumber)
         }
     }
 }

@@ -31,8 +31,8 @@ object ApiConstant {
     const val NOTIFICATION_DETAILS_LIST_API: String = "Notification/notificationsList"
     const val FRIEND_REQUEST_DETAILS_LIST_API: String = "AuthenticatedUser/friendRequestDetails"
     const val FRIEND_DETAILS_LIST_API: String = "AuthenticatedUser/friendDetails"
-    const val GET_OTP_API: String = "OTP/getOTP"
-    const val VALIDATE_OTP_API: String = "OTP/validateOTP"
+    const val GENERATE_OTP_API: String = "AuthenticatedUser/generateOTP"
+    const val VALIDATE_OTP_API: String = "AuthenticatedUser/validateOTP"
 
 
     // Query Constant

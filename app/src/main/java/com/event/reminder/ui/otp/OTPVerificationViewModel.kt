@@ -7,7 +7,7 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
-import com.event.reminder.data.model.request.GetOTPRequest
+import com.event.reminder.data.model.request.GenerateOTPRequest
 import com.event.reminder.data.model.request.ValidateOTPRequest
 import com.event.reminder.data.repository.OTPVerificationRepository
 import com.event.reminder.utills.EventReminderSharedPrefUtils
@@ -15,8 +15,9 @@ import com.event.reminder.utills.EventReminderSharedPrefUtils
 class OTPVerificationViewModel(private val otpVerificationRepository: OTPVerificationRepository) :
     BaseObservableViewModel() {
 
-    private val _getOTPResult: MutableLiveData<ApiResult<BaseResponseModel>> = MutableLiveData()
-    val getOTPResult: LiveData<ApiResult<BaseResponseModel>>? = _getOTPResult
+    private val _generateOTPResult: MutableLiveData<ApiResult<BaseResponseModel>> =
+        MutableLiveData()
+    val generateOTPResult: LiveData<ApiResult<BaseResponseModel>>? = _generateOTPResult
     private val _validateOTPResult: MutableLiveData<ApiResult<BaseResponseModel>> = MutableLiveData()
     val validateOTPResult: LiveData<ApiResult<BaseResponseModel>>? = _validateOTPResult
 
@@ -33,11 +34,14 @@ class OTPVerificationViewModel(private val otpVerificationRepository: OTPVerific
             otpValue = otpValue,
             otpSendTo = ""
         )
-        otpVerificationRepository.validateOTP(request, _getOTPResult);
+        otpVerificationRepository.validateOTP(request, _generateOTPResult);
     }
 
     fun onResendOTPClick(){
-        val request = GetOTPRequest(userId = EventReminderSharedPrefUtils.getUserId(), otpSendTo = "shubham@gmail.com")
-        otpVerificationRepository.getOTP(request, _validateOTPResult);
+        val request = GenerateOTPRequest(
+            userId = EventReminderSharedPrefUtils.getUserId(),
+            otpSendTo = "shubham@gmail.com"
+        )
+        otpVerificationRepository.generateOTP(request, _validateOTPResult);
     }
 }

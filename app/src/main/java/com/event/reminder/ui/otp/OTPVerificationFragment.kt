@@ -62,7 +62,7 @@ class OTPVerificationFragment :
             }
         })
 
-        viewModel.getOTPResult!!.observe(this@OTPVerificationFragment, Observer {
+        viewModel.generateOTPResult!!.observe(this@OTPVerificationFragment, Observer {
             val result = it ?: return@Observer
 
             when {

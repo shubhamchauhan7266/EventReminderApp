@@ -7,32 +7,33 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
-import com.event.reminder.data.model.request.GetOTPRequest
+import com.event.reminder.data.model.request.GenerateOTPRequest
 import com.event.reminder.data.model.request.ValidateOTPRequest
 
 object OTPVerificationRepository : BaseRepository()  {
 
-    fun getOTP(
-        request: GetOTPRequest,
-        _getOTPResult: MutableLiveData<ApiResult<BaseResponseModel>>
+    fun generateOTP(
+        request: GenerateOTPRequest,
+        _generateOTPResult: MutableLiveData<ApiResult<BaseResponseModel>>
     ) {
         try {
             RequestNetworkManager.addRequest(
-                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.getOTP(request),
+                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.generateOTP(request),
                 object : SubscriptionCallback<BaseResponseModel> {
 
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
-                        _getOTPResult.value = ApiResult(success = response)
+                        _generateOTPResult.value = ApiResult(success = response)
                     }
 
                     override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        _getOTPResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                        _generateOTPResult.value =
+                            ApiResult(errorMessage = errorMsg, errorCode = errCode)
                     }
 
                 })
         } catch (e: Throwable) {
-            _getOTPResult.value = ApiResult(errorMessage = e.localizedMessage)
+            _generateOTPResult.value = ApiResult(errorMessage = e.localizedMessage)
         }
     }
 
