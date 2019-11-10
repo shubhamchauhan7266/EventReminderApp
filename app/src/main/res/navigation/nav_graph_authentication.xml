@@ -52,6 +52,10 @@
                 android:name="mobileNumber"
                 app:argType="string"
                 app:nullable="true" />
+        <argument
+                android:name="emailId"
+                app:argType="string"
+                app:nullable="true" />
     </fragment>
     <activity
             android:id="@+id/dashboardActivity"

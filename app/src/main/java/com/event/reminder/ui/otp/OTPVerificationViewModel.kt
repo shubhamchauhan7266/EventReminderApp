@@ -5,8 +5,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.databinding.Bindable
 import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
+import com.android.mvvmandroidlib.utills.StringUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
+import com.event.reminder.constant.OTPTypeConstant
 import com.event.reminder.data.model.request.GenerateOTPRequest
 import com.event.reminder.data.model.request.ValidateOTPRequest
 import com.event.reminder.data.repository.OTPVerificationRepository
@@ -37,11 +39,17 @@ class OTPVerificationViewModel(private val otpVerificationRepository: OTPVerific
         otpVerificationRepository.validateOTP(request, _generateOTPResult);
     }
 
-    fun onResendOTPClick(){
-        val request = GenerateOTPRequest(
-            userId = EventReminderSharedPrefUtils.getUserId(),
-            otpSendTo = "shubham@gmail.com"
-        )
-        otpVerificationRepository.generateOTP(request, _validateOTPResult);
+    fun generateOTP(otpSendTo: String?) {
+
+        if (!StringUtils.isNullOrEmpty(otpSendTo)) {
+            val request = GenerateOTPRequest(
+                userId = EventReminderSharedPrefUtils.getUserId(),
+                otpSendTo = otpSendTo,
+                otpType = OTPTypeConstant.EMAIL_ID
+            )
+            otpVerificationRepository.generateOTP(request, _validateOTPResult);
+        } else {
+            failedEventErrorMessage.sendEvent("Email Id or Phone Number is empty!!")
+        }
     }
 }

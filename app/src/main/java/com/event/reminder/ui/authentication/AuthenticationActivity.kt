@@ -64,9 +64,10 @@ class AuthenticationActivity :
             NavigationConstant.SIGN_UP_TO_OTP_SCREEN -> {
                 val mobileNumber =
                     bundle?.getString(BundleArgsConstant.MOBILE_NUMBER) ?: StringUtils.EMPTY
+                val emailId = bundle?.getString(BundleArgsConstant.EMAIL_ID) ?: StringUtils.EMPTY
                 navController.navigate(
                     SignUpFragmentDirections.actionSignUpFragmentToOTPVerificationFragment(
-                        mobileNumber
+                        mobileNumber, emailId
                     )
                 )
             }

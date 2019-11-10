@@ -53,6 +53,7 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
 
                     if (result.success!!.success) {
                         val bundle = Bundle()
+                        bundle.putString(BundleArgsConstant.EMAIL_ID, viewModel.emailId)
                         bundle.putString(BundleArgsConstant.MOBILE_NUMBER, viewModel.phoneNumber)
                         iNavigationCallback?.navigateTo(
                             NavigationConstant.SIGN_UP_TO_OTP_SCREEN,

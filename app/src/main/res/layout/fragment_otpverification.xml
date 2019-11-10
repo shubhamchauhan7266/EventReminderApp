@@ -46,7 +46,7 @@
             style="@style/AppTheme.TextView.Link"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/resend_otp"
-            android:onClick="@{() -> viewModel.onResendOTPClick()}"
+            android:onClick="onResendOTPClick"
             app:layout_constraintEnd_toEndOf="@id/et_otp_verification"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/et_otp_verification"

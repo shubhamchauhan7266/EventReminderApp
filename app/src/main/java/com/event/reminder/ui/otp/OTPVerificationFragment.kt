@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
+import com.event.reminder.constant.BundleArgsConstant
 import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.OTPVerificationFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
@@ -17,9 +18,13 @@ class OTPVerificationFragment :
     BaseFragment<OTPVerificationFragmentBinding, OTPVerificationViewModel>() {
 
     private var iNavigationCallback: INavigationCallback? = null
+    private var emailId: String? = null
 
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
+        emailId = arguments?.getString(BundleArgsConstant.EMAIL_ID)
+
+        viewModel.generateOTP(emailId)
     }
 
     override fun getObservableViewModel(): OTPVerificationViewModel {
@@ -43,6 +48,10 @@ class OTPVerificationFragment :
 
     override fun setInitialData() {
         super.setInitialData()
+
+        binding.tvResendOtp.setOnClickListener {
+            viewModel.generateOTP(emailId)
+        }
 
         viewModel.validateOTPResult!!.observe(this@OTPVerificationFragment, Observer {
             val result = it ?: return@Observer
