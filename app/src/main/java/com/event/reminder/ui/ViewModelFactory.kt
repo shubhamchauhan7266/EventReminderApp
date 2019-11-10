@@ -3,6 +3,11 @@ package com.event.reminder.ui
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.event.reminder.data.repository.*
+import com.event.reminder.ui.authentication.AuthenticationViewModel
+import com.event.reminder.ui.authentication.login.LoginViewModel
+import com.event.reminder.ui.authentication.password.ForgetPasswordViewModel
+import com.event.reminder.ui.authentication.signup.SignUpViewModel
+import com.event.reminder.ui.authentication.splash.SplashViewModel
 import com.event.reminder.ui.dashboard.DashboardViewModel
 import com.event.reminder.ui.dashboard.friends.FriendsViewModel
 import com.event.reminder.ui.dashboard.friends.friendrequest.RequestListViewModel
@@ -10,8 +15,6 @@ import com.event.reminder.ui.dashboard.friends.friends.FriendListViewModel
 import com.event.reminder.ui.dashboard.home.HomeViewModel
 import com.event.reminder.ui.dashboard.notification.NotificationViewModel
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel
-import com.event.reminder.ui.login.LoginViewModel
-import com.event.reminder.ui.login.SignUpViewModel
 import com.event.reminder.ui.otp.OTPVerificationViewModel
 
 /**
@@ -53,6 +56,15 @@ class ViewModelFactory : ViewModelProvider.Factory {
             ) as T
             modelClass.isAssignableFrom(OTPVerificationViewModel::class.java) -> OTPVerificationViewModel(
                 otpVerificationRepository = OTPVerificationRepository
+            ) as T
+            modelClass.isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel(
+                splashRepository = SplashRepository
+            ) as T
+            modelClass.isAssignableFrom(ForgetPasswordViewModel::class.java) -> ForgetPasswordViewModel(
+                forgetPasswordRepository = ForgetPasswordRepository
+            ) as T
+            modelClass.isAssignableFrom(AuthenticationViewModel::class.java) -> AuthenticationViewModel(
+                authenticationRepository = AuthenticationRepository
             ) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

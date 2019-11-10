@@ -3,9 +3,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:bind="http://schemas.android.com/tools">
 
-    <data class="SignUpActivityBinding">
+    <data class="SignUpFragmentBinding">
         <import type="android.view.View"/>
-        <variable name="viewModel" type="com.event.reminder.ui.login.SignUpViewModel"/>
+
+        <variable
+                name="viewModel"
+                type="com.event.reminder.ui.authentication.signup.SignUpViewModel" />
     </data>
 
     <android.support.v4.widget.NestedScrollView

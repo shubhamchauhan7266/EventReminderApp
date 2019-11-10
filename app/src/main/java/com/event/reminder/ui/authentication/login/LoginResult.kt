@@ -1,5 +1,6 @@
-package com.event.reminder.ui.login
+package com.event.reminder.ui.authentication.login
 
+import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.response.LoggedInUserModel
 
 /**
@@ -7,6 +8,6 @@ import com.event.reminder.data.model.response.LoggedInUserModel
  */
 data class LoginResult(
     val success: LoggedInUserModel? = null,
-    val errorCode: Int = 101,
+    val errorCode: Int = ErrorConstant.INVALID_NUMBER,
     val errorMessage: String? = null
 )

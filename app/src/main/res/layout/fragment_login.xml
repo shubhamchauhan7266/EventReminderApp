@@ -2,9 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="LoginActivityBinding">
+    <data class="LoginFragmentBinding">
         <import type="android.view.View"/>
-        <variable name="viewModel" type="com.event.reminder.ui.login.LoginViewModel"/>
+
+        <variable
+                name="viewModel"
+                type="com.event.reminder.ui.authentication.login.LoginViewModel" />
     </data>
 
     <RelativeLayout

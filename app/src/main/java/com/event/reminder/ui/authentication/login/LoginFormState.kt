@@ -1,4 +1,4 @@
-package com.event.reminder.ui.login
+package com.event.reminder.ui.authentication.login
 
 /**
  * Data validation state of the login form.

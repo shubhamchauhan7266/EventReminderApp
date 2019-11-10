@@ -6,5 +6,6 @@ import java.io.Serializable
 data class ValidateOTPRequest (
     var userId: String?,
     var otpType: Int = OTPType.MOBILE_NUMBER.ordinal,
-    var otpValue: String?
+    var otpValue: String?,
+    var otpSendTo: String?
 ) : Serializable

@@ -1,4 +1,4 @@
-package com.event.reminder.ui.login
+package com.event.reminder.ui.authentication.signup
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData

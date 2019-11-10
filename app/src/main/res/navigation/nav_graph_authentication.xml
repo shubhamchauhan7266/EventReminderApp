@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nav_graph_authentication"
+        app:startDestination="@id/splashFragment">
+
+    <fragment
+            android:id="@+id/splashFragment"
+            android:name="com.event.reminder.ui.authentication.splash.SplashFragment"
+            android:label="SplashFragment">
+        <action
+                android:id="@+id/action_splashFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:popUpTo="@id/splashFragment"
+                app:popUpToInclusive="true" />
+        <action
+                android:id="@+id/action_splashFragment_to_dashboardActivity"
+                app:destination="@id/dashboardActivity"
+                app:popUpTo="@id/splashFragment"
+                app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.event.reminder.ui.authentication.login.LoginFragment"
+            android:label="LoginFragment">
+        <action
+                android:id="@+id/action_loginFragment_to_signUpFragment"
+                app:destination="@id/signUpFragment" />
+        <action
+                android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
+                app:destination="@id/forgetPasswordFragment" />
+        <action
+                android:id="@+id/action_loginFragment_to_dashboardActivity"
+                app:destination="@id/dashboardActivity"
+                app:popUpTo="@id/splashFragment"
+                app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+            android:id="@+id/signUpFragment"
+            android:name="com.event.reminder.ui.authentication.signup.SignUpFragment"
+            android:label="SignUpFragment">
+        <action
+                android:id="@+id/action_signUpFragment_to_OTPVerificationFragment2"
+                app:destination="@id/OTPVerificationFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/OTPVerificationFragment"
+            android:name="com.event.reminder.ui.otp.OTPVerificationFragment"
+            android:label="OTPVerificationFragment" />
+    <activity
+            android:id="@+id/dashboardActivity"
+            android:name="com.event.reminder.ui.dashboard.DashboardActivity"
+            android:label="DashboardActivity" />
+    <fragment
+            android:id="@+id/forgetPasswordFragment"
+            android:name="com.event.reminder.ui.authentication.password.ForgetPasswordFragment"
+            android:label="ForgetPasswordFragment" />
+</navigation>

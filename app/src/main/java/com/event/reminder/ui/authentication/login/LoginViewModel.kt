@@ -1,4 +1,4 @@
-package com.event.reminder.ui.login
+package com.event.reminder.ui.authentication.login
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -57,15 +57,18 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     private fun loginDataChanged() {
         if (StringUtils.isNullOrEmpty(userName)) {
-            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
+            _loginForm.value =
+                LoginFormState(usernameError = R.string.invalid_username)
         } else if (!StringUtils.isPasswordValid(
                 password,
                 length = 4
             )
         ) {
-            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+            _loginForm.value =
+                LoginFormState(passwordError = R.string.invalid_password)
         } else {
-            _loginForm.value = LoginFormState(isDataValid = true)
+            _loginForm.value =
+                LoginFormState(isDataValid = true)
         }
     }
 }

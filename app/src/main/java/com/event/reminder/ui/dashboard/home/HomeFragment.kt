@@ -12,6 +12,7 @@ import android.view.*
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.HomeEventListAdapter
+import com.event.reminder.callback.INavigationCallback
 import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.HomeFragmentBinding
@@ -21,7 +22,7 @@ import com.event.reminder.ui.ViewModelFactory
 
 class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
-    private var iHomeFragmentCallback: IHomeFragmentCallback? = null
+    private var iNavigationCallback: INavigationCallback? = null
 
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
@@ -31,7 +32,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        iHomeFragmentCallback = context as IHomeFragmentCallback
+        iNavigationCallback = context as INavigationCallback
     }
 
     override fun setupToolbar() {
@@ -83,7 +84,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
             when (navigation) {
                 NavigationConstant.PROFILE_SCREEN -> {
-                    iHomeFragmentCallback?.onProfileClick()
+                    iNavigationCallback?.navigateTo(NavigationConstant.PROFILE_SCREEN)
                 }
                 else -> {
 
@@ -120,12 +121,5 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         return DataBindingUtil.inflate(
             inflater, R.layout.fragment_home, container, false
         )
-    }
-
-    /**
-     * Interface is used to give callback on Dashboard Activity.
-     */
-    interface IHomeFragmentCallback {
-        fun onProfileClick()
     }
 }

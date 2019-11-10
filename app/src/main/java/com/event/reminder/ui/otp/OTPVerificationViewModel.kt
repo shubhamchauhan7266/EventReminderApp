@@ -28,7 +28,11 @@ class OTPVerificationViewModel(private val otpVerificationRepository: OTPVerific
         }
 
     fun onSubmitClick(){
-        val request = ValidateOTPRequest(userId = EventReminderSharedPrefUtils.getUserId(), otpValue = otpValue)
+        val request = ValidateOTPRequest(
+            userId = EventReminderSharedPrefUtils.getUserId(),
+            otpValue = otpValue,
+            otpSendTo = ""
+        )
         otpVerificationRepository.validateOTP(request, _getOTPResult);
     }
 

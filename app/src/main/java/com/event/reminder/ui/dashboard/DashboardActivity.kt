@@ -9,13 +9,14 @@ import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.android.mvvmandroidlib.ui.BaseActivity
 import com.event.reminder.R
+import com.event.reminder.callback.INavigationCallback
+import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.DashboardActivityBinding
 import com.event.reminder.ui.ViewModelFactory
-import com.event.reminder.ui.dashboard.home.HomeFragment
 
 
 class DashboardActivity : BaseActivity<DashboardActivityBinding, DashboardViewModel>(),
-    HomeFragment.IHomeFragmentCallback {
+    INavigationCallback {
 
     private lateinit var navController: NavController
 
@@ -53,9 +54,18 @@ class DashboardActivity : BaseActivity<DashboardActivityBinding, DashboardViewMo
         return navController.navigateUp()
     }
 
-    override fun onProfileClick() {
-        binding.navView.selectedItemId = R.id.profileDetailsFragment
-//        navController.navigate(R.id.action_homeFragment_to_OTPVerificationFragment)
+    override fun navigateTo(navigationConstant: NavigationConstant) {
+        when (navigationConstant) {
+            NavigationConstant.PROFILE_SCREEN -> {
+                binding.navView.selectedItemId = R.id.profileDetailsFragment
+            }
+            NavigationConstant.OTP_SCREEN -> {
+                navController.navigate(R.id.action_homeFragment_to_OTPVerificationFragment)
+            }
+            else -> {
+
+            }
+        }
     }
 
 }
