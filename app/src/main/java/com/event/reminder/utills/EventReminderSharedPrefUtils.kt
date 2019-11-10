@@ -12,6 +12,7 @@ object EventReminderSharedPrefUtils {
     private const val USER_LOGGED_IN: String = "userLoggedIn"
     private const val USER_ID: String = "userId"
     private const val ACCESS_TOKEN: String = "accessToken"
+    private const val MOBILE_NUMBER: String = "mobileNumber"
 
     fun isUserLoggedIn(): Boolean {
 
@@ -71,6 +72,27 @@ object EventReminderSharedPrefUtils {
         SharedPreferencesUtils.setString(
             EventReminderApplication.getInstance().applicationContext,
             ACCESS_TOKEN,
+            value,
+            fileName = FILE_NAME
+        )
+    }
+
+    fun getMobileNumber(): String {
+
+        LoggerUtils.info(TAG, "getMobileNumber")
+        return SharedPreferencesUtils.getString(
+            EventReminderApplication.getInstance().applicationContext,
+            MOBILE_NUMBER,
+            fileName = FILE_NAME
+        ) ?: StringUtils.EMPTY
+    }
+
+    fun setMobileNumber(value: String) {
+
+        LoggerUtils.info(TAG, "setMobileNumber")
+        SharedPreferencesUtils.setString(
+            EventReminderApplication.getInstance().applicationContext,
+            MOBILE_NUMBER,
             value,
             fileName = FILE_NAME
         )

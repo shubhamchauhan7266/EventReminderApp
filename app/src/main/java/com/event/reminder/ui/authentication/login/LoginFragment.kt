@@ -76,7 +76,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                     val loggedInUser = result.success
                     if (loggedInUser?.success == true) {
                         savedDataToLocalStorage(loggedInUser)
-                        iNavigationCallback?.navigateTo(NavigationConstant.DASHBOARD_SCREEN)
+                        iNavigationCallback?.navigateTo(NavigationConstant.DASHBOARD_SCREEN, null)
                     } else {
                         result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
                     }
@@ -91,13 +91,13 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
 
             when (it ?: return@Observer) {
                 NavigationConstant.SIGN_UP_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.SIGN_UP_SCREEN)
+                    iNavigationCallback?.navigateTo(NavigationConstant.SIGN_UP_SCREEN, null)
                 }
                 NavigationConstant.DASHBOARD_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.DASHBOARD_SCREEN)
+                    iNavigationCallback?.navigateTo(NavigationConstant.DASHBOARD_SCREEN, null)
                 }
                 NavigationConstant.FORGET_PASSWORD_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.FORGET_PASSWORD_SCREEN)
+                    iNavigationCallback?.navigateTo(NavigationConstant.FORGET_PASSWORD_SCREEN, null)
                 }
                 else -> {
                     LoggerUtils.error(TAG, getString(R.string.unknown_navigation))

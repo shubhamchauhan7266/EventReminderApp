@@ -84,7 +84,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
             when (navigation) {
                 NavigationConstant.PROFILE_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.PROFILE_SCREEN)
+                    iNavigationCallback?.navigateTo(NavigationConstant.PROFILE_SCREEN, null)
                 }
                 else -> {
 

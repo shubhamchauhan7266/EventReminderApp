@@ -4,11 +4,13 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.DataBindingUtil
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
+import com.event.reminder.constant.BundleArgsConstant
 import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.SignUpFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
@@ -50,7 +52,12 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
                 result.success != null -> {
 
                     if (result.success!!.success) {
-                        iNavigationCallback?.navigateTo(NavigationConstant.LOGIN_SCREEN)
+                        val bundle = Bundle()
+                        bundle.putString(BundleArgsConstant.MOBILE_NUMBER, viewModel.phoneNumber)
+                        iNavigationCallback?.navigateTo(
+                            NavigationConstant.SIGN_UP_TO_OTP_SCREEN,
+                            bundle
+                        )
                     } else {
                         result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
                     }

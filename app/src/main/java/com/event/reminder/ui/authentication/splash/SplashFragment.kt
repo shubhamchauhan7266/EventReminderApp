@@ -44,9 +44,9 @@ class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
         super.setInitialData()
 
         if (EventReminderSharedPrefUtils.isUserLoggedIn()/*true*/) {
-            iNavigationCallback?.navigateTo(NavigationConstant.SPLASH_TO_DASHBOARD_SCREEN)
+            iNavigationCallback?.navigateTo(NavigationConstant.SPLASH_TO_DASHBOARD_SCREEN, null)
         }else{
-            iNavigationCallback?.navigateTo(NavigationConstant.SPLASH_TO_LOGIN_SCREEN)
+            iNavigationCallback?.navigateTo(NavigationConstant.SPLASH_TO_LOGIN_SCREEN, null)
         }
     }
 }

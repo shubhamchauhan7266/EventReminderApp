@@ -40,13 +40,19 @@
             android:name="com.event.reminder.ui.authentication.signup.SignUpFragment"
             android:label="SignUpFragment">
         <action
-                android:id="@+id/action_signUpFragment_to_OTPVerificationFragment2"
-                app:destination="@id/OTPVerificationFragment" />
+                android:id="@+id/action_signUpFragment_to_OTPVerificationFragment"
+                app:destination="@id/OTPVerificationFragment"
+                app:popUpTo="@id/loginFragment" />
     </fragment>
     <fragment
             android:id="@+id/OTPVerificationFragment"
             android:name="com.event.reminder.ui.otp.OTPVerificationFragment"
-            android:label="OTPVerificationFragment" />
+            android:label="OTPVerificationFragment">
+        <argument
+                android:name="mobileNumber"
+                app:argType="string"
+                app:nullable="true" />
+    </fragment>
     <activity
             android:id="@+id/dashboardActivity"
             android:name="com.event.reminder.ui.dashboard.DashboardActivity"
