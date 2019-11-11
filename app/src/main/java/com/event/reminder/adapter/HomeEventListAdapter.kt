@@ -1,9 +1,8 @@
 package com.event.reminder.adapter
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.event.reminder.R
 import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.response.HomeEventDetails
@@ -13,11 +12,14 @@ import com.event.reminder.enum.EventsType
 
 class HomeEventListAdapter(
     private var homeEventDetailsList: ArrayList<HomeEventDetails>?
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     private var layoutInflater: LayoutInflater? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
         }
@@ -76,7 +78,10 @@ class HomeEventListAdapter(
         }
     }
 
-    override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        viewholder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+        position: Int
+    ) {
         when (viewholder) {
             is NormalEventViewHolder -> {
                 viewholder.binding!!.homeEventDetails = homeEventDetailsList?.get(position)
@@ -96,8 +101,8 @@ class HomeEventListAdapter(
     }
 
     inner class NormalEventViewHolder(val binding: NormalEventTypeBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
 
     inner class ImportantEventViewHolder(val binding: ImportantEventTypeBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
 }

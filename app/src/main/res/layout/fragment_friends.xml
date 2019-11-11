@@ -9,11 +9,11 @@
                 type="com.event.reminder.ui.dashboard.friends.FriendsViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
                 style="@style/TabLayout"
                 android:id="@+id/tab_layout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
                 app:tabTextColor="@color/fontBlack70"
                 app:tabMode="fixed"/>
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -32,6 +32,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tab_layout"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

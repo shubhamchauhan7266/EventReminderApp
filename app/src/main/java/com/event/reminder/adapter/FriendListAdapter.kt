@@ -1,9 +1,8 @@
 package com.event.reminder.adapter
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.event.reminder.R
 import com.event.reminder.data.model.response.FriendDetails
 import com.event.reminder.databinding.FriendListAdapterBinding
@@ -12,11 +11,14 @@ import com.event.reminder.databinding.FriendListAdapterBinding
 class FriendListAdapter(
     private var friendList: ArrayList<FriendDetails>?
 ) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     private var layoutInflater: LayoutInflater? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
@@ -37,7 +39,10 @@ class FriendListAdapter(
         return friendList?.size ?: 0
     }
 
-    override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        viewholder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+        position: Int
+    ) {
 
         val friendDetailsViewHolder: FriendDetailsViewHolder = viewholder as FriendDetailsViewHolder
         friendDetailsViewHolder.binding!!.friendDetail = friendList?.get(position)
@@ -52,5 +57,5 @@ class FriendListAdapter(
     }
 
     inner class FriendDetailsViewHolder(val binding: FriendListAdapterBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
 }

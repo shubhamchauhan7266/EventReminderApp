@@ -1,8 +1,8 @@
 package com.android.mvvmandroidlib.viewmodel
 
-import android.arch.lifecycle.ViewModel
-import android.databinding.Observable
-import android.databinding.PropertyChangeRegistry
+import androidx.databinding.Observable
+import androidx.databinding.PropertyChangeRegistry
+import androidx.lifecycle.ViewModel
 import com.android.mvvmandroidlib.data.ProgressEvent
 import com.android.mvvmandroidlib.helper.EventLiveData
 

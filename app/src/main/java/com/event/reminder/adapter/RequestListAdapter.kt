@@ -1,9 +1,8 @@
 package com.event.reminder.adapter
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.event.reminder.R
 import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.response.FriendRequestDetails
@@ -14,11 +13,14 @@ import com.event.reminder.enum.RequestType
 class RequestListAdapter(
     private var requestList: ArrayList<FriendRequestDetails>?
 ) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     private var layoutInflater: LayoutInflater? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
@@ -77,7 +79,10 @@ class RequestListAdapter(
         }
     }
 
-    override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        viewholder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+        position: Int
+    ) {
 
         when (viewholder) {
             is RequestDetailsReceivedViewHolder -> {
@@ -98,8 +103,8 @@ class RequestListAdapter(
     }
 
     inner class RequestDetailsReceivedViewHolder(val binding: RequestListReceivedBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
 
     inner class RequestDetailsSentViewHolder(val binding: RequestListSentBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
 }

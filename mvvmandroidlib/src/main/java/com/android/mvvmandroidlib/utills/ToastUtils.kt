@@ -1,8 +1,8 @@
 package com.android.mvvmandroidlib.utills
 
 import android.content.Context
-import android.support.annotation.StringRes
 import android.widget.Toast
+import androidx.annotation.StringRes
 import com.android.mvvmandroidlib.BuildConfig
 
 /**

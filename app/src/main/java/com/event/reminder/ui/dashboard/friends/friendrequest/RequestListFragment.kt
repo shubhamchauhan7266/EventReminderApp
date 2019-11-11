@@ -1,15 +1,12 @@
 package com.event.reminder.ui.dashboard.friends.friendrequest
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.RequestListAdapter
@@ -55,12 +52,13 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
      * Method is used to initialize adapter list
      */
     private fun initializeAdapter() {
-        binding.rvRequestList.layoutManager = LinearLayoutManager(activity)
-        binding.rvRequestList.itemAnimator = DefaultItemAnimator()
+        binding.rvRequestList.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(activity)
+        binding.rvRequestList.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         binding.rvRequestList.addItemDecoration(
-            DividerItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
                 activity,
-                DividerItemDecoration.VERTICAL
+                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
             )
         )
         binding.rvRequestList.adapter = RequestListAdapter(null)

@@ -1,7 +1,5 @@
 package com.android.mvvmandroidlib.data
 
-import android.support.v4.app.Fragment
-
 /**
  * This model class is used by ViewPagerAdapter.
  *
@@ -12,5 +10,5 @@ import android.support.v4.app.Fragment
  */
 data class FragmentModel(
     val title: String = "",
-    val fragment: Fragment
+    val fragment: androidx.fragment.app.Fragment
 )

@@ -1,9 +1,8 @@
 package com.event.reminder.ui.dashboard
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
@@ -15,6 +14,7 @@ import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.DashboardActivityBinding
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsFragmentDirections
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class DashboardActivity : BaseActivity<DashboardActivityBinding, DashboardViewModel>(),

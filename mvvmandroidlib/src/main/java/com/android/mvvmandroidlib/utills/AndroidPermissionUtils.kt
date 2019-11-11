@@ -3,9 +3,8 @@ package com.android.mvvmandroidlib.utills
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityCompat.requestPermissions
-import android.support.v4.app.Fragment
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.requestPermissions
 
 /**
  * This util class is used to provide some common methods related to Android Permission.
@@ -62,7 +61,11 @@ object AndroidPermissionUtils {
      * @param requestCode    requestCode
      * @param permissionList A list of all given runtime permission
      */
-    fun requestForPermission(context: Fragment, requestCode: Int, vararg permissionList: String) {
+    fun requestForPermission(
+        context: androidx.fragment.app.Fragment,
+        requestCode: Int,
+        vararg permissionList: String
+    ) {
 
         if (ContextUtils.isObjectNull(context)) {
             return

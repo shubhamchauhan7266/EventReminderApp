@@ -8,10 +8,11 @@
         <variable name="viewModel" type="com.event.reminder.ui.dashboard.home.HomeViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
                                                  android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
                 style="@style/AppTheme.Toolbar"
                 android:id="@+id/toolbar"
                 android:elevation="@dimen/_10sdp"
@@ -28,9 +29,9 @@
                     android:onClick="@{() -> viewModel.onProfileClick()}"
                     bind:placeholder="@{@drawable/profile}" />
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_home_event_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -39,6 +40,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -1,7 +1,7 @@
 package com.event.reminder.ui
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.event.reminder.data.repository.*
 import com.event.reminder.ui.authentication.AuthenticationViewModel
 import com.event.reminder.ui.authentication.login.LoginViewModel

@@ -1,16 +1,16 @@
 package com.event.reminder.ui
 
-import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
-import android.support.design.widget.TextInputLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import com.android.mvvmandroidlib.exception.DateUtilParseException
 import com.android.mvvmandroidlib.utills.DateUtils
 import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.android.mvvmandroidlib.utills.StringUtils
 import com.event.reminder.R
 import com.event.reminder.constant.ValidationTypeConstant
+import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
 
 @BindingAdapter(

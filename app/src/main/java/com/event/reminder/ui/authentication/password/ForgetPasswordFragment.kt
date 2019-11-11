@@ -1,12 +1,12 @@
 package com.event.reminder.ui.authentication.password
 
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
@@ -39,7 +39,7 @@ class ForgetPasswordFragment :
         )
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         iNavigationCallback = context as INavigationCallback
     }

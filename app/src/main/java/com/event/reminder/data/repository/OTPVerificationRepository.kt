@@ -1,6 +1,6 @@
 package com.event.reminder.data.repository
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.api.RequestNetworkManager
 import com.android.mvvmandroidlib.api.SubscriptionCallback
 import com.android.mvvmandroidlib.data.BaseResponseModel

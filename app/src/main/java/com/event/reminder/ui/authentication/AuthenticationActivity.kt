@@ -1,8 +1,8 @@
 package com.event.reminder.ui.authentication
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.android.mvvmandroidlib.ui.BaseActivity

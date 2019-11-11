@@ -1,14 +1,11 @@
 package com.event.reminder.ui.dashboard.home
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.HomeEventListAdapter
@@ -30,7 +27,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         initializeAdapter()
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         iNavigationCallback = context as INavigationCallback
     }
@@ -67,12 +64,13 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
             )
         )
 
-        binding.rvHomeEventList.layoutManager = LinearLayoutManager(activity)
-        binding.rvHomeEventList.itemAnimator = DefaultItemAnimator()
+        binding.rvHomeEventList.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(activity)
+        binding.rvHomeEventList.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         binding.rvHomeEventList.addItemDecoration(
-            DividerItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
                 activity,
-                DividerItemDecoration.VERTICAL
+                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
             )
         )
         binding.rvHomeEventList.adapter = HomeEventListAdapter(homeEventList)
@@ -94,13 +92,13 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.home_menu_option, menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu_option, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when (item?.itemId) {
+        when (item.itemId) {
             android.R.id.home -> {
                 activity?.onBackPressed()
                 return true

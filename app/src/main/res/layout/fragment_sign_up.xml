@@ -13,7 +13,7 @@
                 type="com.event.reminder.ui.authentication.signup.SignUpViewModel" />
     </data>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/fadeGreen">
@@ -23,12 +23,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_20sdp">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                     style="@style/RoundedContainer"
                     android:id="@+id/container"
                     android:layout_marginTop="@dimen/_40sdp">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_name"
                         bind:validatorValue="@{viewModel.fullName}"
@@ -44,9 +44,9 @@
                             android:hint="@string/full_name"
 
                             android:text="@={viewModel.fullName}"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_email"
                         bind:validatorValue="@{viewModel.emailId}"
@@ -61,9 +61,9 @@
                             android:hint="@string/email_id"
                             android:text="@={viewModel.emailId}"
                             android:inputType="textEmailAddress"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_dob"
                         bind:validatorValue="@{viewModel.dateOfBirth}"
@@ -78,9 +78,9 @@
                             android:hint="@string/date_of_birth"
                             android:text="@={viewModel.dateOfBirth}"
                             android:inputType="number"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_gender"
                         bind:validatorValue="@{viewModel.gender}"
@@ -95,9 +95,9 @@
                             android:hint="@string/gender"
                             android:text="@={viewModel.gender}"
                             android:inputType="text"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_phone_no"
                         bind:validatorValue="@{viewModel.phoneNumber}"
@@ -112,9 +112,9 @@
                             android:hint="@string/phone_number"
                             android:text="@={viewModel.phoneNumber}"
                             android:inputType="phone"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_password"
                         bind:validatorValue="@{viewModel.password}"
@@ -129,9 +129,9 @@
                             android:hint="@string/password"
                             android:text="@={viewModel.password}"
                             android:inputType="textPassword"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutAppearance"
                         android:id="@+id/il_confirm_password"
                         bind:validatorValue="@{viewModel.confirmPassword}"
@@ -146,7 +146,7 @@
                             android:hint="@string/confirm_password"
                             android:text="@={viewModel.confirmPassword}"
                             android:inputType="textPassword"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                         style="@style/AppTheme.Button"
@@ -159,7 +159,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/container"
                         app:layout_constraintEnd_toEndOf="parent"/>
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_profile"
@@ -172,5 +172,5 @@
                     app:civ_border_color="@color/colorLightGrey60"/>
         </RelativeLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -1,12 +1,12 @@
 package com.event.reminder.ui.authentication.login
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.event.reminder.R
@@ -40,7 +40,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         binding.viewModel = viewModel
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         iNavigationCallback = context as INavigationCallback
     }

@@ -2,7 +2,6 @@ package com.android.mvvmandroidlib.utills
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.app.Fragment
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 
@@ -28,7 +27,7 @@ fun Context.showSoftKeyboard(view: View) {
 /**
  * Method is used to show keyboard.
  */
-fun Fragment.showSoftKeyboard() {
+fun androidx.fragment.app.Fragment.showSoftKeyboard() {
     view?.let { activity?.showSoftKeyboard(it) }
 }
 
@@ -42,7 +41,7 @@ fun Activity.showSoftKeyboard() {
 /**
  * Method is used to hide keyboard.
  */
-fun Fragment.hideSoftKeyboard() {
+fun androidx.fragment.app.Fragment.hideSoftKeyboard() {
     view?.let { activity?.hideSoftKeyboard(it) }
 }
 

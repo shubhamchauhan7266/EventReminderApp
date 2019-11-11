@@ -1,13 +1,13 @@
 package com.android.mvvmandroidlib.ui
 
-import android.arch.lifecycle.Observer
 import android.content.Context
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.android.mvvmandroidlib.R
 import com.android.mvvmandroidlib.utills.ToastUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
@@ -27,7 +27,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
     protected lateinit var binding: T
     protected lateinit var viewModel: V
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         this.viewModel = getObservableViewModel()
     }

@@ -125,7 +125,7 @@ object RequestNetworkManager {
         when (e) {
             is HttpException -> {
                 val response = e.response()
-                when(response.code()){
+                when (response?.code()) {
                     NetworkConstant.ERROR_CODE_BAD_REQUEST -> return Observable.error(
                         NetworkException(
                             NetworkConstant.ERROR_CODE_BAD_REQUEST,

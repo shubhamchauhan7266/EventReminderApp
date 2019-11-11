@@ -1,6 +1,6 @@
 package com.android.mvvmandroidlib.utills
 
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import com.android.mvvmandroidlib.exception.DateUtilParseException
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat

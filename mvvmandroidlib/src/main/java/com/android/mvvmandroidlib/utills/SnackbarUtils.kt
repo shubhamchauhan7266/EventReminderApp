@@ -1,9 +1,9 @@
 package com.android.mvvmandroidlib.utills
 
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
 import android.view.View
+import androidx.annotation.StringRes
 import com.android.mvvmandroidlib.BuildConfig
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * This util class is used to show SnackBar.

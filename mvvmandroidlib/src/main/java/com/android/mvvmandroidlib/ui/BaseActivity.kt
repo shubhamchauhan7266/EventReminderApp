@@ -1,15 +1,15 @@
 package com.android.mvvmandroidlib.ui
 
-import android.arch.lifecycle.Observer
 import android.content.Context
-import android.databinding.ViewDataBinding
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import com.android.mvvmandroidlib.R
 import com.android.mvvmandroidlib.utills.ToastUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel

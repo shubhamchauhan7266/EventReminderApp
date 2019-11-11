@@ -1,6 +1,5 @@
 package com.android.mvvmandroidlib.animation
 
-import android.support.v4.view.ViewPager
 import android.view.View
 
 private const val MIN_SCALE = 0.75f
@@ -10,7 +9,7 @@ private const val MIN_SCALE = 0.75f
  *
  * @author Shubham Chauhan
  */
-class DepthPageTransformer : ViewPager.PageTransformer {
+class DepthPageTransformer : androidx.viewpager.widget.ViewPager.PageTransformer {
 
     override fun transformPage(view: View, position: Float) {
         view.apply {

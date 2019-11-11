@@ -5,12 +5,12 @@ import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.support.v7.widget.AppCompatEditText
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.AppCompatEditText
 import com.event.reminder.R
 
 class OTPInputEditText : AppCompatEditText {

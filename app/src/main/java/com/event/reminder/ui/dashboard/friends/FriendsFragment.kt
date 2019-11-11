@@ -1,9 +1,9 @@
 package com.event.reminder.ui.dashboard.friends
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.adapter.ViewPagerAdapter
 import com.android.mvvmandroidlib.animation.ZoomOutPageTransformer
 import com.android.mvvmandroidlib.data.FragmentModel

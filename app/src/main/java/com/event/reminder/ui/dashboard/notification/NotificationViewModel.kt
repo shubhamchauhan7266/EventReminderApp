@@ -1,7 +1,7 @@
 package com.event.reminder.ui.dashboard.notification
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.data.model.response.NotificationDetailsModel

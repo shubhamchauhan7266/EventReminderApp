@@ -1,8 +1,5 @@
 package com.android.mvvmandroidlib.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
 import com.android.mvvmandroidlib.data.FragmentModel
 import com.android.mvvmandroidlib.utills.StringUtils
 
@@ -12,12 +9,12 @@ import com.android.mvvmandroidlib.utills.StringUtils
  * @author Shubham Chauhan
  */
 class ViewPagerAdapter(
-    fragmentManager: FragmentManager,
+    fragmentManager: androidx.fragment.app.FragmentManager,
     private val fragmentList: ArrayList<FragmentModel>?
-) : FragmentStatePagerAdapter(fragmentManager) {
+) : androidx.fragment.app.FragmentStatePagerAdapter(fragmentManager) {
 
-    override fun getItem(position: Int): Fragment {
-        return fragmentList?.get(position)?.fragment ?: Fragment()
+    override fun getItem(position: Int): androidx.fragment.app.Fragment {
+        return fragmentList?.get(position)?.fragment ?: androidx.fragment.app.Fragment()
     }
 
     override fun getCount(): Int {

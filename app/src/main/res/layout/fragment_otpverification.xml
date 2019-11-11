@@ -8,7 +8,7 @@
         <variable name="viewModel" type="com.event.reminder.ui.otp.OTPVerificationViewModel"/>
     </data>
 
-<android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingStart="@dimen/_24sdp"
@@ -46,7 +46,6 @@
             style="@style/AppTheme.TextView.Link"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/resend_otp"
-            android:onClick="onResendOTPClick"
             app:layout_constraintEnd_toEndOf="@id/et_otp_verification"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/et_otp_verification"
@@ -56,12 +55,11 @@
             android:id="@+id/bt_submit"
             style="@style/AppTheme.Button"
             android:text="@string/submit"
-            android:onClick="@{() -> viewModel.onSubmitClick()}"
             android:layout_marginBottom="@dimen/_50sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-</android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

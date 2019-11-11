@@ -1,22 +1,16 @@
 package com.event.reminder.ui.dashboard.notification
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
-import com.android.mvvmandroidlib.utills.ToastUtils
 import com.event.reminder.R
 import com.event.reminder.adapter.NotificationListAdapter
-import com.event.reminder.data.model.response.NotificationDetails
 import com.event.reminder.databinding.NotificationFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
-import java.util.*
 
 class NotificationFragment : BaseFragment<NotificationFragmentBinding, NotificationViewModel>() {
 
@@ -54,12 +48,13 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
      * Method is used to initialize adapter list
      */
     private fun initializeAdapter() {
-        binding.rvNotificationList.layoutManager = LinearLayoutManager(activity)
-        binding.rvNotificationList.itemAnimator = DefaultItemAnimator()
+        binding.rvNotificationList.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(activity)
+        binding.rvNotificationList.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         binding.rvNotificationList.addItemDecoration(
-            DividerItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
                 activity,
-                DividerItemDecoration.VERTICAL
+                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
             )
         )
         binding.rvNotificationList.adapter = NotificationListAdapter(null)

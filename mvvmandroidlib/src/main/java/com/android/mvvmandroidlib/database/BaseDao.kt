@@ -1,6 +1,6 @@
 package com.android.mvvmandroidlib.database
 
-import android.arch.persistence.room.*
+import androidx.room.*
 
 /**
  * This dao class is used as a base class for all Dao and provide some methods to its subclasses.

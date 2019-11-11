@@ -1,23 +1,23 @@
 package com.event.reminder.adapter
 
-import android.content.Context
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.event.reminder.R
 import com.event.reminder.data.model.response.NotificationDetails
-import com.event.reminder.data.model.response.NotificationDetailsModel
 import com.event.reminder.databinding.NotificationListAdapterBinding
 
 class NotificationListAdapter(
     private var notificationList: ArrayList<NotificationDetails>?
 ) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     private var layoutInflater: LayoutInflater? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
@@ -31,7 +31,10 @@ class NotificationListAdapter(
         return notificationList?.size ?: 0
     }
 
-    override fun onBindViewHolder(viewholder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        viewholder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+        position: Int
+    ) {
 
         val notificationDetailsViewHolder: NotificationDetailsViewHolder = viewholder as NotificationDetailsViewHolder
         notificationDetailsViewHolder.binding?.notificationDetail = notificationList?.get(position)
@@ -46,5 +49,5 @@ class NotificationListAdapter(
     }
 
     inner class NotificationDetailsViewHolder(val binding: NotificationListAdapterBinding?) :
-        RecyclerView.ViewHolder(binding?.root!!)
+        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding?.root!!)
 }
