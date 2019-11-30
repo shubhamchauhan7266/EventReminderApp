@@ -31,7 +31,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun parseDate(date: String?, inputFormat: String?): Date {
-        LoggerUtils.info(TAG, "parseDate($date , $inputFormat)")
+        LoggerUtils.debug(TAG, "parseDate($date , $inputFormat)")
         return try {
             SimpleDateFormat(inputFormat, Locale.US).parse(date)
         } catch (e: Exception) {
@@ -50,7 +50,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun parseDate(timeStamp: Long?): Date {
-        LoggerUtils.info(TAG, "parseDate($timeStamp)")
+        LoggerUtils.debug(TAG, "parseDate($timeStamp)")
         return try {
             if (timeStamp != null && timeStamp != 0L) {
                 Date(timeStamp)
@@ -73,7 +73,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun parseDate(cal: Calendar?): Date {
-        LoggerUtils.info(TAG, "parseDate(Calender)")
+        LoggerUtils.debug(TAG, "parseDate(Calender)")
         return try {
             if (cal != null) {
                 cal.time
@@ -97,7 +97,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(date: Date?, outputFormat: String?): String {
-        LoggerUtils.info(TAG, "formatDate(Date, $outputFormat)")
+        LoggerUtils.debug(TAG, "formatDate(Date, $outputFormat)")
         return try {
             val sdf = SimpleDateFormat(outputFormat, Locale.getDefault())
             if (date != null) {
@@ -122,7 +122,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(timeStamp: Long?, outputFormat: String?): String {
-        LoggerUtils.info(TAG, "formatDate($timeStamp, $outputFormat)")
+        LoggerUtils.debug(TAG, "formatDate($timeStamp, $outputFormat)")
         return try {
             formatDate(parseDate(timeStamp), outputFormat)
         } catch (e: Exception) {
@@ -142,7 +142,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun formatDate(cal: Calendar?, outputFormat: String?): String {
-        LoggerUtils.info(TAG, "formatDate(Calender, $outputFormat)")
+        LoggerUtils.debug(TAG, "formatDate(Calender, $outputFormat)")
         return try {
             formatDate(parseDate(cal), outputFormat)
         } catch (e: Exception) {
@@ -167,7 +167,7 @@ object DateUtils {
         inputFormat: String,
         outputFormat: String
     ): String {
-        LoggerUtils.info(
+        LoggerUtils.debug(
             TAG,
             "convertDateOneFormatToOther($inputDate, $inputFormat, $outputFormat)"
         )
@@ -199,7 +199,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getTimeStamp(date: Date?): Long {
-        LoggerUtils.info(TAG, "getTimeStamp(Date)")
+        LoggerUtils.debug(TAG, "getTimeStamp(Date)")
         return try {
             date?.time ?: throw DateUtilParseException("Date can't be null")
         } catch (e: Exception) {
@@ -218,7 +218,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getTimeStamp(cal: Calendar?): Long {
-        LoggerUtils.info(TAG, "getTimeStamp(Calendar)")
+        LoggerUtils.debug(TAG, "getTimeStamp(Calendar)")
         return try {
             getTimeStamp(
                 cal?.time ?: throw DateUtilParseException("Calendar instance can't be null")
@@ -240,7 +240,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getTimeStamp(date: String?, inputFormat: String?): Long {
-        LoggerUtils.info(TAG, "getTimeStamp($date, $inputFormat)")
+        LoggerUtils.debug(TAG, "getTimeStamp($date, $inputFormat)")
         return try {
             getTimeStamp(parseDate(date, inputFormat))
         } catch (e: Exception) {
@@ -259,7 +259,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getCalendar(timeStamp: Long?): Calendar {
-        LoggerUtils.info(TAG, "getCalendar($timeStamp)")
+        LoggerUtils.debug(TAG, "getCalendar($timeStamp)")
         val cal = Calendar.getInstance(Locale.US)
         return try {
             if (timeStamp != null && timeStamp != 0L) {
@@ -284,7 +284,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getCalendar(date: Date?): Calendar {
-        LoggerUtils.info(TAG, "getCalendar(Date)")
+        LoggerUtils.debug(TAG, "getCalendar(Date)")
         val cal = Calendar.getInstance(Locale.US)
         return try {
             if (date != null) {
@@ -310,7 +310,7 @@ object DateUtils {
     @Throws(DateUtilParseException::class)
     @NonNull
     fun getCalendar(date: String?, inputFormat: String?): Calendar {
-        LoggerUtils.info(TAG, "getCalendar($date, $inputFormat)")
+        LoggerUtils.debug(TAG, "getCalendar($date, $inputFormat)")
         val cal = Calendar.getInstance(Locale.US)
         return try {
             if (date != null) {
@@ -331,7 +331,7 @@ object DateUtils {
      * @param outputFormat outputFormat
      */
     fun getCurrentTime(outputFormat: String?): String {
-        LoggerUtils.info(TAG, "getCurrentTime($outputFormat)")
+        LoggerUtils.debug(TAG, "getCurrentTime($outputFormat)")
         return formatDate(getCurrentTimeStamp(), outputFormat)
     }
 

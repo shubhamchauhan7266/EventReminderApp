@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "124155953582",
+    "firebase_url": "https://reminder-app-d6ff8.firebaseio.com",
+    "project_id": "reminder-app-d6ff8",
+    "storage_bucket": "reminder-app-d6ff8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124155953582:android:7ab445b2455ba39118883f",
+        "android_client_info": {
+          "package_name": "com.event.reminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124155953582-491f258kuf1p9d871se9ej90gdcp4m79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.event.reminder",
+            "certificate_hash": "64534952c05a0fe6982f0d353520826e739fd5b9"
+          }
+        },
+        {
+          "client_id": "124155953582-399k6cf626pgjd12ef711aol0a0o3c5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.event.reminder",
+            "certificate_hash": "9f873c166a020544306049b2b34b5138c135fe35"
+          }
+        },
+        {
+          "client_id": "124155953582-45tjitd3kfi36r2fip2tg1i6jrf2ulgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa9J9WBSrnMcr0Frj3wGu2WEg8cjtboks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124155953582-45tjitd3kfi36r2fip2tg1i6jrf2ulgl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

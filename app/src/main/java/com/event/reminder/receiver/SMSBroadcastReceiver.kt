@@ -1,4 +1,4 @@
-package com.event.reminder
+package com.event.reminder.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context

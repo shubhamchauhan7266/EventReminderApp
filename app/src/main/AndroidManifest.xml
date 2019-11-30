@@ -39,8 +39,16 @@
                 android:name=".ui.dashboard.DashboardActivity"
                 android:label="@string/title_activity_home" />
 
+        <service
+                android:name=".service.EventReminderMessagingService"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <receiver
-                android:name=".SMSBroadcastReceiver"
+                android:name=".receiver.SMSBroadcastReceiver"
                 android:exported="true">
             <intent-filter>
                 <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
