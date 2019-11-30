@@ -43,7 +43,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -56,8 +56,8 @@ android {
             def buildType = variant.variantData.variantConfiguration.buildType.name
             def version = variant.versionName
             def version_code = variant.versionCode
-            def date = new Date();
-            def formattedDate = date.format('ddMMyy_HHmm')
+            def date = new Date()
+            def formattedDate = date.format('ddMMyy')
             def newApkName = project + SEP + buildType + SEP + version + '.' + version_code + SEP + formattedDate + ".apk"
 
             output.outputFileName = new File(newApkName)
