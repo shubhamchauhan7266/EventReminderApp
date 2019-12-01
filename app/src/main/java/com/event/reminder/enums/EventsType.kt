@@ -1,4 +1,4 @@
-package com.event.reminder.enum
+package com.event.reminder.enums
 
 enum class EventsType {
     NORMAL,

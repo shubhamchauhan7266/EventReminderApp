@@ -8,7 +8,7 @@ import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.response.FriendRequestDetails
 import com.event.reminder.databinding.RequestListReceivedBinding
 import com.event.reminder.databinding.RequestListSentBinding
-import com.event.reminder.enum.RequestType
+import com.event.reminder.enums.RequestType
 
 class RequestListAdapter(
     private var requestList: ArrayList<FriendRequestDetails>?

@@ -13,6 +13,7 @@ object EventReminderSharedPrefUtils {
     private const val USER_ID: String = "userId"
     private const val ACCESS_TOKEN: String = "accessToken"
     private const val MOBILE_NUMBER: String = "mobileNumber"
+    private const val REFRESHED_TOKEN: String = "refreshedToken"
 
     fun isUserLoggedIn(): Boolean {
 
@@ -98,4 +99,24 @@ object EventReminderSharedPrefUtils {
         )
     }
 
+    fun getRefreshedToken(): String {
+
+        LoggerUtils.info(TAG, "getRefreshedToken")
+        return SharedPreferencesUtils.getString(
+            EventReminderApplication.getInstance().applicationContext,
+            REFRESHED_TOKEN,
+            fileName = FILE_NAME
+        ) ?: StringUtils.EMPTY
+    }
+
+    fun setRefreshedToken(value: String) {
+
+        LoggerUtils.info(TAG, "setRefreshedToken")
+        SharedPreferencesUtils.setString(
+            EventReminderApplication.getInstance().applicationContext,
+            REFRESHED_TOKEN,
+            value,
+            fileName = FILE_NAME
+        )
+    }
 }

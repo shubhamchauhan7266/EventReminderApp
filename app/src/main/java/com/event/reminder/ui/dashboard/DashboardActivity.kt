@@ -10,8 +10,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.mvvmandroidlib.ui.BaseActivity
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
-import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.DashboardActivityBinding
+import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -56,12 +56,12 @@ class DashboardActivity : BaseActivity<DashboardActivityBinding, DashboardViewMo
         return navController.navigateUp()
     }
 
-    override fun navigateTo(navigationConstant: NavigationConstant, bundle: Bundle?) {
-        when (navigationConstant) {
-            NavigationConstant.PROFILE_SCREEN -> {
+    override fun navigateTo(navigationScreen: NavigationScreen, bundle: Bundle?) {
+        when (navigationScreen) {
+            NavigationScreen.PROFILE_SCREEN -> {
                 binding.navView.selectedItemId = R.id.profileDetailsFragment
             }
-            NavigationConstant.PROFILE_TO_OTP_SCREEN -> {
+            NavigationScreen.PROFILE_TO_OTP_SCREEN -> {
                 navController.navigate(ProfileDetailsFragmentDirections.actionProfileDetailsFragmentToOTPVerificationFragment())
             }
             else -> {

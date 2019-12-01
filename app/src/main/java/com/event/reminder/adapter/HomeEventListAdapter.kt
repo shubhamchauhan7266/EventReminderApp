@@ -8,7 +8,7 @@ import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.ImportantEventTypeBinding
 import com.event.reminder.databinding.NormalEventTypeBinding
-import com.event.reminder.enum.EventsType
+import com.event.reminder.enums.EventsType
 
 class HomeEventListAdapter(
     private var homeEventDetailsList: ArrayList<HomeEventDetails>?

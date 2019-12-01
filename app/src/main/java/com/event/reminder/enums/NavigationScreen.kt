@@ -1,7 +1,6 @@
-package com.event.reminder.constant
+package com.event.reminder.enums
 
-enum class NavigationConstant {
-
+enum class NavigationScreen {
     LOGIN_SCREEN,
     SPLASH_TO_LOGIN_SCREEN,
     SIGN_UP_SCREEN,

@@ -10,10 +10,10 @@ import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.HomeEventListAdapter
 import com.event.reminder.callback.INavigationCallback
-import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.HomeFragmentBinding
-import com.event.reminder.enum.EventsType
+import com.event.reminder.enums.EventsType
+import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 
 
@@ -81,8 +81,8 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         viewModel.navigationEvent.observe(this@HomeFragment, Observer { navigation ->
 
             when (navigation) {
-                NavigationConstant.PROFILE_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.PROFILE_SCREEN, null)
+                NavigationScreen.PROFILE_SCREEN -> {
+                    iNavigationCallback?.navigateTo(NavigationScreen.PROFILE_SCREEN, null)
                 }
                 else -> {
 

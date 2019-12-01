@@ -1,8 +1,8 @@
 package com.event.reminder.data.model.response
 
 import com.android.mvvmandroidlib.data.BaseResponseModel
-import com.event.reminder.enum.FriendStatus
-import com.event.reminder.enum.RequestType
+import com.event.reminder.enums.FriendStatus
+import com.event.reminder.enums.RequestType
 import java.io.Serializable
 
 data class FriendDetailsModel(

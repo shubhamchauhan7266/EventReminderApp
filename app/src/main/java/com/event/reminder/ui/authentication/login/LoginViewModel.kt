@@ -8,17 +8,17 @@ import com.android.mvvmandroidlib.helper.EventLiveData
 import com.android.mvvmandroidlib.utills.StringUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
-import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.data.model.request.LoginRequest
 import com.event.reminder.data.model.response.LoggedInUserModel
 import com.event.reminder.data.repository.LoginRepository
+import com.event.reminder.enums.NavigationScreen
 
 class LoginViewModel(private val loginRepository: LoginRepository) : BaseObservableViewModel() {
 
     private val _loginResult: MutableLiveData<ApiResult<LoggedInUserModel>> = MutableLiveData()
     val loginResult: LiveData<ApiResult<LoggedInUserModel>>? = _loginResult
 
-    val navigationEvent = EventLiveData<NavigationConstant>()
+    val navigationEvent = EventLiveData<NavigationScreen>()
 
     var userName: String? = null
         @Bindable get
@@ -44,12 +44,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseObserva
 
     fun forgetPassword() {
 
-        navigationEvent.sendEvent(NavigationConstant.FORGET_PASSWORD_SCREEN)
+        navigationEvent.sendEvent(NavigationScreen.FORGET_PASSWORD_SCREEN)
     }
 
     fun signUp() {
 
-        navigationEvent.sendEvent(NavigationConstant.SIGN_UP_SCREEN)
+        navigationEvent.sendEvent(NavigationScreen.SIGN_UP_SCREEN)
     }
 
     private fun isDataValid(): Boolean {

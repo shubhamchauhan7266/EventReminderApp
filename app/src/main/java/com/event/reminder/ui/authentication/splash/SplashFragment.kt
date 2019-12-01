@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
-import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.SplashFragmentBinding
+import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 
@@ -44,9 +44,9 @@ class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
         super.setInitialData()
 
         if (EventReminderSharedPrefUtils.isUserLoggedIn()/*true*/) {
-            iNavigationCallback?.navigateTo(NavigationConstant.SPLASH_TO_DASHBOARD_SCREEN, null)
+            iNavigationCallback?.navigateTo(NavigationScreen.SPLASH_TO_DASHBOARD_SCREEN, null)
         }else{
-            iNavigationCallback?.navigateTo(NavigationConstant.SPLASH_TO_LOGIN_SCREEN, null)
+            iNavigationCallback?.navigateTo(NavigationScreen.SPLASH_TO_LOGIN_SCREEN, null)
         }
     }
 }

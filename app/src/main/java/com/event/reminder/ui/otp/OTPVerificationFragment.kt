@@ -15,9 +15,9 @@ import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
 import com.event.reminder.constant.BroadcastReceiverAction
 import com.event.reminder.constant.BundleArgsConstant
-import com.event.reminder.constant.NavigationConstant
-import com.event.reminder.constant.OTPTypeConstant
 import com.event.reminder.databinding.OTPVerificationFragmentBinding
+import com.event.reminder.enums.NavigationScreen
+import com.event.reminder.enums.OTPType
 import com.event.reminder.ui.ViewModelFactory
 import com.google.android.gms.auth.api.phone.SmsRetriever
 
@@ -35,7 +35,7 @@ class OTPVerificationFragment :
         emailId = arguments?.getString(BundleArgsConstant.EMAIL_ID)
         mobileNumber = arguments?.getString(BundleArgsConstant.MOBILE_NUMBER)
 
-        viewModel.generateOTP(emailId, OTPTypeConstant.EMAIL_ID)
+        viewModel.generateOTP(emailId, OTPType.EMAIL_ID.ordinal)
     }
 
     override fun getObservableViewModel(): OTPVerificationViewModel {
@@ -61,10 +61,10 @@ class OTPVerificationFragment :
         super.setInitialData()
 
         binding.tvResendOtp.setOnClickListener {
-            viewModel.generateOTP(emailId, OTPTypeConstant.EMAIL_ID)
+            viewModel.generateOTP(emailId, OTPType.EMAIL_ID.ordinal)
         }
         binding.btSubmit.setOnClickListener {
-            viewModel.validateOTP(emailId, OTPTypeConstant.EMAIL_ID)
+            viewModel.validateOTP(emailId, OTPType.EMAIL_ID.ordinal)
         }
 
         viewModel.validateOTPResult!!.observe(this@OTPVerificationFragment, Observer {
@@ -74,7 +74,7 @@ class OTPVerificationFragment :
                 result.success != null -> {
 
                     if (result.success!!.success) {
-                        iNavigationCallback?.navigateTo(NavigationConstant.LOGIN_SCREEN, null)
+                        iNavigationCallback?.navigateTo(NavigationScreen.LOGIN_SCREEN, null)
                     } else {
                         result.success!!.errorMessage?.let { error ->
                             viewModel.failedEventErrorMessage.sendEvent(
@@ -146,7 +146,7 @@ class OTPVerificationFragment :
                 BroadcastReceiverAction.OTP_READ_SUCCESS -> {
                     val otpMessage = bundle?.getString(BundleArgsConstant.OTP_MESSAGE)
                     viewModel.otpValue = getOTPFromMessage(otpMessage)
-                    viewModel.validateOTP(mobileNumber, OTPTypeConstant.MOBILE_NUMBER)
+                    viewModel.validateOTP(mobileNumber, OTPType.MOBILE_NUMBER.ordinal)
                 }
                 BroadcastReceiverAction.OTP_READ_TIMEOUT -> {
                     val errorMessage = bundle?.getString(BundleArgsConstant.OTP_ERROR_MESSAGE)

@@ -11,7 +11,7 @@ import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.RequestListAdapter
 import com.event.reminder.databinding.RequestListFragmentBinding
-import com.event.reminder.enum.RequestType
+import com.event.reminder.enums.RequestType
 import com.event.reminder.ui.ViewModelFactory
 
 class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestListViewModel>() {

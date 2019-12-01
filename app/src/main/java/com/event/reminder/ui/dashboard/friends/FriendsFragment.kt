@@ -12,7 +12,7 @@ import com.android.mvvmandroidlib.ui.BaseFragment
 import com.android.mvvmandroidlib.utills.ContextUtils
 import com.event.reminder.R
 import com.event.reminder.databinding.FriendsFragmentBinding
-import com.event.reminder.enum.RequestType
+import com.event.reminder.enums.RequestType
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.friends.friendrequest.RequestListFragment
 import com.event.reminder.ui.dashboard.friends.friends.FriendListFragment

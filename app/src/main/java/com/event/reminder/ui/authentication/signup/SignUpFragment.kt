@@ -11,8 +11,8 @@ import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
 import com.event.reminder.constant.BundleArgsConstant
-import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.SignUpFragmentBinding
+import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 
 class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
@@ -56,7 +56,7 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
                         bundle.putString(BundleArgsConstant.EMAIL_ID, viewModel.emailId)
                         bundle.putString(BundleArgsConstant.MOBILE_NUMBER, viewModel.phoneNumber)
                         iNavigationCallback?.navigateTo(
-                            NavigationConstant.SIGN_UP_TO_OTP_SCREEN,
+                            NavigationScreen.SIGN_UP_TO_OTP_SCREEN,
                             bundle
                         )
                     } else {

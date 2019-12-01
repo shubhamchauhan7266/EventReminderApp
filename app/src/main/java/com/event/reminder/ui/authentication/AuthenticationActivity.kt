@@ -11,8 +11,8 @@ import com.android.mvvmandroidlib.utills.StringUtils
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
 import com.event.reminder.constant.BundleArgsConstant
-import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.databinding.AuthenticationActivityBinding
+import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.authentication.login.LoginFragmentDirections
 import com.event.reminder.ui.authentication.signup.SignUpFragmentDirections
@@ -39,29 +39,29 @@ class AuthenticationActivity :
         return DataBindingUtil.setContentView(this, R.layout.activity_authentication)
     }
 
-    override fun navigateTo(navigationConstant: NavigationConstant, bundle: Bundle?) {
-        when (navigationConstant) {
-            NavigationConstant.SIGN_UP_SCREEN -> {
+    override fun navigateTo(navigationScreen: NavigationScreen, bundle: Bundle?) {
+        when (navigationScreen) {
+            NavigationScreen.SIGN_UP_SCREEN -> {
                 navController.navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
             }
-            NavigationConstant.DASHBOARD_SCREEN -> {
+            NavigationScreen.DASHBOARD_SCREEN -> {
                 navController.navigate(LoginFragmentDirections.actionLoginFragmentToDashboardActivity())
                 finish()
             }
-            NavigationConstant.SPLASH_TO_DASHBOARD_SCREEN -> {
+            NavigationScreen.SPLASH_TO_DASHBOARD_SCREEN -> {
                 navController.navigate(SplashFragmentDirections.actionSplashFragmentToDashboardActivity())
                 finish()
             }
-            NavigationConstant.FORGET_PASSWORD_SCREEN -> {
+            NavigationScreen.FORGET_PASSWORD_SCREEN -> {
                 navController.navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
             }
-            NavigationConstant.LOGIN_SCREEN -> {
+            NavigationScreen.LOGIN_SCREEN -> {
                 navController.popBackStack()
             }
-            NavigationConstant.SPLASH_TO_LOGIN_SCREEN -> {
+            NavigationScreen.SPLASH_TO_LOGIN_SCREEN -> {
                 navController.navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
             }
-            NavigationConstant.SIGN_UP_TO_OTP_SCREEN -> {
+            NavigationScreen.SIGN_UP_TO_OTP_SCREEN -> {
                 val mobileNumber =
                     bundle?.getString(BundleArgsConstant.MOBILE_NUMBER) ?: StringUtils.EMPTY
                 val emailId = bundle?.getString(BundleArgsConstant.EMAIL_ID) ?: StringUtils.EMPTY

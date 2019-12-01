@@ -11,9 +11,9 @@ import com.android.mvvmandroidlib.ui.BaseFragment
 import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
-import com.event.reminder.constant.NavigationConstant
 import com.event.reminder.data.model.response.LoggedInUserModel
 import com.event.reminder.databinding.LoginFragmentBinding
+import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 
@@ -57,7 +57,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                     val loggedInUser = result.success
                     if (loggedInUser?.success == true) {
                         savedDataToLocalStorage(loggedInUser)
-                        iNavigationCallback?.navigateTo(NavigationConstant.DASHBOARD_SCREEN, null)
+                        iNavigationCallback?.navigateTo(NavigationScreen.DASHBOARD_SCREEN, null)
                     } else {
                         result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
                     }
@@ -71,14 +71,14 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         viewModel.navigationEvent.observe(this@LoginFragment, Observer {
 
             when (it ?: return@Observer) {
-                NavigationConstant.SIGN_UP_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.SIGN_UP_SCREEN, null)
+                NavigationScreen.SIGN_UP_SCREEN -> {
+                    iNavigationCallback?.navigateTo(NavigationScreen.SIGN_UP_SCREEN, null)
                 }
-                NavigationConstant.DASHBOARD_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.DASHBOARD_SCREEN, null)
+                NavigationScreen.DASHBOARD_SCREEN -> {
+                    iNavigationCallback?.navigateTo(NavigationScreen.DASHBOARD_SCREEN, null)
                 }
-                NavigationConstant.FORGET_PASSWORD_SCREEN -> {
-                    iNavigationCallback?.navigateTo(NavigationConstant.FORGET_PASSWORD_SCREEN, null)
+                NavigationScreen.FORGET_PASSWORD_SCREEN -> {
+                    iNavigationCallback?.navigateTo(NavigationScreen.FORGET_PASSWORD_SCREEN, null)
                 }
                 else -> {
                     LoggerUtils.error(TAG, getString(R.string.unknown_navigation))
