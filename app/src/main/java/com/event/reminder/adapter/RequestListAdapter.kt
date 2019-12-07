@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.event.reminder.R
 import com.event.reminder.constant.ErrorConstant
+import com.event.reminder.constant.RequestType
 import com.event.reminder.data.model.response.FriendRequestDetails
 import com.event.reminder.databinding.RequestListReceivedBinding
 import com.event.reminder.databinding.RequestListSentBinding
-import com.event.reminder.enums.RequestType
 
 class RequestListAdapter(
     private var requestList: ArrayList<FriendRequestDetails>?
@@ -28,7 +28,7 @@ class RequestListAdapter(
 
         when (viewType) {
 
-            RequestType.REQUEST_TYPE_RECEIVED.ordinal -> {
+            RequestType.REQUEST_TYPE_RECEIVED -> {
                 val binding: RequestListReceivedBinding? =
                     layoutInflater?.let {
                         DataBindingUtil.inflate(
@@ -40,7 +40,7 @@ class RequestListAdapter(
                     }
                 return RequestDetailsReceivedViewHolder(binding)
             }
-            RequestType.REQUEST_TYPE_SENT.ordinal -> {
+            RequestType.REQUEST_TYPE_SENT -> {
                 val binding: RequestListSentBinding? =
                     layoutInflater?.let {
                         DataBindingUtil.inflate(
@@ -73,8 +73,8 @@ class RequestListAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (requestList?.get(position)?.requestType) {
-            RequestType.REQUEST_TYPE_RECEIVED.ordinal -> RequestType.REQUEST_TYPE_RECEIVED.ordinal
-            RequestType.REQUEST_TYPE_SENT.ordinal -> RequestType.REQUEST_TYPE_SENT.ordinal
+            RequestType.REQUEST_TYPE_RECEIVED -> RequestType.REQUEST_TYPE_RECEIVED
+            RequestType.REQUEST_TYPE_SENT -> RequestType.REQUEST_TYPE_SENT
             else -> ErrorConstant.INVALID_NUMBER
         }
     }

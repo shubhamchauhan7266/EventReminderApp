@@ -15,9 +15,9 @@ import com.event.reminder.R
 import com.event.reminder.callback.INavigationCallback
 import com.event.reminder.constant.BroadcastReceiverAction
 import com.event.reminder.constant.BundleArgsConstant
+import com.event.reminder.constant.OTPType
 import com.event.reminder.databinding.OTPVerificationFragmentBinding
 import com.event.reminder.enums.NavigationScreen
-import com.event.reminder.enums.OTPType
 import com.event.reminder.ui.ViewModelFactory
 import com.google.android.gms.auth.api.phone.SmsRetriever
 
@@ -35,7 +35,7 @@ class OTPVerificationFragment :
         emailId = arguments?.getString(BundleArgsConstant.EMAIL_ID)
         mobileNumber = arguments?.getString(BundleArgsConstant.MOBILE_NUMBER)
 
-        viewModel.generateOTP(emailId, OTPType.EMAIL_ID.ordinal)
+        viewModel.generateOTP(emailId, OTPType.EMAIL_ID)
     }
 
     override fun getObservableViewModel(): OTPVerificationViewModel {
@@ -61,10 +61,10 @@ class OTPVerificationFragment :
         super.setInitialData()
 
         binding.tvResendOtp.setOnClickListener {
-            viewModel.generateOTP(emailId, OTPType.EMAIL_ID.ordinal)
+            viewModel.generateOTP(emailId, OTPType.EMAIL_ID)
         }
         binding.btSubmit.setOnClickListener {
-            viewModel.validateOTP(emailId, OTPType.EMAIL_ID.ordinal)
+            viewModel.validateOTP(emailId, OTPType.EMAIL_ID)
         }
 
         viewModel.validateOTPResult!!.observe(this@OTPVerificationFragment, Observer {
@@ -146,7 +146,7 @@ class OTPVerificationFragment :
                 BroadcastReceiverAction.OTP_READ_SUCCESS -> {
                     val otpMessage = bundle?.getString(BundleArgsConstant.OTP_MESSAGE)
                     viewModel.otpValue = getOTPFromMessage(otpMessage)
-                    viewModel.validateOTP(mobileNumber, OTPType.MOBILE_NUMBER.ordinal)
+                    viewModel.validateOTP(mobileNumber, OTPType.MOBILE_NUMBER)
                 }
                 BroadcastReceiverAction.OTP_READ_TIMEOUT -> {
                     val errorMessage = bundle?.getString(BundleArgsConstant.OTP_ERROR_MESSAGE)

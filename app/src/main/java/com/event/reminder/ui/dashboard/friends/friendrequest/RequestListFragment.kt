@@ -10,12 +10,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.RequestListAdapter
+import com.event.reminder.constant.RequestType
 import com.event.reminder.databinding.RequestListFragmentBinding
-import com.event.reminder.enums.RequestType
 import com.event.reminder.ui.ViewModelFactory
 
 class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestListViewModel>() {
-    private var requestType: Int = RequestType.REQUEST_TYPE_RECEIVED.ordinal
+    private var requestType: Int = RequestType.REQUEST_TYPE_RECEIVED
 
     override fun onCreateViewBinding() {
         binding.viewModel = viewModel
@@ -78,7 +78,7 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            requestType = it.getInt(ARG_REQUEST_TYPE, RequestType.REQUEST_TYPE_RECEIVED.ordinal)
+            requestType = it.getInt(ARG_REQUEST_TYPE, RequestType.REQUEST_TYPE_RECEIVED)
         }
     }
 

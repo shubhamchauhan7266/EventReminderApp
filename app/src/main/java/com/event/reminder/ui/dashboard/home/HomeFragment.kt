@@ -10,9 +10,9 @@ import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.HomeEventListAdapter
 import com.event.reminder.callback.INavigationCallback
+import com.event.reminder.constant.EventsType
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.HomeFragmentBinding
-import com.event.reminder.enums.EventsType
 import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 
@@ -48,19 +48,19 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         homeEventList.add(
             HomeEventDetails(
                 description = "You have a journey for Jaipur",
-                eventType = EventsType.NORMAL.ordinal
+                eventType = EventsType.NORMAL
             )
         )
         homeEventList.add(
             HomeEventDetails(
                 description = "Take a tablet",
-                eventType = EventsType.NORMAL.ordinal
+                eventType = EventsType.NORMAL
             )
         )
         homeEventList.add(
             HomeEventDetails(
                 description = "Please send screenshot in office group",
-                eventType = EventsType.NORMAL.ordinal
+                eventType = EventsType.NORMAL
             )
         )
 

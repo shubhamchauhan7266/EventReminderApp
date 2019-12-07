@@ -1,8 +1,8 @@
 package com.event.reminder.data.model.response
 
 import com.android.mvvmandroidlib.data.BaseResponseModel
-import com.event.reminder.enums.FriendStatus
-import com.event.reminder.enums.RequestType
+import com.event.reminder.constant.FriendStatus
+import com.event.reminder.constant.RequestType
 import java.io.Serializable
 
 data class FriendRequestDetailsModel(
@@ -14,7 +14,7 @@ data class FriendRequestDetails(
     val age: String,
     val city: String,
     val requestDate: Long?,
-    val friendStatus: Int = FriendStatus.PENDING.ordinal,
-    val requestType: Int = RequestType.REQUEST_TYPE_RECEIVED.ordinal,
+    val friendStatus: Int = FriendStatus.PENDING,
+    val requestType: Int = RequestType.REQUEST_TYPE_RECEIVED,
     val imageUrl: String? = null
 ) : Serializable

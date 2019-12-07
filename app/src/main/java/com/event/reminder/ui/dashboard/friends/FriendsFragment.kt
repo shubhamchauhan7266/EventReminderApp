@@ -11,8 +11,8 @@ import com.android.mvvmandroidlib.listener.ViewPagerPageChangeListener
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.android.mvvmandroidlib.utills.ContextUtils
 import com.event.reminder.R
+import com.event.reminder.constant.RequestType
 import com.event.reminder.databinding.FriendsFragmentBinding
-import com.event.reminder.enums.RequestType
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.friends.friendrequest.RequestListFragment
 import com.event.reminder.ui.dashboard.friends.friends.FriendListFragment
@@ -32,13 +32,13 @@ class FriendsFragment : BaseFragment<FriendsFragmentBinding, FriendsViewModel>()
         fragmentModelList.add(
             FragmentModel(
                 title = getString(R.string.request_received),
-                fragment = RequestListFragment.newInstance(RequestType.REQUEST_TYPE_RECEIVED.ordinal)
+                fragment = RequestListFragment.newInstance(RequestType.REQUEST_TYPE_RECEIVED)
             )
         )
         fragmentModelList.add(
             FragmentModel(
                 title = getString(R.string.request_sent),
-                fragment = RequestListFragment.newInstance(RequestType.REQUEST_TYPE_SENT.ordinal)
+                fragment = RequestListFragment.newInstance(RequestType.REQUEST_TYPE_SENT)
             )
         )
 

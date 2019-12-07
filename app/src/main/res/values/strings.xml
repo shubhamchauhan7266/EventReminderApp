@@ -133,6 +133,8 @@
     <string name="reject">Reject</string>
     <string name="channel_name">Event Reminder</string>
     <string name="channel_description">Event Reminder Channel</string>
+    <string name="friend_request">Friend Request</string>
+    <string name="handle_friend_request_action">Handle friend request action</string>
 
     <!--    Error Message-->
     <string name="unknown_error">Unknown Error</string>

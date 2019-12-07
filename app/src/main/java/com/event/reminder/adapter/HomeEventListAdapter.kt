@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.event.reminder.R
 import com.event.reminder.constant.ErrorConstant
+import com.event.reminder.constant.EventsType
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.ImportantEventTypeBinding
 import com.event.reminder.databinding.NormalEventTypeBinding
-import com.event.reminder.enums.EventsType
 
 class HomeEventListAdapter(
     private var homeEventDetailsList: ArrayList<HomeEventDetails>?
@@ -26,7 +26,7 @@ class HomeEventListAdapter(
 
         when (viewType) {
 
-            EventsType.NORMAL.ordinal -> {
+            EventsType.NORMAL -> {
                 val binding: NormalEventTypeBinding? =
                     layoutInflater?.let {
                         DataBindingUtil.inflate(
@@ -38,7 +38,7 @@ class HomeEventListAdapter(
                     }
                 return NormalEventViewHolder(binding)
             }
-            EventsType.IMPORTANT.ordinal -> {
+            EventsType.IMPORTANT -> {
                 val binding: ImportantEventTypeBinding? =
                     layoutInflater?.let {
                         DataBindingUtil.inflate(
@@ -71,9 +71,9 @@ class HomeEventListAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (homeEventDetailsList?.get(position)?.eventType) {
-            EventsType.NORMAL.ordinal -> EventsType.NORMAL.ordinal
-            EventsType.IMPORTANT.ordinal -> EventsType.IMPORTANT.ordinal
-            EventsType.ALARM_TYPE.ordinal -> EventsType.ALARM_TYPE.ordinal
+            EventsType.NORMAL -> EventsType.NORMAL
+            EventsType.IMPORTANT -> EventsType.IMPORTANT
+            EventsType.ALARM_TYPE -> EventsType.ALARM_TYPE
             else -> ErrorConstant.INVALID_NUMBER
         }
     }

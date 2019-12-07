@@ -6,7 +6,8 @@ object AppConstant {
     const val CHANNEL_ID = "eventReminderApp"
 
     const val NOTIFICATION_REQUEST = 8001
-    const val FRIEND_REQUEST_NOTIFICATION_REQUEST = 8002
+    const val FOREGROUND_NOTIFICATION_ID = 8002
+    const val FRIEND_REQUEST_NOTIFICATION_REQUEST = 8003
 
     // Screen Name
     const val HOME_SCREEN = "home"
