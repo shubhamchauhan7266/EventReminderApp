@@ -1,6 +1,7 @@
 package com.event.reminder.service
 
 import com.android.mvvmandroidlib.utills.LoggerUtils
+import com.android.mvvmandroidlib.utills.StringUtils
 import com.event.reminder.constant.BundleArgsConstant
 import com.event.reminder.constant.NotificationType
 import com.event.reminder.utills.EventReminderSharedPrefUtils
@@ -29,8 +30,12 @@ class EventReminderMessagingService : FirebaseMessagingService() {
                 val notificationType =
                     remoteMessage.data[BundleArgsConstant.NOTIFICATION_TYPE]?.toInt()
                         ?: NotificationType.SILENT
-
                 LoggerUtils.debug(TAG, "Notification Type: $notificationType")
+
+                val title =
+                    remoteMessage.data[BundleArgsConstant.NOTIFICATION_TITLE] ?: StringUtils.EMPTY
+                val message =
+                    remoteMessage.data[BundleArgsConstant.NOTIFICATION_MESSAGE] ?: StringUtils.EMPTY
                 when (notificationType) {
                     NotificationType.SILENT -> {
 
@@ -45,6 +50,19 @@ class EventReminderMessagingService : FirebaseMessagingService() {
 
                     }
                     NotificationType.FRIEND_REQUEST -> {
+
+                        val senderID = remoteMessage.data[BundleArgsConstant.NOTIFICATION_TITLE]
+                            ?: StringUtils.EMPTY
+                        val receiverID = remoteMessage.data[BundleArgsConstant.NOTIFICATION_TITLE]
+                            ?: StringUtils.EMPTY
+                        NotificationUtils.createFriendRequestNotification(
+                            this,
+                            title,
+                            message,
+                            senderID,
+                            receiverID,
+                            ""
+                        )
 
                     }
                     NotificationType.ALARM -> {
@@ -65,8 +83,8 @@ class EventReminderMessagingService : FirebaseMessagingService() {
                 TAG,
                 "Message Notification Body: " + remoteMessage.notification?.body
             )
-            val title = remoteMessage.notification?.title
-            val message = remoteMessage.notification?.body
+            val title = remoteMessage.notification?.title ?: StringUtils.EMPTY
+            val message = remoteMessage.notification?.body ?: StringUtils.EMPTY
             NotificationUtils.createNormalNotification(this, title, message)
         }
     }

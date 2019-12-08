@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
+import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.event.reminder.R
 import com.event.reminder.constant.AppConstant
 import com.event.reminder.constant.BundleArgsConstant
@@ -21,6 +22,7 @@ import com.event.reminder.ui.dashboard.DashboardActivity
  * @author Shubham Chauhan
  */
 object NotificationUtils {
+    private val TAG = NotificationUtils::class.java.simpleName
 
     /**
      * This method is used to create a notification builder.
@@ -31,13 +33,17 @@ object NotificationUtils {
     fun createNotificationBuilder(
         context: Context,
         title: String?,
-        body: String?
+        message: String?
     ): NotificationCompat.Builder {
 
+        LoggerUtils.debug(
+            TAG,
+            "createNotificationBuilder [Title : $title, Message : $message]"
+        )
         return NotificationCompat.Builder(context, AppConstant.CHANNEL_ID)
             .setSmallIcon(R.drawable.profile)
             .setContentTitle(title)
-            .setContentText(body)
+            .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
     }
@@ -47,7 +53,10 @@ object NotificationUtils {
      * @param screenName
      */
     private fun getIntentAsPerScreenRequest(context: Context, screenName: String): Intent? {
-
+        LoggerUtils.debug(
+            TAG,
+            "getIntentAsPerScreenRequest [ScreenName : $screenName]"
+        )
         return when (screenName) {
             AppConstant.HOME_SCREEN -> {
                 Intent(context, DashboardActivity::class.java).apply {
@@ -70,6 +79,10 @@ object NotificationUtils {
         context: Context,
         notificationManager: NotificationManager
     ) {
+        LoggerUtils.info(
+            TAG,
+            "createNotificationChannel"
+        )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = context.getString(R.string.channel_name)
             val descriptionText = context.getString(R.string.channel_description)
@@ -88,6 +101,10 @@ object NotificationUtils {
      */
     fun createNormalNotification(context: Context, title: String?, message: String?) {
 
+        LoggerUtils.debug(
+            TAG,
+            "createNormalNotification [Title : $title, Message : $message]"
+        )
         val notificationBuilder = createNotificationBuilder(context, title, message)
         notify(context, AppConstant.NOTIFICATION_REQUEST, notificationBuilder)
     }
@@ -98,7 +115,10 @@ object NotificationUtils {
      * @param message
      */
     fun createBigNotification(context: Context, title: String?, message: String?, bigText: String) {
-
+        LoggerUtils.debug(
+            TAG,
+            "createBigNotification [Title : $title, Message : $message, BigText : $bigText]"
+        )
         val notificationBuilder = createNotificationBuilder(context, title, message)
         notificationBuilder.setStyle(
             NotificationCompat.BigTextStyle()
@@ -119,7 +139,10 @@ object NotificationUtils {
         message: String?,
         screenName: String
     ) {
-
+        LoggerUtils.debug(
+            TAG,
+            "createScreenActionNotification [Title : $title, Message : $message, ScreenName : $screenName]"
+        )
         val intent = getIntentAsPerScreenRequest(context, screenName)
         val pendingIntent = PendingIntent.getActivity(
             context, AppConstant.NOTIFICATION_REQUEST,
@@ -147,6 +170,10 @@ object NotificationUtils {
         screenName: String
     ) {
 
+        LoggerUtils.debug(
+            TAG,
+            "createFriendRequestNotification [Title : $title, Message : $message, SenderID : $senderId, ReceiverID : $receiverId, ScreenName : $screenName]"
+        )
         val acceptIntent = Intent(context, HandleFriendRequestService::class.java)
         acceptIntent.action = context.getString(R.string.accept)
         acceptIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -160,6 +187,7 @@ object NotificationUtils {
         rejectIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         val expendView = RemoteViews(context.packageName, R.layout.friend_request_notification_view)
+        expendView.setTextViewText(R.id.tv_title, title)
         expendView.setTextViewText(R.id.tv_message, message)
         expendView.setOnClickPendingIntent(
             R.id.bt_accept, PendingIntent.getService(
@@ -199,6 +227,10 @@ object NotificationUtils {
         notificationRequest: Int,
         notificationBuilder: NotificationCompat.Builder
     ) {
+        LoggerUtils.debug(
+            TAG,
+            "notify [NotificationRequest : $notificationRequest]"
+        )
         val notificationManager = getNotificationManager(context)
 
         notificationManager.notify(
@@ -212,6 +244,10 @@ object NotificationUtils {
      * @param context
      */
     private fun getNotificationManager(context: Context): NotificationManager {
+        LoggerUtils.info(
+            TAG,
+            "getNotificationManager"
+        )
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         createNotificationChannel(context, notificationManager)

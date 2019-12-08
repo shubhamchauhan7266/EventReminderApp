@@ -5,6 +5,8 @@ object BundleArgsConstant {
     const val EMAIL_ID = "emailId"
     const val OTP_CODE = "otpCode"
     const val OTP_MESSAGE = "otpMessage"
+    const val NOTIFICATION_TITLE = "title"
+    const val NOTIFICATION_MESSAGE = "message"
     const val OTP_ERROR_MESSAGE = "otpErrorMessage"
     const val NOTIFICATION_TYPE = "notificationType"
     const val SENDER_USER_ID_KEY = "senderUserID"

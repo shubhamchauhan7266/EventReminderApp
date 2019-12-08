@@ -138,6 +138,7 @@
 
     <!--    Error Message-->
     <string name="unknown_error">Unknown Error</string>
+    <string name="unknown_case">Unknown Case</string>
     <string name="invalid_username">Not a valid Username</string>
     <string name="invalid_name">Not a valid Name</string>
     <string name="invalid_field">Field can\'t be empty</string>
