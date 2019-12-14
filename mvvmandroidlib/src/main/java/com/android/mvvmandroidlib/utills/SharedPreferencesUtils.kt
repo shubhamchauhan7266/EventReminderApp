@@ -18,8 +18,8 @@ object SharedPreferencesUtils {
      *
      * @param context context
      * @param key The name of the preference to modify.
-     * @param value The new value for the preference.  Passing {@code null}
-     *    for this argument is equivalent to calling {@link #remove(String)} with
+     * @param value The new value for the preference. Passing 'null'
+     *    for this argument is equivalent to calling [.remove(String)] with
      *    this key.
      * @param fileName file name.
      */
@@ -95,8 +95,8 @@ object SharedPreferencesUtils {
      *
      * @param context context
      * @param key The name of the preference to modify.
-     * @param values The set of new values for the preference.  Passing {@code null}
-     *    for this argument is equivalent to calling {@link #remove(String)} with
+     * @param values The set of new values for the preference.  Passing 'null'
+     *    for this argument is equivalent to calling [.remove(String)] with
      *    this key.
      * @param fileName file name.
      */

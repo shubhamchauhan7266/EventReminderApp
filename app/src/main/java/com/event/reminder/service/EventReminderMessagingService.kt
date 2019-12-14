@@ -1,13 +1,19 @@
 package com.event.reminder.service
 
+import android.graphics.Bitmap
 import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.android.mvvmandroidlib.utills.StringUtils
+import com.event.reminder.callback.IResultCallBack
 import com.event.reminder.constant.BundleArgsConstant
+import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.constant.NotificationType
+import com.event.reminder.helper.BitmapFromImageUrlTask
+import com.event.reminder.utills.AlarmUtils
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 import com.event.reminder.utills.NotificationUtils
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+
 
 /**
  * This service class is used to receive all type of notification from fire base server.
@@ -30,48 +36,9 @@ class EventReminderMessagingService : FirebaseMessagingService() {
                 val notificationType =
                     remoteMessage.data[BundleArgsConstant.NOTIFICATION_TYPE]?.toInt()
                         ?: NotificationType.SILENT
-                LoggerUtils.debug(TAG, "Notification Type: $notificationType")
 
-                val title =
-                    remoteMessage.data[BundleArgsConstant.NOTIFICATION_TITLE] ?: StringUtils.EMPTY
-                val message =
-                    remoteMessage.data[BundleArgsConstant.NOTIFICATION_MESSAGE] ?: StringUtils.EMPTY
-                when (notificationType) {
-                    NotificationType.SILENT -> {
+                handleNotificationType(notificationType, remoteMessage.data)
 
-                    }
-                    NotificationType.NORMAL -> {
-
-                    }
-                    NotificationType.BIG -> {
-
-                    }
-                    NotificationType.IMAGE -> {
-
-                    }
-                    NotificationType.FRIEND_REQUEST -> {
-
-                        val senderID = remoteMessage.data[BundleArgsConstant.NOTIFICATION_TITLE]
-                            ?: StringUtils.EMPTY
-                        val receiverID = remoteMessage.data[BundleArgsConstant.NOTIFICATION_TITLE]
-                            ?: StringUtils.EMPTY
-                        NotificationUtils.createFriendRequestNotification(
-                            this,
-                            title,
-                            message,
-                            senderID,
-                            receiverID,
-                            ""
-                        )
-
-                    }
-                    NotificationType.ALARM -> {
-
-                    }
-                    NotificationType.SCREEN_ACTION -> {
-
-                    }
-                }
             } else {
                 LoggerUtils.debug(TAG, "No Notification Type is received")
             }
@@ -109,5 +76,98 @@ class EventReminderMessagingService : FirebaseMessagingService() {
     private fun sendRegistrationToServer(token: String) {
         LoggerUtils.info(TAG, "sendRegistrationToServer")
         EventReminderSharedPrefUtils.setRefreshedToken(token)
+    }
+
+    /**
+     * Method is used to handle different types of notification.
+     * @param notificationType
+     * @param notificationData
+     */
+    private fun handleNotificationType(
+        notificationType: Int,
+        notificationData: Map<String, String>
+    ) {
+
+        LoggerUtils.debug(TAG, "handleNotificationType [Notification Type: $notificationType]")
+
+        val title =
+            notificationData[BundleArgsConstant.NOTIFICATION_TITLE] ?: StringUtils.EMPTY
+        val message =
+            notificationData[BundleArgsConstant.NOTIFICATION_MESSAGE] ?: StringUtils.EMPTY
+
+        when (notificationType) {
+            NotificationType.SILENT -> {
+
+            }
+            NotificationType.NORMAL -> {
+
+                NotificationUtils.createNormalNotification(this, title, message)
+
+            }
+            NotificationType.BIG -> {
+
+                val bigText = notificationData[BundleArgsConstant.NOTIFICATION_BIG_TEXT]
+                    ?: StringUtils.EMPTY
+                NotificationUtils.createBigNotification(this, title, message, bigText)
+
+            }
+            NotificationType.IMAGE -> {
+
+                val imageUrl = notificationData[BundleArgsConstant.NOTIFICATION_IMAGE_URL]
+                    ?: StringUtils.EMPTY
+                BitmapFromImageUrlTask(object : IResultCallBack<Bitmap> {
+                    override fun onSuccess(result: Bitmap) {
+                        LoggerUtils.debug(TAG, "onSuccess")
+                        NotificationUtils.createImageNotification(
+                            this@EventReminderMessagingService
+                            , title, message, result
+                        )
+                    }
+
+                    override fun onFailure(error: String) {
+                        LoggerUtils.debug(TAG, "onFailure [Error : $error]")
+                    }
+                }).execute(imageUrl)
+
+            }
+            NotificationType.FRIEND_REQUEST -> {
+
+                val senderID = notificationData[BundleArgsConstant.NOTIFICATION_TITLE]
+                    ?: StringUtils.EMPTY
+                val receiverID = notificationData[BundleArgsConstant.NOTIFICATION_TITLE]
+                    ?: StringUtils.EMPTY
+                NotificationUtils.createFriendRequestNotification(
+                    this,
+                    title,
+                    message,
+                    senderID,
+                    receiverID,
+                    ""
+                )
+
+            }
+            NotificationType.ALARM -> {
+
+                val alarmTimeStamp: Long =
+                    notificationData[BundleArgsConstant.ALARM_TIMESTAMP]?.toLong()
+                        ?: ErrorConstant.INVALID_LONG
+                if (alarmTimeStamp != ErrorConstant.INVALID_LONG) {
+                    AlarmUtils.setAlarm(this, alarmTimeStamp)
+                } else {
+                    LoggerUtils.debug(TAG, "Time stamp is invalid")
+                }
+
+            }
+            NotificationType.SCREEN_ACTION -> {
+
+                NotificationUtils.createScreenActionNotification(
+                    this,
+                    title,
+                    message,
+                    ""
+                )
+
+            }
+        }
     }
 }

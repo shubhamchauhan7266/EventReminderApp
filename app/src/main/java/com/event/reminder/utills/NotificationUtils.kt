@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
@@ -28,7 +29,7 @@ object NotificationUtils {
      * This method is used to create a notification builder.
      * @param context
      * @param title
-     * @param body
+     * @param message
      */
     fun createNotificationBuilder(
         context: Context,
@@ -113,6 +114,7 @@ object NotificationUtils {
      * Method is used to send big notification.
      * @param title
      * @param message
+     * @param bigText
      */
     fun createBigNotification(context: Context, title: String?, message: String?, bigText: String) {
         LoggerUtils.debug(
@@ -124,6 +126,32 @@ object NotificationUtils {
             NotificationCompat.BigTextStyle()
                 .bigText(bigText)
         )
+        notify(context, AppConstant.NOTIFICATION_REQUEST, notificationBuilder)
+    }
+
+    /**
+     * Method is used to send image notification.
+     * @param title
+     * @param message
+     * @param bitmap
+     */
+    fun createImageNotification(
+        context: Context,
+        title: String?,
+        message: String?,
+        bitmap: Bitmap
+    ) {
+        LoggerUtils.debug(
+            TAG,
+            "createImageNotification [Title : $title, Message : $message]"
+        )
+        val notificationBuilder = createNotificationBuilder(context, title, message)
+        notificationBuilder.setLargeIcon(bitmap)
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(bitmap)
+                    .bigLargeIcon(null)
+            )
         notify(context, AppConstant.NOTIFICATION_REQUEST, notificationBuilder)
     }
 
