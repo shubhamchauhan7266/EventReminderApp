@@ -1,6 +1,7 @@
 package com.event.reminder.ui.dashboard.home
 
 import android.content.Context
+import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -21,7 +22,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     private var iNavigationCallback: INavigationCallback? = null
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
 
         initializeAdapter()

@@ -32,6 +32,9 @@ interface ApiClient {
     @POST(ApiConstant.FRIEND_DETAILS_LIST_API)
     fun getFriendDetailsList(@Body friendDetailsRequest: FriendDetailsListRequest): Observable<FriendDetailsModel>
 
+    @POST(ApiConstant.UPDATE_FRIEND_STATUS_API)
+    fun updateFriendStatus(@Body updateFriendStatusRequest: UpdateFriendStatusRequest): Observable<BaseResponseModel>
+
     @POST(ApiConstant.GENERATE_OTP_API)
     fun generateOTP(@Body generateOTPRequest: GenerateOTPRequest): Observable<BaseResponseModel>
 

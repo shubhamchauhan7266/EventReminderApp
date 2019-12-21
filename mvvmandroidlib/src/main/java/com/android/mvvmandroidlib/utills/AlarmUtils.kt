@@ -1,37 +1,28 @@
-package com.event.reminder.utills
+package com.android.mvvmandroidlib.utills
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
-import com.android.mvvmandroidlib.utills.LoggerUtils
-import com.event.reminder.constant.AppConstant
-import com.event.reminder.ui.dashboard.DashboardActivity
 
+/**
+ * This util class is used to provide method to set and cancel alarm
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object AlarmUtils {
 
     private val TAG = AlarmUtils::class.java.simpleName
 
     /**
-     * Method is used to set alarm for important future events. It will open an Alarm Screen.
+     * Method is used to set alarm for important future events.
      * @param context
      * @param alarmTimeStamp
      */
-    fun setAlarm(context: Context, alarmTimeStamp: Long) {
-        LoggerUtils.debug(TAG, "setAlarm [Alarm TimeStamp : $alarmTimeStamp]")
+    fun setExactAlarm(context: Context, alarmTimeStamp: Long, pendingIntent: PendingIntent) {
+        LoggerUtils.debug(TAG, "setExactAlarm [Alarm TimeStamp : $alarmTimeStamp]")
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
-        // TODO Change Dashboard screen to Alarm Screen
-        val alarmIntent = Intent(context, DashboardActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            AppConstant.ALARM_REQUEST,
-            alarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             LoggerUtils.info(TAG, "Called setAndAllowWhileIdle")

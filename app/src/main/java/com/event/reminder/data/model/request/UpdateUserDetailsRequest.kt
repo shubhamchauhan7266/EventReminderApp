@@ -3,7 +3,7 @@ package com.event.reminder.data.model.request
 import com.event.reminder.constant.ErrorConstant
 import java.io.Serializable
 
-class UpdateUserDetailsRequest(
+data class UpdateUserDetailsRequest(
     var userId: String?,
     var firstName: String?,
     var lastName: String? = "Chauhan",

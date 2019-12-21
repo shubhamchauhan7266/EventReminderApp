@@ -46,7 +46,7 @@
                 style="@style/AppTheme.TextView.Small"
                 android:layout_width="0dp"
                 android:textColor="@color/fontBlack70"
-                android:text="@{String.format(@string/age_year,friendDetail.age)}"
+                bind:dateOfBirth="@{friendDetail.dateOfBirth}"
                 app:layout_constraintEnd_toStartOf="@+id/divider"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name" />

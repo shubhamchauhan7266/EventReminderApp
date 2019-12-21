@@ -1,6 +1,7 @@
 package com.event.reminder.ui.dashboard.notification
 
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -14,7 +15,7 @@ import com.event.reminder.ui.ViewModelFactory
 
 class NotificationFragment : BaseFragment<NotificationFragmentBinding, NotificationViewModel>() {
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
 
         initializeAdapter()

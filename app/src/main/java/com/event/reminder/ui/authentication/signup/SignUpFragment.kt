@@ -19,7 +19,7 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
 
     private var iNavigationCallback: INavigationCallback? = null
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
     }
 

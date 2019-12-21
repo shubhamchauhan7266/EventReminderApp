@@ -17,6 +17,7 @@ import com.event.reminder.service.HandleFriendRequestService
 import com.event.reminder.ui.authentication.AuthenticationActivity
 import com.event.reminder.ui.dashboard.DashboardActivity
 
+
 /**
  * This utils class is used to create notification.
  *
@@ -260,7 +261,6 @@ object NotificationUtils {
             "notify [NotificationRequest : $notificationRequest]"
         )
         val notificationManager = getNotificationManager(context)
-
         notificationManager.notify(
             notificationRequest,
             notificationBuilder.build()

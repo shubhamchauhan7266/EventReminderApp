@@ -1,6 +1,7 @@
 package com.event.reminder.ui.authentication.login
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
@@ -36,7 +37,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
             .get(LoginViewModel::class.java)
     }
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
     }
 

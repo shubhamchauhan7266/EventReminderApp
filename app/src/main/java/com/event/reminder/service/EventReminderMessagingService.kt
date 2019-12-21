@@ -8,7 +8,7 @@ import com.event.reminder.constant.BundleArgsConstant
 import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.constant.NotificationType
 import com.event.reminder.helper.BitmapFromImageUrlTask
-import com.event.reminder.utills.AlarmUtils
+import com.event.reminder.utills.EventReminderAppUtils
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 import com.event.reminder.utills.NotificationUtils
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -132,9 +132,9 @@ class EventReminderMessagingService : FirebaseMessagingService() {
             }
             NotificationType.FRIEND_REQUEST -> {
 
-                val senderID = notificationData[BundleArgsConstant.NOTIFICATION_TITLE]
+                val senderID = notificationData[BundleArgsConstant.SENDER_USER_ID_KEY]
                     ?: StringUtils.EMPTY
-                val receiverID = notificationData[BundleArgsConstant.NOTIFICATION_TITLE]
+                val receiverID = notificationData[BundleArgsConstant.RECEIVER_USER_ID_KEY]
                     ?: StringUtils.EMPTY
                 NotificationUtils.createFriendRequestNotification(
                     this,
@@ -152,7 +152,8 @@ class EventReminderMessagingService : FirebaseMessagingService() {
                     notificationData[BundleArgsConstant.ALARM_TIMESTAMP]?.toLong()
                         ?: ErrorConstant.INVALID_LONG
                 if (alarmTimeStamp != ErrorConstant.INVALID_LONG) {
-                    AlarmUtils.setAlarm(this, alarmTimeStamp)
+
+                    EventReminderAppUtils.setAlarmForEvent(this, alarmTimeStamp)
                 } else {
                     LoggerUtils.debug(TAG, "Time stamp is invalid")
                 }

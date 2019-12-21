@@ -22,7 +22,7 @@ fun loadImage(
     url: String?,
     placeHolder: Drawable?
 ) {
-    LoggerUtils.info("EventReminderBindingAdapter", "url : $url")
+    LoggerUtils.debug("EventReminderBindingAdapter", "loadImage [url : $url]")
     if (StringUtils.isNullOrEmpty(url)) {
         imageView.setImageDrawable(placeHolder)
     } else {
@@ -49,9 +49,9 @@ fun loadImage(
 
 @BindingAdapter(value = ["bind:timeStamp", "bind:timeFormat"], requireAll = true)
 fun setDate(view: TextView, timeStamp: Long?, timeFormat: String?) {
-    LoggerUtils.info(
+    LoggerUtils.debug(
         "EventReminderBindingAdapter",
-        "timeStamp : $timeStamp , timeFormat : $timeFormat"
+        "setDate [timeStamp : $timeStamp , timeFormat : $timeFormat]"
     )
     try {
         view.text = DateUtils.formatDate(timeStamp, timeFormat)
@@ -64,16 +64,36 @@ fun setDate(view: TextView, timeStamp: Long?, timeFormat: String?) {
     }
 }
 
+@BindingAdapter(value = ["bind:dateOfBirth"], requireAll = true)
+fun extractAgeFromDOB(view: TextView, dateOfBirth: Long?) {
+    LoggerUtils.debug(
+        "EventReminderBindingAdapter",
+        "extractAgeFromDOB [dateOfBirth : $dateOfBirth]"
+    )
+    try {
+        view.text = String.format(
+            view.context.getString(R.string.age_year),
+            DateUtils.getAgeFromDateOfBirth(dateOfBirth)
+        )
+    } catch (e: DateUtilParseException) {
+        LoggerUtils.error(
+            "EventReminderBindingAdapter",
+            "extractAgeFromDOB : " + LoggerUtils.getStackTraceString(e)
+        )
+        view.text = StringUtils.EMPTY
+    }
+}
+
 @BindingAdapter(value = ["bind:validatorValue", "bind:validationType"], requireAll = true)
 fun checkValidation(
     textInputLayout: TextInputLayout,
     validatorValue: String?,
     validationType: Int?
 ) {
-    /*LoggerUtils.info(
+    LoggerUtils.debug(
         "EventReminderBindingAdapter",
-        "validatorValue : $validatorValue , validationType"
-    )*/
+        "checkValidation [validatorValue : $validatorValue , validationType : $validationType]"
+    )
 
     if (textInputLayout.hasFocus()) {
         try {

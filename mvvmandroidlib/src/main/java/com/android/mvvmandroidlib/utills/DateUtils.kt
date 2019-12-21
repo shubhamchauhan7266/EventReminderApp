@@ -8,7 +8,7 @@ import java.util.*
 
 /**
  * This util class is used to provide some common methods related to Date.
- * It provide some helper method to parse and format date. It will throw DateUtilParseException if any exception occurred.
+ * It provide some helper method to parse and format date. It will throw [DateUtilParseException] if any exception occurred.
  * This class is declared as object('Singleton').
  *
  * @author Shubham Chauhan
@@ -22,7 +22,7 @@ object DateUtils {
 
     /**
      * Method is used to parse date from date in specific format.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param date    date
      * @param inputFormat    inputFormat
@@ -42,7 +42,7 @@ object DateUtils {
 
     /**
      * Method is used to parse date from timestamp.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param timeStamp    timeStamp
      * @return date instance.
@@ -65,7 +65,7 @@ object DateUtils {
 
     /**
      * Method is used to parse date from calendar.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param cal    calendar
      * @return date instance.
@@ -88,7 +88,7 @@ object DateUtils {
 
     /**
      * Method is used to get formatted date from date.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param date    date
      * @param outputFormat outputFormat
@@ -113,7 +113,7 @@ object DateUtils {
 
     /**
      * Method is used to get formatted date from timeStamp.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param timeStamp    timeStamp
      * @param outputFormat outputFormat
@@ -133,7 +133,7 @@ object DateUtils {
 
     /**
      * Method is used to get formatted date from calender.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param cal    calender
      * @param outputFormat outputFormat
@@ -153,7 +153,7 @@ object DateUtils {
 
     /**
      * Method is used to convert date from one format to another.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param inputDate    inputDate
      * @param inputFormat  inputFormat
@@ -191,7 +191,7 @@ object DateUtils {
 
     /**
      * Method is used to get timestamp for given date.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param date date
      * @return timestamp
@@ -210,7 +210,7 @@ object DateUtils {
 
     /**
      * Method is used to get timestamp for given calendar.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param cal calendar
      * @return timestamp
@@ -231,7 +231,7 @@ object DateUtils {
 
     /**
      * Method is used to get timestamp for given date in specific format.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param date date
      * @param inputFormat inputFormat
@@ -251,7 +251,7 @@ object DateUtils {
 
     /**
      * Method is used to get calendar instance for given timestamp.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param timeStamp timeStamp
      * @return calendar instance
@@ -275,8 +275,28 @@ object DateUtils {
     }
 
     /**
+     * Method is used to get calendar instance with current date.
+     *
+     * @return calendar instance
+     */
+    @NonNull
+    fun getCalendar(): Calendar {
+        return Calendar.getInstance(Locale.US)
+    }
+
+    /**
+     * Method is used to get Date instance with current date.
+     *
+     * @return date instance
+     */
+    @NonNull
+    fun getDate(): Date {
+        return Date()
+    }
+
+    /**
      * Method is used to get calendar instance for given date.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param date date
      * @return calendar instance
@@ -301,7 +321,7 @@ object DateUtils {
 
     /**
      * Method is used to get calendar instance for given date in specific format.
-     * If any exception occurred then it will throw {@link #DateUtilParseException}.
+     * If any exception occurred then it will throw [DateUtilParseException].
      *
      * @param date date
      * @param inputFormat inputFormat
@@ -457,5 +477,34 @@ object DateUtils {
     fun getCurrentMilliSecond(): Int {
         LoggerUtils.info(TAG, "getCurrentMilliSecond()")
         return Calendar.getInstance(Locale.US).get(Calendar.MILLISECOND)
+    }
+
+    /**
+     * Method is used to extract age from date of birth.
+     * If any exception occurred then it will throw [DateUtilParseException].
+     *
+     * @param dateOfBirth dateOfBirth
+     * @return age String
+     */
+    @Throws(DateUtilParseException::class)
+    fun getAgeFromDateOfBirth(dateOfBirth: Long?): String {
+        LoggerUtils.info(TAG, "getAge($dateOfBirth)")
+        try {
+            val today = getCalendar()
+            val dob = getCalendar(dateOfBirth)
+
+            if (dob.after(today)) {
+                throw DateUtilParseException("Can't be born in the future")
+            }
+
+            var age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+            if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
+                age--
+            }
+            return age.toString()
+        } catch (e: Exception) {
+            LoggerUtils.error(TAG, LoggerUtils.getStackTraceString(e))
+            throw DateUtilParseException(e.localizedMessage)
+        }
     }
 }

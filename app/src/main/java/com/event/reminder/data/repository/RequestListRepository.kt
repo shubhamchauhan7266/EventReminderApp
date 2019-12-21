@@ -27,6 +27,9 @@ object RequestListRepository : BaseRepository() {
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
                         if (response is FriendRequestDetailsModel) {
+                            response.friendRequestDetailsList.forEach {
+                                it.requestType = request.requestType
+                            }
                             _friendRequestDetailsApiResult.value = ApiResult(success = response)
                         } else {
                             _friendRequestDetailsApiResult.value =

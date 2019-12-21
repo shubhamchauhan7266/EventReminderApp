@@ -2,6 +2,7 @@ package com.event.reminder.ui.authentication.password
 
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -21,7 +22,7 @@ class ForgetPasswordFragment :
 
     private var iNavigationCallback: INavigationCallback? = null
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
     }
 

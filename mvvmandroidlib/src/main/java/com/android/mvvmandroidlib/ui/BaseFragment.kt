@@ -44,12 +44,12 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseObservableViewModel> : 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        onCreateViewBinding()
+        onCreateViewBinding(savedInstanceState)
         setupToolbar()
         setInitialData()
     }
 
-    protected abstract fun onCreateViewBinding()
+    protected abstract fun onCreateViewBinding(savedInstanceState: Bundle?)
 
     protected abstract fun getObservableViewModel(): V
 

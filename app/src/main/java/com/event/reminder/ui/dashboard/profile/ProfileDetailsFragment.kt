@@ -1,6 +1,7 @@
 package com.event.reminder.ui.dashboard.profile
 
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,7 +13,7 @@ import com.event.reminder.databinding.ProfileDetailsFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
 
 class ProfileDetailsFragment : BaseFragment<ProfileDetailsFragmentBinding, ProfileDetailsViewModel>() {
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
 
         viewModel.getUserDetailsApiResult().observe(this@ProfileDetailsFragment, Observer {

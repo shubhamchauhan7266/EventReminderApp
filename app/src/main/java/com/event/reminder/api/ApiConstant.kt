@@ -5,7 +5,7 @@ import com.event.reminder.BuildConfig
 object ApiConstant {
 
     // Base Url Constant
-    private const val DEV_BASE_URL: String = "http://192.168.1.71:5555/api/"
+    private const val DEV_BASE_URL: String = "http://192.168.1.80:5555/api/"
     private const val PROD_BASE_URL : String = "http://api.event.reminder.com"
     var API_BASE_URL = if (BuildConfig.DEBUG) DEV_BASE_URL else PROD_BASE_URL
 
@@ -29,8 +29,9 @@ object ApiConstant {
     const val USER_DETAILS_API: String = "AuthenticatedUser/details"
     const val UPDATE_USER_DETAILS_API: String = "AuthenticatedUser/updateUser"
     const val NOTIFICATION_DETAILS_LIST_API: String = "Notification/notificationsList"
-    const val FRIEND_REQUEST_DETAILS_LIST_API: String = "AuthenticatedUser/friendRequestDetails"
-    const val FRIEND_DETAILS_LIST_API: String = "AuthenticatedUser/friendDetails"
+    const val FRIEND_REQUEST_DETAILS_LIST_API: String = "Friends/friendRequestDetailsList"
+    const val FRIEND_DETAILS_LIST_API: String = "Friends/friendDetails"
+    const val UPDATE_FRIEND_STATUS_API: String = "Friends/updateFriendStatus"
     const val GENERATE_OTP_API: String = "AuthenticatedUser/generateOTP"
     const val VALIDATE_OTP_API: String = "AuthenticatedUser/validateOTP"
 

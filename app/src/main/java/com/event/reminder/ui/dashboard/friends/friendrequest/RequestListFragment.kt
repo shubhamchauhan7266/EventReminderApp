@@ -17,35 +17,12 @@ import com.event.reminder.ui.ViewModelFactory
 class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestListViewModel>() {
     private var requestType: Int = RequestType.REQUEST_TYPE_RECEIVED
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
-
+        arguments?.let {
+            requestType = it.getInt(ARG_REQUEST_TYPE, RequestType.REQUEST_TYPE_RECEIVED)
+        }
         initializeAdapter()
-
-        viewModel.getFriendRequestDetailsApiResult().observe(this@RequestListFragment, Observer {
-            val result = it ?: return@Observer
-
-            when {
-                result.success != null -> {
-
-                    val friendRequestDetails = result.success
-                    if (friendRequestDetails?.success == true) {
-
-                        val adapter: RequestListAdapter =
-                            binding.rvRequestList.adapter as RequestListAdapter
-                        adapter.setFriendRequestList(friendRequestDetails.friendDetailsList)
-                        adapter.notifyDataSetChanged()
-                    } else {
-                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
-                        }
-                    }
-                }
-                result.errorMessage != null -> {
-                    result.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
-                    }
-                }
-            }
-        })
     }
 
     /**
@@ -64,6 +41,36 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
         binding.rvRequestList.adapter = RequestListAdapter(null)
     }
 
+    override fun setInitialData() {
+        super.setInitialData()
+
+        viewModel.getFriendRequestDetailsApiResult(requestType)
+            .observe(this@RequestListFragment, Observer {
+            val result = it ?: return@Observer
+
+            when {
+                result.success != null -> {
+
+                    val friendRequestDetails = result.success
+                    if (friendRequestDetails?.success == true) {
+
+                        val adapter: RequestListAdapter =
+                            binding.rvRequestList.adapter as RequestListAdapter
+                        adapter.setFriendRequestList(friendRequestDetails.friendRequestDetailsList)
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
+                        }
+                    }
+                }
+                result.errorMessage != null -> {
+                    result.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
+                    }
+                }
+            }
+        })
+    }
+
     override fun getObservableViewModel(): RequestListViewModel {
         return ViewModelProviders.of(this, ViewModelFactory())
             .get(RequestListViewModel::class.java)
@@ -73,13 +80,6 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
         return DataBindingUtil.inflate(
             inflater, R.layout.fragment_request_list, container, false
         )
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            requestType = it.getInt(ARG_REQUEST_TYPE, RequestType.REQUEST_TYPE_RECEIVED)
-        }
     }
 
     companion object {

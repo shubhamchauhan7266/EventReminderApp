@@ -1,5 +1,6 @@
 package com.event.reminder.ui.dashboard.friends
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -19,7 +20,7 @@ import com.event.reminder.ui.dashboard.friends.friends.FriendListFragment
 
 class FriendsFragment : BaseFragment<FriendsFragmentBinding, FriendsViewModel>() {
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
 
         val fragmentModelList: ArrayList<FragmentModel> = ArrayList()

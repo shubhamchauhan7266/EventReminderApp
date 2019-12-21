@@ -6,15 +6,15 @@ import com.event.reminder.constant.RequestType
 import java.io.Serializable
 
 data class FriendRequestDetailsModel(
-    var friendDetailsList: ArrayList<FriendRequestDetails>
+    var friendRequestDetailsList: ArrayList<FriendRequestDetails>
 ) : BaseResponseModel()
 
 data class FriendRequestDetails(
     val name: String,
-    val age: String,
+    val dateOfBirth: Long?,
     val city: String,
     val requestDate: Long?,
     val friendStatus: Int = FriendStatus.PENDING,
-    val requestType: Int = RequestType.REQUEST_TYPE_RECEIVED,
+    var requestType: Int = RequestType.REQUEST_TYPE_RECEIVED,
     val imageUrl: String? = null
 ) : Serializable

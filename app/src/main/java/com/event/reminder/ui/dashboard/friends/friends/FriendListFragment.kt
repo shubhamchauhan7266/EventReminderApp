@@ -15,7 +15,7 @@ import com.event.reminder.ui.ViewModelFactory
 
 class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListViewModel>() {
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
 
         initializeAdapter()

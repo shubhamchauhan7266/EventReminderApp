@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -30,7 +31,7 @@ class OTPVerificationFragment :
     private var emailId: String? = null
     private var mobileNumber: String? = null
 
-    override fun onCreateViewBinding() {
+    override fun onCreateViewBinding(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
         emailId = arguments?.getString(BundleArgsConstant.EMAIL_ID)
         mobileNumber = arguments?.getString(BundleArgsConstant.MOBILE_NUMBER)
