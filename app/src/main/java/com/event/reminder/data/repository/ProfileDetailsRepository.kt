@@ -7,6 +7,8 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
+import com.event.reminder.data.model.request.GetFriendStatusRequest
+import com.event.reminder.data.model.response.FriendStatusModel
 import com.event.reminder.data.model.response.UserDetailsModel
 
 object ProfileDetailsRepository : BaseRepository() {
@@ -42,6 +44,40 @@ object ProfileDetailsRepository : BaseRepository() {
 
         } catch (e: Throwable) {
             _userDetailsApiResult.value = ApiResult(errorMessage = e.localizedMessage)
+        }
+    }
+
+    fun getFriendStatus(
+        request: GetFriendStatusRequest,
+        _FriendStatusModelApiResult: MutableLiveData<ApiResult<FriendStatusModel>>
+    ) {
+        try {
+
+            RequestNetworkManager.addRequest(
+                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.getFriendStatus(request),
+                object : SubscriptionCallback<FriendStatusModel> {
+
+                    override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
+
+                        if (response is FriendStatusModel) {
+                            _FriendStatusModelApiResult.value = ApiResult(success = response)
+                        } else {
+                            _FriendStatusModelApiResult.value =
+                                ApiResult(
+                                    errorMessage = response.errorMessage,
+                                    errorCode = response.statusCode
+                                )
+                        }
+                    }
+
+                    override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
+                        _FriendStatusModelApiResult.value =
+                            ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                    }
+                })
+
+        } catch (e: Throwable) {
+            _FriendStatusModelApiResult.value = ApiResult(errorMessage = e.localizedMessage)
         }
     }
 

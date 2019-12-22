@@ -21,7 +21,6 @@ object EventReminderAppUtils {
      */
     fun setAlarmForEvent(context: Context, alarmTimeStamp: Long) {
         LoggerUtils.debug(TAG, "setAlarmForEvent [alarmTimeStamp:$alarmTimeStamp]")
-        // TODO Change Dashboard screen to Alarm Screen
         val alarmIntent = Intent(context, AlarmReceiver::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

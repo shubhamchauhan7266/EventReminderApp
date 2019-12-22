@@ -6,7 +6,10 @@
     <data class="ProfileDetailsFragmentBinding">
 
         <import type="android.view.View" />
+
         <import type="com.android.mvvmandroidlib.utills.DateUtils" />
+
+        <import type="com.event.reminder.constant.FriendStatus" />
 
         <variable
                 name="viewModel"
@@ -32,6 +35,29 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+                android:id="@+id/tv_friend_status"
+                style="@style/AppTheme.TextView.Link"
+                android:layout_width="wrap_content"
+                android:text="@{viewModel.friendStatus != FriendStatus.ACCEPTED ? @string/add_friend : @string/un_friend}"
+                android:visibility="@{viewModel.friendProfile ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toStartOf="@id/tv_block_status"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+
+        <TextView
+                android:id="@+id/tv_block_status"
+                style="@style/AppTheme.TextView.Link"
+                android:layout_width="wrap_content"
+                android:text="@{viewModel.friendStatus != FriendStatus.BLOCKED ? @string/blocked : @string/un_blocked}"
+                android:visibility="@{viewModel.friendProfile ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_friend_status"
+                app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+
+        <TextView
                 android:id="@+id/tv_name"
                 style="@style/AppTheme.TextView.Large"
                 android:layout_marginTop="8dp"
@@ -39,7 +65,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_friend_status" />
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_profile"
@@ -47,13 +73,13 @@
                 android:layout_height="@dimen/_96sdp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="32dp"
-                bind:imageUrl="@{userDetails.imageUrl}"
-                bind:placeholder="@{@drawable/profile}"
                 app:civ_border_color="@color/colorLightGrey60"
                 app:civ_border_width="@dimen/_2sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                bind:imageUrl="@{userDetails.imageUrl}"
+                bind:placeholder="@{@drawable/profile}" />
 
         <TextView
                 android:id="@+id/tv_email_id_text"
@@ -91,12 +117,12 @@
         <TextView
                 android:id="@+id/tv_date_of_birth"
                 style="@style/AppTheme.TextView.Small"
-                bind:timeStamp="@{userDetails.dateOfBirth}"
-                bind:timeFormat="@{DateUtils.DD_MMM_YYYY}"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth_text" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_date_of_birth_text"
+                bind:timeFormat="@{DateUtils.DD_MMM_YYYY}"
+                bind:timeStamp="@{userDetails.dateOfBirth}" />
 
         <TextView
                 android:id="@+id/tv_gender_text"

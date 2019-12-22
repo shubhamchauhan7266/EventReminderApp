@@ -32,6 +32,7 @@ object ApiConstant {
     const val FRIEND_REQUEST_DETAILS_LIST_API: String = "Friends/friendRequestDetailsList"
     const val FRIEND_DETAILS_LIST_API: String = "Friends/friendDetails"
     const val UPDATE_FRIEND_STATUS_API: String = "Friends/updateFriendStatus"
+    const val GET_FRIEND_STATUS_API: String = "Friends/getFriendStatus"
     const val GENERATE_OTP_API: String = "AuthenticatedUser/generateOTP"
     const val VALIDATE_OTP_API: String = "AuthenticatedUser/validateOTP"
 
