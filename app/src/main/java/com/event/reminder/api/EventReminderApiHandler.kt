@@ -6,6 +6,11 @@ import com.event.reminder.utills.EventReminderSharedPrefUtils
 import okhttp3.Interceptor
 import retrofit2.Retrofit
 
+/**
+ * This handler class is used to provide [ApiClient] instance which allow application to access all API.
+ *
+ * @author Shubham Chauhan
+ */
 class EventReminderApiHandler : ApiHandler() {
 
     companion object {
@@ -35,10 +40,16 @@ class EventReminderApiHandler : ApiHandler() {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
                 .addHeader(ApiConstant.HEADER_ACCEPT, ApiConstant.HEADER_TYPE_APPLICATION_JSON)
-                .addHeader(ApiConstant.HEADER_CONTENT_TYPE, ApiConstant.HEADER_TYPE_APPLICATION_JSON)
+                .addHeader(
+                    ApiConstant.HEADER_CONTENT_TYPE,
+                    ApiConstant.HEADER_TYPE_APPLICATION_JSON
+                )
                 .addHeader(ApiConstant.HEADER_APP_VERSION, BuildConfig.VERSION_NAME)
                 .addHeader(ApiConstant.HEADER_API_VERSION, "")
-                .addHeader(ApiConstant.HEADER_AUTHORIZATION, ApiConstant.BEARER + EventReminderSharedPrefUtils.getAccessToken())
+                .addHeader(
+                    ApiConstant.HEADER_AUTHORIZATION,
+                    ApiConstant.BEARER + EventReminderSharedPrefUtils.getAccessToken()
+                )
 
             val request = requestBuilder.build()
             chain.proceed(request)
@@ -57,12 +68,14 @@ class EventReminderApiHandler : ApiHandler() {
         return ApiConstant.NETWORK_TIMEOUT
     }
 
-    //get API Client instance with retrofit module(singleton)
+    /**
+     * Get API Client instance with retrofit module(singleton)
+     */
     fun getAPIClient(): ApiClient {
 
         if (retrofitBuilder == null) {
             retrofitBuilder = getRetrofitBuilder()
         }
-        return retrofitBuilder!!.build().create(ApiClient::class.java)
+        return retrofitBuilder?.build()?.create(ApiClient::class.java)!!
     }
 }

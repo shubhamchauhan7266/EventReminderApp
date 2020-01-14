@@ -13,6 +13,11 @@ import android.view.MenuItem
 import androidx.appcompat.widget.AppCompatEditText
 import com.event.reminder.R
 
+/**
+ * This EditText class is used to input OTP.
+ *
+ * @author Shubham Chauhan
+ */
 class OTPInputEditText : AppCompatEditText {
 
     private val xmlNameSpaceAndroid = "http://schemas.android.com/apk/res/android"
@@ -179,11 +184,16 @@ class OTPInputEditText : AppCompatEditText {
         return mColorStates.getColorForState(states, Color.GRAY)
     }
 
-    fun setColorForState(mColor: Int, context: Context) {
+    /**
+     * Method is used to set color for state.
+     * @param color
+     * @param context
+     */
+    fun setColorForState(color: Int, context: Context) {
         if (!isInEditMode) {
-            mColors[0] = mColor
-            mColors[1] = mColor
-            mColors[2] = mColor
+            mColors[0] = color
+            mColors[1] = color
+            mColors[2] = color
         }
     }
 

@@ -13,6 +13,11 @@ import com.event.reminder.constant.ValidationTypeConstant
 import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
 
+/**
+ * This file is used to provide some custom methods which is used by data binding in UI.
+ *
+ * @author Shubham Chauhan
+ */
 @BindingAdapter(
     value = ["bind:imageUrl", "bind:placeholder"],
     requireAll = false

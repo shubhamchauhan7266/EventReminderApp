@@ -3,24 +3,33 @@ package com.event.reminder.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.event.reminder.R
+import com.event.reminder.adapter.RequestListAdapter.RequestDetailsReceivedViewHolder
 import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.constant.RequestType
 import com.event.reminder.data.model.response.FriendRequestDetails
 import com.event.reminder.databinding.RequestListReceivedBinding
 import com.event.reminder.databinding.RequestListSentBinding
 
+/**
+ * This Adapter class provide a binding from an app-specific data [FriendRequestDetails] set to
+ * views [R.layout.item_request_received] that are displayed within a [RecyclerView].
+ *
+ * @param <VH> A class [RequestDetailsReceivedViewHolder] which extends ViewHolder that will be used by this adapter.
+ * @author Shubham Chauhan
+ */
 class RequestListAdapter(
     private var requestList: ArrayList<FriendRequestDetails>?
 ) :
-    androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var layoutInflater: LayoutInflater? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): androidx.recyclerview.widget.RecyclerView.ViewHolder {
+    ): RecyclerView.ViewHolder {
 
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
@@ -80,7 +89,7 @@ class RequestListAdapter(
     }
 
     override fun onBindViewHolder(
-        viewholder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+        viewholder: RecyclerView.ViewHolder,
         position: Int
     ) {
 
@@ -94,7 +103,7 @@ class RequestListAdapter(
         }
     }
 
-    fun getFriendRequestList() : ArrayList<FriendRequestDetails>?{
+    fun getFriendRequestList(): ArrayList<FriendRequestDetails>? {
         return requestList
     }
 
@@ -103,8 +112,8 @@ class RequestListAdapter(
     }
 
     inner class RequestDetailsReceivedViewHolder(val binding: RequestListReceivedBinding?) :
-        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding!!.root)
 
     inner class RequestDetailsSentViewHolder(val binding: RequestListSentBinding?) :
-        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding!!.root)
 }

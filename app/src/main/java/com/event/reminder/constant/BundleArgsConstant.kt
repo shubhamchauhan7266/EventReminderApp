@@ -1,5 +1,10 @@
 package com.event.reminder.constant
 
+/**
+ * This constant class is used to provide some Bundle Arguments constant.
+ *
+ * @author Shubham Chauhan
+ */
 object BundleArgsConstant {
     const val MOBILE_NUMBER = "mobileNumber"
     const val EMAIL_ID = "emailId"

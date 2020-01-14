@@ -1,7 +1,7 @@
 package com.event.reminder.data.model.request
 
+import com.android.mvvmandroidlib.data.BaseRequestModel
 import com.event.reminder.constant.ErrorConstant
-import java.io.Serializable
 
 data class UpdateUserDetailsRequest(
     var userId: String?,
@@ -17,4 +17,4 @@ data class UpdateUserDetailsRequest(
     var state: String? = "Uttarakhand",
     var country: String? = "India",
     var postalCode: String? = ErrorConstant.INVALID_PIN_CODE
-) : Serializable
+) : BaseRequestModel()

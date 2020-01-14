@@ -10,7 +10,11 @@ import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.common.api.Status
 
-
+/**
+ * This receiver class is used to read SMS through SMS Retriever API.
+ *
+ * @author Shubham Chauhan
+ */
 class SMSBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (SmsRetriever.SMS_RETRIEVED_ACTION == intent?.action) {

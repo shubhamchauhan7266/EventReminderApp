@@ -11,10 +11,12 @@ import com.event.reminder.data.model.request.LoginRequest
 import com.event.reminder.data.model.response.LoggedInUserModel
 
 /**
- * Class that requests authentication and userModel information from the remote data source and
- * maintains an in-memory cache of login status and userModel credentials information.
+ * This repository class is used to call API related to Login when network is available
+ * to maintains an in-memory cache and fetch updated data from that.
+ * When network is not available then it only get data from local database.
+ *
+ * @author Shubham Chauhan
  */
-
 object LoginRepository : BaseRepository() {
 
     fun login(

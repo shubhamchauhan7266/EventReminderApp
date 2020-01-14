@@ -1,5 +1,10 @@
 package com.event.reminder.constant
 
+/**
+ * This constant class is used to provide some Application constant.
+ *
+ * @author Shubham Chauhan
+ */
 object AppConstant {
 
     const val EMAIL_SYMBOL = "@"

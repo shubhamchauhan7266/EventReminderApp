@@ -2,6 +2,13 @@ package com.event.reminder
 
 import com.android.mvvmandroidlib.BaseApplication
 
+/**
+ * This application class is instantiated before any other class when the process for your
+ * application/package is created.
+ * This class also for maintaining global application state.
+ *
+ * @author Shubham Chauhan
+ */
 class EventReminderApplication : BaseApplication() {
 
     companion object {

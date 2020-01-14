@@ -1,5 +1,10 @@
 package com.event.reminder.constant
 
+/**
+ * This constant class is used to provide Events Type.
+ *
+ * @author Shubham Chauhan
+ */
 object EventsType {
     const val NORMAL = 0
     const val IMPORTANT = 1

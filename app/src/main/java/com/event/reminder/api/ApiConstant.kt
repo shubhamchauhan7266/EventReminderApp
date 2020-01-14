@@ -2,6 +2,11 @@ package com.event.reminder.api
 
 import com.event.reminder.BuildConfig
 
+/**
+ * This constant class is used to provide some API constant.
+ *
+ * @author Shubham Chauhan
+ */
 object ApiConstant {
 
     // Base Url Constant

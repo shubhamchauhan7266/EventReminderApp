@@ -1,5 +1,10 @@
 package com.event.reminder.constant
 
+/**
+ * This constant class is used to provide some Validation constant.
+ *
+ * @author Shubham Chauhan
+ */
 object ValidationTypeConstant {
     const val NORMAL_EMPTY = 1
     const val USER_NAME = 2

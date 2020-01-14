@@ -1,5 +1,10 @@
 package com.event.reminder.constant
 
+/**
+ * This constant class is used to provide Notification Type.
+ *
+ * @author Shubham Chauhan
+ */
 object NotificationType {
     const val SILENT = 0
     const val NORMAL = 1

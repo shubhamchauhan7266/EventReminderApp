@@ -36,6 +36,10 @@ class HandleFriendRequestService : IntentService("HandleFriendRequestService") {
         updateStatusOfFriendRequest(intent)
     }
 
+    /**
+     * Method is used to update friend request status.
+     * @param intent
+     */
     private fun updateStatusOfFriendRequest(intent: Intent?) {
         LoggerUtils.info(TAG, "updateStatusOfFriendRequest")
         when (intent?.action) {

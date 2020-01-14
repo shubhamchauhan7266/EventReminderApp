@@ -5,6 +5,13 @@ import com.android.mvvmandroidlib.utills.SharedPreferencesUtils
 import com.android.mvvmandroidlib.utills.StringUtils
 import com.event.reminder.EventReminderApplication
 
+/**
+ * This util class is used to provide methods to store and read data by SharedPreference.
+ * It will store data in app local data. It only store primitive type data.
+ * This class is declared as object('Singleton').
+ *
+ * @author Shubham Chauhan
+ */
 object EventReminderSharedPrefUtils {
 
     private val TAG: String = EventReminderSharedPrefUtils::class.java.simpleName

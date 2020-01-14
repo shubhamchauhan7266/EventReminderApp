@@ -1,7 +1,7 @@
 package com.event.reminder.data.model.request
 
-import java.io.Serializable
+import com.android.mvvmandroidlib.data.BaseRequestModel
 
 class FriendDetailsListRequest (
     var userId: String
-) : Serializable
+) : BaseRequestModel()

@@ -3,23 +3,32 @@ package com.event.reminder.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.event.reminder.R
+import com.event.reminder.adapter.HomeEventListAdapter.NormalEventViewHolder
 import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.constant.EventsType
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.ImportantEventTypeBinding
 import com.event.reminder.databinding.NormalEventTypeBinding
 
+/**
+ * This Adapter class provide a binding from an app-specific data [HomeEventDetails] set to
+ * views [R.layout.item_normal_event] that are displayed within a [RecyclerView].
+ *
+ * @param <VH> A class [NormalEventViewHolder] which extends ViewHolder that will be used by this adapter.
+ * @author Shubham Chauhan
+ */
 class HomeEventListAdapter(
     private var homeEventDetailsList: ArrayList<HomeEventDetails>?
-) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var layoutInflater: LayoutInflater? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): androidx.recyclerview.widget.RecyclerView.ViewHolder {
+    ): RecyclerView.ViewHolder {
         if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
         }
@@ -79,7 +88,7 @@ class HomeEventListAdapter(
     }
 
     override fun onBindViewHolder(
-        viewholder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+        viewholder: RecyclerView.ViewHolder,
         position: Int
     ) {
         when (viewholder) {
@@ -101,8 +110,8 @@ class HomeEventListAdapter(
     }
 
     inner class NormalEventViewHolder(val binding: NormalEventTypeBinding?) :
-        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding!!.root)
 
     inner class ImportantEventViewHolder(val binding: ImportantEventTypeBinding?) :
-        androidx.recyclerview.widget.RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding!!.root)
 }

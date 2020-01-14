@@ -10,6 +10,13 @@ import com.event.reminder.api.EventReminderApiHandler
 import com.event.reminder.data.model.request.GenerateOTPRequest
 import com.event.reminder.data.model.request.ValidateOTPRequest
 
+/**
+ * This repository class is used to call API related to OTP when network is available
+ * to maintains an in-memory cache and fetch updated data from that.
+ * When network is not available then it only get data from local database.
+ *
+ * @author Shubham Chauhan
+ */
 object OTPVerificationRepository : BaseRepository()  {
 
     fun generateOTP(

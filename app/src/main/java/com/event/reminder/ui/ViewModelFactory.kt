@@ -20,6 +20,8 @@ import com.event.reminder.ui.otp.OTPVerificationViewModel
 /**
  * ViewModel provider factory to instantiate ViewModel.
  * Required given ViewModel has a non-empty constructor
+ *
+ * @author Shubham Chauhan
  */
 class ViewModelFactory : ViewModelProvider.Factory {
 

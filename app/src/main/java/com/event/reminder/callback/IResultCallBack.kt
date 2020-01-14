@@ -3,6 +3,7 @@ package com.event.reminder.callback
 /**
  * This callback is used for result which can be either success or failure.
  *
+ * @param <T> Type of result
  * @author Shubham Chauhan
  */
 interface IResultCallBack<T> {

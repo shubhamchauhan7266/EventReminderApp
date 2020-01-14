@@ -1,5 +1,10 @@
 package com.event.reminder.enums
 
+/**
+ * This enum class is used to provide some Navigation Screen Types.
+ *
+ * @author Shubham Chauhan
+ */
 enum class NavigationScreen {
     LOGIN_SCREEN,
     SPLASH_TO_LOGIN_SCREEN,

@@ -9,6 +9,11 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
+/**
+ * This interface to provide all API method which is used by application to sync data from server.
+ *
+ * @author Shubham Chauhan
+ */
 interface ApiClient {
 
     @POST(ApiConstant.LOGIN_API)
