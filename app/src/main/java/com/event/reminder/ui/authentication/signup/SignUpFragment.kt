@@ -45,13 +45,13 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
     override fun setInitialData() {
         super.setInitialData()
 
-        viewModel.signUpResult!!.observe(this@SignUpFragment, Observer {
+        viewModel.signUpResult?.observe(this@SignUpFragment, Observer {
             val result = it ?: return@Observer
 
             when {
                 result.success != null -> {
 
-                    if (result.success!!.success) {
+                    if (result.success?.success == true) {
                         val bundle = Bundle()
                         bundle.putString(BundleArgsConstant.EMAIL_ID, viewModel.emailId)
                         bundle.putString(BundleArgsConstant.MOBILE_NUMBER, viewModel.phoneNumber)
@@ -60,7 +60,11 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
                             bundle
                         )
                     } else {
-                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
+                        result.success?.errorMessage?.let { error ->
+                            viewModel.failedEventErrorMessage.sendEvent(
+                                error
+                            )
+                        }
                     }
                 }
                 result.errorMessage != null -> {

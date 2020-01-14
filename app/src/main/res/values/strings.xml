@@ -127,7 +127,7 @@
     <string name="temp_image_url">https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Hrithik_Rado.jpg/250px-Hrithik_Rado.jpg</string>
     <string name="events">Events</string>
     <string name="submit">Submit</string>
-    <string name="add_friend">Add Friend</string>
+    <string name="add_friend"> + Add Friend</string>
     <string name="un_friend">Un Friend</string>
     <string name="blocked">Blocked</string>
     <string name="un_blocked">Un Blocked</string>
@@ -135,6 +135,7 @@
     <string name="resend_otp">Resend OTP</string>
     <string name="accept">Accept</string>
     <string name="reject">Reject</string>
+    <string name="update_profile">Update Profile</string>
     <string name="channel_name">Event Reminder</string>
     <string name="channel_description">Event Reminder Channel</string>
     <string name="friend_request">Friend Request</string>

@@ -48,6 +48,14 @@
         <item name="android:textColor">@drawable/tv_color_selector_for_bt</item>
     </style>
 
+    <style name="AppTheme.WrapButton" parent="AppTheme.Button">
+        <item name="android:layout_marginStart">@dimen/_1sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_1sdp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingStart">@dimen/_15sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+    </style>
+
     <style name="AppTheme.TextView.Normal" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/_12sdp</item>
         <item name="android:layout_width">wrap_content</item>

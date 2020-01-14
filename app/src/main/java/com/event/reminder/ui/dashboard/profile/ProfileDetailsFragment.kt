@@ -8,9 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
+import com.android.mvvmandroidlib.utills.StringUtils
 import com.event.reminder.R
 import com.event.reminder.databinding.ProfileDetailsFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
+import com.event.reminder.utills.EventReminderSharedPrefUtils
 
 class ProfileDetailsFragment :
     BaseFragment<ProfileDetailsFragmentBinding, ProfileDetailsViewModel>() {
@@ -29,7 +31,12 @@ class ProfileDetailsFragment :
     override fun setInitialData() {
         super.setInitialData()
 
-        viewModel.getUserDetailsApiResult().observe(this@ProfileDetailsFragment, Observer {
+        val userId: String = if (isFriendProfile) {
+            friendId ?: StringUtils.EMPTY
+        } else {
+            EventReminderSharedPrefUtils.getUserId()
+        }
+        viewModel.getUserDetailsApiResult(userId).observe(this@ProfileDetailsFragment, Observer {
             val result = it ?: return@Observer
 
             when {
@@ -39,7 +46,7 @@ class ProfileDetailsFragment :
                     if (userDetails?.success == true) {
                         binding.userDetails = userDetails.userDetails
                     } else {
-                        result.success!!.errorMessage?.let { error ->
+                        result.success?.errorMessage?.let { error ->
                             viewModel.failedEventErrorMessage.sendEvent(error)
                         }
                     }
@@ -52,29 +59,54 @@ class ProfileDetailsFragment :
             }
         })
 
+        viewModel.updateUserDetailsResult?.observe(this@ProfileDetailsFragment, Observer {
+            val result = it ?: return@Observer
+
+            when {
+                result.success != null -> {
+                    if (result.success?.success == true) {
+                        viewModel.editableProfile = false
+                    } else {
+                        result.success?.errorMessage?.let { error ->
+                            viewModel.failedEventErrorMessage.sendEvent(
+                                error
+                            )
+                        }
+                    }
+                }
+                result.errorMessage != null -> {
+                    result.errorMessage?.let { error ->
+                        viewModel.failedEventErrorMessage.sendEvent(
+                            error
+                        )
+                    }
+                }
+            }
+        })
+
         if (isFriendProfile) {
             friendId?.let {
-                viewModel.getFriendStatus(it).observe(this@ProfileDetailsFragment, Observer {
-                    val result = it ?: return@Observer
-                    when {
-                        result.success != null -> {
+                viewModel.getFriendStatus(it)
+                    .observe(this@ProfileDetailsFragment, Observer { result ->
+                        when {
+                            result.success != null -> {
 
-                            val friendStatusModel = result.success
-                            if (friendStatusModel?.success == true) {
-                                viewModel.friendStatus = friendStatusModel.friendStatus
-                            } else {
-                                result.success!!.errorMessage?.let { error ->
+                                val friendStatusModel = result.success
+                                if (friendStatusModel?.success == true) {
+                                    viewModel.friendStatus = friendStatusModel.friendStatus
+                                } else {
+                                    result.success!!.errorMessage?.let { error ->
+                                        viewModel.failedEventErrorMessage.sendEvent(error)
+                                    }
+                                }
+                            }
+                            result.errorMessage != null -> {
+                                result.errorMessage?.let { error ->
                                     viewModel.failedEventErrorMessage.sendEvent(error)
                                 }
                             }
                         }
-                        result.errorMessage != null -> {
-                            result.errorMessage?.let { error ->
-                                viewModel.failedEventErrorMessage.sendEvent(error)
-                            }
-                        }
-                    }
-                })
+                    })
             }
         }
     }
@@ -101,7 +133,8 @@ class ProfileDetailsFragment :
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param isFriendProfile Parameter 1.
+         * @param isFriendProfile
+         * @param friendId
          * @return A new instance of fragment ProfileDetailsFragment.
          */
         @JvmStatic

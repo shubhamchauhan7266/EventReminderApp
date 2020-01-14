@@ -8,6 +8,7 @@ import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
 import com.event.reminder.data.model.request.GetFriendStatusRequest
+import com.event.reminder.data.model.request.UpdateUserDetailsRequest
 import com.event.reminder.data.model.response.FriendStatusModel
 import com.event.reminder.data.model.response.UserDetailsModel
 
@@ -37,7 +38,8 @@ object ProfileDetailsRepository : BaseRepository() {
                     }
 
                     override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        _userDetailsApiResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                        _userDetailsApiResult.value =
+                            ApiResult(errorMessage = errorMsg, errorCode = errCode)
                     }
 
                 })
@@ -49,7 +51,7 @@ object ProfileDetailsRepository : BaseRepository() {
 
     fun getFriendStatus(
         request: GetFriendStatusRequest,
-        _FriendStatusModelApiResult: MutableLiveData<ApiResult<FriendStatusModel>>
+        _friendStatusApiResult: MutableLiveData<ApiResult<FriendStatusModel>>
     ) {
         try {
 
@@ -60,9 +62,9 @@ object ProfileDetailsRepository : BaseRepository() {
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
                         if (response is FriendStatusModel) {
-                            _FriendStatusModelApiResult.value = ApiResult(success = response)
+                            _friendStatusApiResult.value = ApiResult(success = response)
                         } else {
-                            _FriendStatusModelApiResult.value =
+                            _friendStatusApiResult.value =
                                 ApiResult(
                                     errorMessage = response.errorMessage,
                                     errorCode = response.statusCode
@@ -71,13 +73,38 @@ object ProfileDetailsRepository : BaseRepository() {
                     }
 
                     override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        _FriendStatusModelApiResult.value =
+                        _friendStatusApiResult.value =
                             ApiResult(errorMessage = errorMsg, errorCode = errCode)
                     }
                 })
 
         } catch (e: Throwable) {
-            _FriendStatusModelApiResult.value = ApiResult(errorMessage = e.localizedMessage)
+            _friendStatusApiResult.value = ApiResult(errorMessage = e.localizedMessage)
+        }
+    }
+
+    fun updateUserDetails(
+        request: UpdateUserDetailsRequest,
+        _updateUserDetailsResult: MutableLiveData<ApiResult<BaseResponseModel>>
+    ) {
+        try {
+
+            RequestNetworkManager.addRequest(
+                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.updateUserDetails(request),
+                object : SubscriptionCallback<FriendStatusModel> {
+
+                    override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
+                        _updateUserDetailsResult.value = ApiResult(success = response)
+                    }
+
+                    override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
+                        _updateUserDetailsResult.value =
+                            ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                    }
+                })
+
+        } catch (e: Throwable) {
+            _updateUserDetailsResult.value = ApiResult(errorMessage = e.localizedMessage)
         }
     }
 

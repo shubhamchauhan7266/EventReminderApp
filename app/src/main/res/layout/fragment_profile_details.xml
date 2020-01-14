@@ -11,6 +11,8 @@
 
         <import type="com.event.reminder.constant.FriendStatus" />
 
+        <import type="com.event.reminder.constant.ValidationTypeConstant" />
+
         <variable
                 name="viewModel"
                 type="com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel" />
@@ -26,18 +28,33 @@
             android:background="@color/fadeGreenLight">
 
         <View
+                android:id="@+id/view_green"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:background="@color/green"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/iv_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onEditClick()}"
+                android:src="@drawable/ic_edit_white_48dp"
+                android:visibility="@{viewModel.friendProfile ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/view_green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
 
         <TextView
                 android:id="@+id/tv_friend_status"
                 style="@style/AppTheme.TextView.Link"
                 android:layout_width="wrap_content"
+                android:padding="@dimen/_10sdp"
                 android:text="@{viewModel.friendStatus != FriendStatus.ACCEPTED ? @string/add_friend : @string/un_friend}"
                 android:visibility="@{viewModel.friendProfile ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toStartOf="@id/tv_block_status"
@@ -50,6 +67,7 @@
                 android:id="@+id/tv_block_status"
                 style="@style/AppTheme.TextView.Link"
                 android:layout_width="wrap_content"
+                android:padding="@dimen/_10sdp"
                 android:text="@{viewModel.friendStatus != FriendStatus.BLOCKED ? @string/blocked : @string/un_blocked}"
                 android:visibility="@{viewModel.friendProfile ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,6 +197,131 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/_24sdp" />
+
+        <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_non_editable_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_date_of_birth_text,tv_date_of_birth,tv_gender_text,tv_gender,tv_email_id_text,tv_phone_number_text,tv_phone_number,tv_email_id,tv_name"
+                bind:visibility="@{viewModel.editableProfile ? View.GONE : View.VISIBLE}" />
+
+        <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_editable_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="il_email,il_phone_no,il_dob,il_name,il_gender"
+                bind:visibility="@{viewModel.editableProfile ? View.VISIBLE : View.GONE}" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_name"
+                style="@style/TextInputLayoutAppearance"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/iv_profile"
+                bind:validationType="@{ValidationTypeConstant.FULL_NAME}"
+                bind:validatorValue="@{viewModel.fullName}">
+
+            <EditText
+                    android:id="@+id/et_name"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/full_name"
+                    android:inputType="textCapWords"
+                    android:text="@={viewModel.fullName}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_email"
+                style="@style/TextInputLayoutAppearance"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_name"
+                bind:validationType="@{ValidationTypeConstant.EMAIL_ADDRESS}"
+                bind:validatorValue="@{viewModel.emailId}">
+
+            <EditText
+                    android:id="@+id/et_email_id"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/email_id"
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewModel.emailId}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_dob"
+                style="@style/TextInputLayoutAppearance"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_email"
+                bind:validationType="@{ValidationTypeConstant.DATE_OF_BIRTH}"
+                bind:validatorValue="@{viewModel.dateOfBirth}">
+
+            <EditText
+                    android:id="@+id/et_dob"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/date_of_birth"
+                    android:inputType="number"
+                    android:text="@={viewModel.dateOfBirth}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_gender"
+                style="@style/TextInputLayoutAppearance"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_dob"
+                bind:validationType="@{ValidationTypeConstant.GENDER}"
+                bind:validatorValue="@{viewModel.gender}">
+
+            <EditText
+                    android:id="@+id/et_gender"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/gender"
+                    android:inputType="text"
+                    android:text="@={viewModel.gender}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_phone_no"
+                style="@style/TextInputLayoutAppearance"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_gender"
+                bind:validationType="@{ValidationTypeConstant.MOBILE_NUMBER}"
+                bind:validatorValue="@{viewModel.phoneNumber}">
+
+            <EditText
+                    android:id="@+id/et_phone_no"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
+                    android:text="@={viewModel.phoneNumber}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+                android:id="@+id/bt_update_profile"
+                style="@style/AppTheme.WrapButton"
+                android:onClick="@{(v) -> viewModel.updateProfileClick()}"
+                android:text="@string/update_profile"
+                android:visibility="@{viewModel.editableProfile ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bt_cancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintVertical_bias="0.97" />
+
+        <Button
+                android:id="@+id/bt_cancel"
+                style="@style/AppTheme.WrapButton"
+                android:onClick="@{(v) -> viewModel.onCancelClick()}"
+                android:text="@string/cancel"
+                android:visibility="@{viewModel.editableProfile ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bt_update_profile"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.97" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
