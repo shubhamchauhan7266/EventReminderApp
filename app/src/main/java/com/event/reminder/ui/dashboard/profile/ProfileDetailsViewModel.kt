@@ -4,9 +4,14 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.data.BaseResponseModel
+import com.android.mvvmandroidlib.exception.MathUtilParseException
 import com.android.mvvmandroidlib.helper.ApiResult
+import com.android.mvvmandroidlib.utills.LoggerUtils
+import com.android.mvvmandroidlib.utills.MathUtils
+import com.android.mvvmandroidlib.utills.StringUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
+import com.event.reminder.constant.FriendStatus
 import com.event.reminder.data.model.request.GetFriendStatusRequest
 import com.event.reminder.data.model.request.UpdateFriendStatusRequest
 import com.event.reminder.data.model.request.UpdateUserDetailsRequest
@@ -17,6 +22,8 @@ import com.event.reminder.utills.EventReminderSharedPrefUtils
 
 class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetailsRepository) :
     BaseObservableViewModel() {
+
+    private val TAG: String = ProfileDetailsViewModel::class.java.simpleName
 
     private val _updateUserDetailsResult: MutableLiveData<ApiResult<BaseResponseModel>> =
         MutableLiveData()
@@ -41,11 +48,18 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
             notifyPropertyChanged(BR.friendProfile)
         }
 
-    var friendStatus: Int? = null
+    var friendStatus: Int = FriendStatus.NOT_A_FRIEND
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.friendStatus)
+        }
+
+    var friendID: String? = null
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.friendID)
         }
 
     var fullName: String? = null
@@ -83,8 +97,13 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
             notifyPropertyChanged(BR.phoneNumber)
         }
 
-    fun getUserDetailsApiResult(userId: String): LiveData<ApiResult<UserDetailsModel>> {
+    fun getUserDetailsApiResult(): LiveData<ApiResult<UserDetailsModel>> {
         // can be launched in a separate asynchronous job
+        val userId: String = if (friendProfile == true) {
+            friendID ?: StringUtils.EMPTY
+        } else {
+            EventReminderSharedPrefUtils.getUserId()
+        }
         profileDetailsRepository.getUserDetails(
             userId,
             _userDetailsResult
@@ -92,12 +111,12 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         return _userDetailsResult
     }
 
-    fun getFriendStatus(friendID: String): LiveData<ApiResult<FriendStatusModel>> {
+    fun getFriendStatus(): LiveData<ApiResult<FriendStatusModel>> {
         // can be launched in a separate asynchronous job
         profileDetailsRepository.getFriendStatus(
             GetFriendStatusRequest(
                 userId = EventReminderSharedPrefUtils.getUserId(),
-                friendId = friendID
+                friendId = friendID ?: StringUtils.EMPTY
             ),
             _friendStatusResult
         )
@@ -127,15 +146,26 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         return _updateUserDetailsResult
     }
 
-    fun updateFriendStatus(status: Int) {
-        profileDetailsRepository.updateFriendStatus(
-            UpdateFriendStatusRequest(
-                firstUserId = "",
-                secondUserId = "",
-                actionUserId = "",
-                friendStatus = status
-            ),
-            _updateFriendStatusResult
-        )
+    fun updateFriendStatus() {
+        try {
+            profileDetailsRepository.updateFriendStatus(
+                UpdateFriendStatusRequest(
+                    firstUserId = MathUtils.getMin(
+                        EventReminderSharedPrefUtils.getUserId(),
+                        friendID ?: StringUtils.EMPTY
+                    ),
+                    secondUserId = MathUtils.getMax(
+                        EventReminderSharedPrefUtils.getUserId(),
+                        friendID ?: StringUtils.EMPTY
+                    ),
+                    actionUserId = EventReminderSharedPrefUtils.getUserId(),
+                    friendStatus = friendStatus ?: FriendStatus.NOT_A_FRIEND
+                ),
+                _updateFriendStatusResult
+            )
+        } catch (e: MathUtilParseException) {
+            LoggerUtils.debug(TAG, LoggerUtils.getStackTraceString(e))
+            failedEventErrorMessage.sendEvent(e.localizedMessage)
+        }
     }
 }

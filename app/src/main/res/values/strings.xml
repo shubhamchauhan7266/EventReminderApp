@@ -128,6 +128,7 @@
     <string name="events">Events</string>
     <string name="submit">Submit</string>
     <string name="add_friend"> + Add Friend</string>
+    <string name="friend_request_sent">Friend Request Sent</string>
     <string name="un_friend">Un Friend</string>
     <string name="blocked">Blocked</string>
     <string name="un_blocked">Un Blocked</string>
