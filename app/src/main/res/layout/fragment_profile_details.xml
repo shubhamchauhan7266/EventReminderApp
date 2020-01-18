@@ -301,7 +301,7 @@
         <Button
                 android:id="@+id/bt_update_profile"
                 style="@style/AppTheme.WrapButton"
-                android:onClick="@{(v) -> viewModel.updateProfileClick()}"
+                android:onClick="@{(v) -> viewModel.updateProfile()}"
                 android:text="@string/update_profile"
                 android:visibility="@{viewModel.editableProfile ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -8,6 +8,7 @@ import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
 import com.event.reminder.data.model.request.GetFriendStatusRequest
+import com.event.reminder.data.model.request.UpdateFriendStatusRequest
 import com.event.reminder.data.model.request.UpdateUserDetailsRequest
 import com.event.reminder.data.model.response.FriendStatusModel
 import com.event.reminder.data.model.response.UserDetailsModel
@@ -19,7 +20,9 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
 
     private val _updateUserDetailsResult: MutableLiveData<ApiResult<BaseResponseModel>> =
         MutableLiveData()
-    val updateUserDetailsResult: LiveData<ApiResult<BaseResponseModel>>? = _updateUserDetailsResult
+    private val _updateFriendStatusResult: MutableLiveData<ApiResult<BaseResponseModel>> =
+        MutableLiveData()
+    val updateFriendStatusResult: LiveData<ApiResult<BaseResponseModel>> = _updateFriendStatusResult
     private val _userDetailsResult: MutableLiveData<ApiResult<UserDetailsModel>> = MutableLiveData()
     private val _friendStatusResult: MutableLiveData<ApiResult<FriendStatusModel>> =
         MutableLiveData()
@@ -109,7 +112,7 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         editableProfile = false
     }
 
-    fun updateProfileClick() {
+    fun updateProfile(): LiveData<ApiResult<BaseResponseModel>> {
         profileDetailsRepository.updateUserDetails(
             UpdateUserDetailsRequest(
                 userId = EventReminderSharedPrefUtils.getUserId(),
@@ -120,6 +123,19 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
                 imageUrl = ""
             ),
             _updateUserDetailsResult
+        )
+        return _updateUserDetailsResult
+    }
+
+    fun updateFriendStatus(status: Int) {
+        profileDetailsRepository.updateFriendStatus(
+            UpdateFriendStatusRequest(
+                firstUserId = "",
+                secondUserId = "",
+                actionUserId = "",
+                friendStatus = status
+            ),
+            _updateFriendStatusResult
         )
     }
 }

@@ -59,7 +59,32 @@ class ProfileDetailsFragment :
             }
         })
 
-        viewModel.updateUserDetailsResult?.observe(this@ProfileDetailsFragment, Observer {
+        viewModel.updateProfile().observe(this@ProfileDetailsFragment, Observer {
+            val result = it ?: return@Observer
+
+            when {
+                result.success != null -> {
+                    if (result.success?.success == true) {
+                        viewModel.editableProfile = false
+                    } else {
+                        result.success?.errorMessage?.let { error ->
+                            viewModel.failedEventErrorMessage.sendEvent(
+                                error
+                            )
+                        }
+                    }
+                }
+                result.errorMessage != null -> {
+                    result.errorMessage?.let { error ->
+                        viewModel.failedEventErrorMessage.sendEvent(
+                            error
+                        )
+                    }
+                }
+            }
+        })
+
+        viewModel.updateFriendStatusResult.observe(this@ProfileDetailsFragment, Observer {
             val result = it ?: return@Observer
 
             when {
@@ -95,7 +120,7 @@ class ProfileDetailsFragment :
                                 if (friendStatusModel?.success == true) {
                                     viewModel.friendStatus = friendStatusModel.friendStatus
                                 } else {
-                                    result.success!!.errorMessage?.let { error ->
+                                    result.success?.errorMessage?.let { error ->
                                         viewModel.failedEventErrorMessage.sendEvent(error)
                                     }
                                 }
