@@ -1,13 +1,13 @@
 package com.event.reminder.service
 
 import android.graphics.Bitmap
+import com.android.mvvmandroidlib.callback.IResultCallBack
+import com.android.mvvmandroidlib.helper.BitmapFromImageUrlTask
 import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.android.mvvmandroidlib.utills.StringUtils
-import com.event.reminder.callback.IResultCallBack
 import com.event.reminder.constant.BundleArgsConstant
 import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.constant.NotificationType
-import com.event.reminder.helper.BitmapFromImageUrlTask
 import com.event.reminder.utills.EventReminderAppUtils
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 import com.event.reminder.utills.NotificationUtils
@@ -115,7 +115,8 @@ class EventReminderMessagingService : FirebaseMessagingService() {
 
                 val imageUrl = notificationData[BundleArgsConstant.NOTIFICATION_IMAGE_URL]
                     ?: StringUtils.EMPTY
-                BitmapFromImageUrlTask(object : IResultCallBack<Bitmap> {
+                BitmapFromImageUrlTask(object :
+                    IResultCallBack<Bitmap> {
                     override fun onSuccess(result: Bitmap) {
                         LoggerUtils.debug(TAG, "onSuccess")
                         NotificationUtils.createImageNotification(

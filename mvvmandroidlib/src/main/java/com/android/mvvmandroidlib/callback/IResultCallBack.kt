@@ -1,4 +1,4 @@
-package com.event.reminder.callback
+package com.android.mvvmandroidlib.callback
 
 /**
  * This callback is used for result which can be either success or failure.

@@ -1,10 +1,10 @@
-package com.event.reminder.helper
+package com.android.mvvmandroidlib.helper
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
+import com.android.mvvmandroidlib.callback.IResultCallBack
 import com.android.mvvmandroidlib.utills.LoggerUtils
-import com.event.reminder.callback.IResultCallBack
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
