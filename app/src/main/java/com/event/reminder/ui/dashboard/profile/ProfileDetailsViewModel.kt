@@ -27,6 +27,7 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
 
     private val _updateUserDetailsResult: MutableLiveData<ApiResult<BaseResponseModel>> =
         MutableLiveData()
+    val updateUserDetailsResult: LiveData<ApiResult<BaseResponseModel>> = _updateUserDetailsResult
     private val _updateFriendStatusResult: MutableLiveData<ApiResult<BaseResponseModel>> =
         MutableLiveData()
     val updateFriendStatusResult: LiveData<ApiResult<BaseResponseModel>> = _updateFriendStatusResult
@@ -131,7 +132,7 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         editableProfile = false
     }
 
-    fun updateProfile(): LiveData<ApiResult<BaseResponseModel>> {
+    fun updateProfile() {
         profileDetailsRepository.updateUserDetails(
             UpdateUserDetailsRequest(
                 userId = EventReminderSharedPrefUtils.getUserId(),
@@ -139,11 +140,11 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
                 emailAddress = emailId,
                 phoneNumber = phoneNumber,
                 gender = gender,
-                imageUrl = ""
+                imageUrl = "",
+                postalCode = "758588"
             ),
             _updateUserDetailsResult
         )
-        return _updateUserDetailsResult
     }
 
     fun updateFriendStatus() {

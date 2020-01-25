@@ -49,7 +49,7 @@ class ProfileDetailsFragment :
             }
         })
 
-        viewModel.updateProfile().observe(this@ProfileDetailsFragment, Observer {
+        viewModel.updateUserDetailsResult.observe(this@ProfileDetailsFragment, Observer {
             val result = it ?: return@Observer
 
             when {
