@@ -118,16 +118,24 @@ object ProfileDetailsRepository : BaseRepository() {
 
     fun updateFriendStatus(
         request: UpdateFriendStatusRequest,
-        _updateFriendStatusResult: MutableLiveData<ApiResult<BaseResponseModel>>
+        _updateFriendStatusResult: MutableLiveData<ApiResult<FriendStatusModel>>
     ) {
         try {
 
             RequestNetworkManager.addRequest(
                 EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.updateFriendStatus(request),
-                object : SubscriptionCallback<BaseResponseModel> {
+                object : SubscriptionCallback<FriendStatusModel> {
 
                     override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
-                        _updateFriendStatusResult.value = ApiResult(success = response)
+                        if (response is FriendStatusModel) {
+                            _updateFriendStatusResult.value = ApiResult(success = response)
+                        } else {
+                            _updateFriendStatusResult.value =
+                                ApiResult(
+                                    errorMessage = response.errorMessage,
+                                    errorCode = response.statusCode
+                                )
+                        }
                     }
 
                     override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {

@@ -20,7 +20,8 @@ import com.event.reminder.databinding.RequestListSentBinding
  * @author Shubham Chauhan
  */
 class RequestListAdapter(
-    private var requestList: ArrayList<FriendRequestDetails>?
+    private var requestList: ArrayList<FriendRequestDetails>?,
+    private var iRequestListAdapterCallBack: IRequestListAdapterCallBack
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -95,10 +96,16 @@ class RequestListAdapter(
 
         when (viewholder) {
             is RequestDetailsReceivedViewHolder -> {
-                viewholder.binding!!.friendDetail = requestList?.get(position)
+                viewholder.binding?.friendDetail = requestList?.get(position)
+                viewholder.binding?.ivProfile?.setOnClickListener {
+                    iRequestListAdapterCallBack.onProfileClick(position)
+                }
             }
             is RequestDetailsSentViewHolder -> {
-                viewholder.binding!!.friendDetail = requestList?.get(position)
+                viewholder.binding?.friendDetail = requestList?.get(position)
+                viewholder.binding?.ivProfile?.setOnClickListener {
+                    iRequestListAdapterCallBack.onProfileClick(position)
+                }
             }
         }
     }
@@ -112,8 +119,12 @@ class RequestListAdapter(
     }
 
     inner class RequestDetailsReceivedViewHolder(val binding: RequestListReceivedBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding?.root!!)
 
     inner class RequestDetailsSentViewHolder(val binding: RequestListSentBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding?.root!!)
+
+    interface IRequestListAdapterCallBack {
+        fun onProfileClick(position: Int)
+    }
 }

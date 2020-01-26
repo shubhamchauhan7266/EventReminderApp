@@ -4,13 +4,11 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.data.BaseResponseModel
-import com.android.mvvmandroidlib.exception.MathUtilParseException
 import com.android.mvvmandroidlib.helper.ApiResult
-import com.android.mvvmandroidlib.utills.LoggerUtils
-import com.android.mvvmandroidlib.utills.MathUtils
 import com.android.mvvmandroidlib.utills.StringUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
+import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.constant.FriendStatus
 import com.event.reminder.data.model.request.GetFriendStatusRequest
 import com.event.reminder.data.model.request.UpdateFriendStatusRequest
@@ -28,21 +26,19 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
     private val _updateUserDetailsResult: MutableLiveData<ApiResult<BaseResponseModel>> =
         MutableLiveData()
     val updateUserDetailsResult: LiveData<ApiResult<BaseResponseModel>> = _updateUserDetailsResult
-    private val _updateFriendStatusResult: MutableLiveData<ApiResult<BaseResponseModel>> =
-        MutableLiveData()
-    val updateFriendStatusResult: LiveData<ApiResult<BaseResponseModel>> = _updateFriendStatusResult
     private val _userDetailsResult: MutableLiveData<ApiResult<UserDetailsModel>> = MutableLiveData()
     private val _friendStatusResult: MutableLiveData<ApiResult<FriendStatusModel>> =
         MutableLiveData()
+    val friendStatusResult: LiveData<ApiResult<FriendStatusModel>> = _friendStatusResult
 
-    var editableProfile: Boolean? = null
+    var editableProfile: Boolean = false
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.editableProfile)
         }
 
-    var friendProfile: Boolean? = null
+    var friendProfile: Boolean = false
         @Bindable get
         set(value) {
             field = value
@@ -56,7 +52,14 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
             notifyPropertyChanged(BR.friendStatus)
         }
 
-    var friendID: String? = null
+    var actionUserId: String = ErrorConstant.DEFAULT_USER_ID
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.actionUserId)
+        }
+
+    var friendID: String = ErrorConstant.DEFAULT_USER_ID
         @Bindable get
         set(value) {
             field = value
@@ -112,16 +115,15 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         return _userDetailsResult
     }
 
-    fun getFriendStatus(): LiveData<ApiResult<FriendStatusModel>> {
+    fun getFriendStatus() {
         // can be launched in a separate asynchronous job
         profileDetailsRepository.getFriendStatus(
             GetFriendStatusRequest(
                 userId = EventReminderSharedPrefUtils.getUserId(),
-                friendId = friendID ?: StringUtils.EMPTY
+                friendId = friendID
             ),
             _friendStatusResult
         )
-        return _friendStatusResult
     }
 
     fun onEditClick() {
@@ -147,26 +149,15 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         )
     }
 
-    fun updateFriendStatus() {
-        try {
-            profileDetailsRepository.updateFriendStatus(
-                UpdateFriendStatusRequest(
-                    firstUserId = MathUtils.getMin(
-                        EventReminderSharedPrefUtils.getUserId(),
-                        friendID ?: StringUtils.EMPTY
-                    ),
-                    secondUserId = MathUtils.getMax(
-                        EventReminderSharedPrefUtils.getUserId(),
-                        friendID ?: StringUtils.EMPTY
-                    ),
-                    actionUserId = EventReminderSharedPrefUtils.getUserId(),
-                    friendStatus = friendStatus ?: FriendStatus.NOT_A_FRIEND
-                ),
-                _updateFriendStatusResult
-            )
-        } catch (e: MathUtilParseException) {
-            LoggerUtils.debug(TAG, LoggerUtils.getStackTraceString(e))
-            failedEventErrorMessage.sendEvent(e.localizedMessage)
-        }
+    fun updateFriendStatus(isFriendStatus: Boolean) {
+        profileDetailsRepository.updateFriendStatus(
+            UpdateFriendStatusRequest(
+                userId = EventReminderSharedPrefUtils.getUserId(),
+                friendId = friendID,
+                actionUserId = EventReminderSharedPrefUtils.getUserId(),
+                friendStatus = friendStatus  // TODO need to use updated friend status
+            ),
+            _friendStatusResult
+        )
     }
 }

@@ -19,4 +19,6 @@ object BundleArgsConstant {
     const val SENDER_USER_ID_KEY = "senderUserID"
     const val RECEIVER_USER_ID_KEY = "receiverUserID"
     const val ALARM_TIMESTAMP = "alarmTimeStamp"
+    const val IS_FRIEND_PROFILE = "isFriendProfile"
+    const val FRIEND_ID = "friendId"
 }

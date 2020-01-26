@@ -10,6 +10,7 @@ data class FriendRequestDetailsModel(
 ) : BaseResponseModel()
 
 data class FriendRequestDetails(
+    val userId: String,
     val name: String,
     val dateOfBirth: Long?,
     val city: String,

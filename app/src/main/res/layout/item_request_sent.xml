@@ -59,8 +59,8 @@
         />
         <TextView
                 style="@style/AppTheme.TextView.Normal"
-                android:text="@{friendDetail.friendStatus}"
-                android:id="@+id/iv_accept"
+                bind:friendRequestStatus="@{friendDetail.friendStatus}"
+                android:id="@+id/tv_accept"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

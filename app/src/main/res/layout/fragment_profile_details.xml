@@ -55,23 +55,25 @@
                 style="@style/AppTheme.WrapButton"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:onClick="@{() -> viewModel.updateFriendStatus()}"
+                android:onClick="@{() -> viewModel.updateFriendStatus(true)}"
                 android:visibility="@{viewModel.friendProfile ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toStartOf="@id/bt_block_status"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_profile"
+                bind:actionUserId="@{viewModel.actionUserId}"
                 bind:friendStatus="@{viewModel.friendStatus}" />
 
         <Button
                 android:id="@+id/bt_block_status"
                 style="@style/AppTheme.WrapButton"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:onClick="@{() -> viewModel.updateFriendStatus()}"
+                android:onClick="@{() -> viewModel.updateFriendStatus(false)}"
                 android:visibility="@{viewModel.friendProfile ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/bt_friend_status"
                 app:layout_constraintTop_toBottomOf="@id/iv_profile"
+                bind:actionUserId="@{viewModel.actionUserId}"
                 bind:blockStatus="@{viewModel.friendStatus}" />
 
         <TextView

@@ -4,8 +4,8 @@ import com.android.mvvmandroidlib.data.BaseRequestModel
 import com.event.reminder.constant.FriendStatus
 
 data class UpdateFriendStatusRequest(
-    var firstUserId: String,
-    var secondUserId: String,
+    var userId: String,
+    var friendId: String,
     var friendStatus: Int = FriendStatus.NOT_A_FRIEND,
     var actionUserId: String
 ) : BaseRequestModel()

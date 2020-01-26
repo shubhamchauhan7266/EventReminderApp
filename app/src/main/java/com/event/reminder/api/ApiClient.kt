@@ -31,14 +31,14 @@ interface ApiClient {
     @GET(ApiConstant.NOTIFICATION_DETAILS_LIST_API)
     fun getNotificationDetailsList(@Query(ApiConstant.USER_ID) userId: String): Observable<NotificationDetailsModel>
 
-    @POST(ApiConstant.FRIEND_REQUEST_DETAILS_LIST_API)
+    @POST(ApiConstant.FRIEND_REQUEST_LIST_API)
     fun getFriendRequestDetailsList(@Body loginRequest: FriendRequestDetailsListRequest): Observable<FriendRequestDetailsModel>
 
-    @POST(ApiConstant.FRIEND_DETAILS_LIST_API)
-    fun getFriendDetailsList(@Body friendDetailsRequest: FriendDetailsListRequest): Observable<FriendDetailsModel>
+    @POST(ApiConstant.FRIEND_LIST_API)
+    fun getFriendDetailsList(@Body friendListRequest: FriendListRequest): Observable<FriendDetailsModel>
 
     @POST(ApiConstant.UPDATE_FRIEND_STATUS_API)
-    fun updateFriendStatus(@Body updateFriendStatusRequest: UpdateFriendStatusRequest): Observable<BaseResponseModel>
+    fun updateFriendStatus(@Body updateFriendStatusRequest: UpdateFriendStatusRequest): Observable<FriendStatusModel>
 
     @POST(ApiConstant.GET_FRIEND_STATUS_API)
     fun getFriendStatus(@Body getFriendStatusRequest: GetFriendStatusRequest): Observable<FriendStatusModel>

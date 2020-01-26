@@ -7,7 +7,7 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
 import com.android.mvvmandroidlib.repository.BaseRepository
 import com.event.reminder.api.EventReminderApiHandler
-import com.event.reminder.data.model.request.FriendDetailsListRequest
+import com.event.reminder.data.model.request.FriendListRequest
 import com.event.reminder.data.model.response.FriendDetailsModel
 
 /**
@@ -20,7 +20,7 @@ import com.event.reminder.data.model.response.FriendDetailsModel
 object FriendListRepository : BaseRepository() {
 
     fun getFriendDetails(
-        request: FriendDetailsListRequest,
+        request: FriendListRequest,
         _friendDetailsApiResult: MutableLiveData<ApiResult<FriendDetailsModel>>
     ) {
         try {

@@ -13,6 +13,7 @@ import com.android.mvvmandroidlib.utills.StringUtils
 import com.event.reminder.R
 import com.event.reminder.constant.FriendStatus
 import com.event.reminder.constant.ValidationTypeConstant
+import com.event.reminder.utills.EventReminderSharedPrefUtils
 import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
 
@@ -164,51 +165,67 @@ fun checkValidation(
     }
 }
 
-fun updateStatus(view: Button, friendStatus: Int, isBlockStatusView: Boolean) {
+fun updateStatus(
+    view: Button,
+    friendStatus: Int,
+    actionUserId: String,
+    isBlockStatusView: Boolean
+) {
     LoggerUtils.debug(
         "EventReminderBindingAdapter",
         "updateStatus [friendStatus : $friendStatus, isBlockStatusView : $isBlockStatusView]"
     )
     try {
+        val isActionUser = EventReminderSharedPrefUtils.getUserId() == actionUserId
         when (friendStatus) {
             FriendStatus.NOT_A_FRIEND -> {
+
                 view.text = if (isBlockStatusView) {
-                    view.context.getString(R.string.blocked)
+                    view.context.getString(R.string.block)
                 } else {
                     view.context.getString(R.string.add_friend)
                 }
             }
             FriendStatus.PENDING -> {
+
                 view.text = if (isBlockStatusView) {
-                    view.context.getString(R.string.blocked)
+                    view.context.getString(R.string.block)
                 } else {
-                    view.context.getString(R.string.friend_request_sent)
+                    if (isActionUser) {
+                        view.context.getString(R.string.friend_request_sent)
+                    } else {
+                        view.context.getString(R.string.accept)
+                    }
                 }
             }
             FriendStatus.ACCEPTED -> {
                 view.text = if (isBlockStatusView) {
-                    view.context.getString(R.string.blocked)
+                    view.context.getString(R.string.block)
                 } else {
                     view.context.getString(R.string.un_friend)
                 }
             }
             FriendStatus.REJECTED -> {
                 view.text = if (isBlockStatusView) {
-                    view.context.getString(R.string.blocked)
+                    view.context.getString(R.string.block)
                 } else {
                     view.context.getString(R.string.add_friend)
                 }
             }
             FriendStatus.BLOCKED -> {
                 if (isBlockStatusView) {
-                    view.text = view.context.getString(R.string.un_blocked)
+                    if (isActionUser) {
+                        view.text = view.context.getString(R.string.un_block)
+                    } else {
+                        view.text = view.context.getString(R.string.blocked)
+                    }
                 } else {
                     view.visibility = View.GONE
                 }
             }
-            FriendStatus.UNBLOCKED -> {
+            FriendStatus.UN_BLOCKED -> {
                 view.text = if (isBlockStatusView) {
-                    view.context.getString(R.string.blocked)
+                    view.context.getString(R.string.block)
                 } else {
                     view.context.getString(R.string.add_friend)
                 }
@@ -223,21 +240,41 @@ fun updateStatus(view: Button, friendStatus: Int, isBlockStatusView: Boolean) {
     }
 }
 
-@BindingAdapter(value = ["bind:friendStatus"], requireAll = true)
-fun updateFriendStatus(view: Button, friendStatus: Int) {
+@BindingAdapter(value = ["bind:friendStatus", "bind:actionUserId"], requireAll = true)
+fun updateFriendStatus(view: Button, friendStatus: Int, actionUserId: String) {
     LoggerUtils.debug(
         "EventReminderBindingAdapter",
         "updateFriendStatus [friendStatus : $friendStatus]"
     )
-    updateStatus(view, friendStatus, false)
+    updateStatus(view, friendStatus, actionUserId, false)
 }
 
-@BindingAdapter(value = ["bind:blockStatus"], requireAll = true)
-fun updateBlockStatus(view: Button, blockStatus: Int) {
+@BindingAdapter(value = ["bind:blockStatus", "bind:actionUserId"], requireAll = true)
+fun updateBlockStatus(view: Button, blockStatus: Int, actionUserId: String) {
     LoggerUtils.debug(
         "EventReminderBindingAdapter",
         "updateBlockStatus [blockStatus : $blockStatus]"
     )
-    updateStatus(view, blockStatus, true)
+    updateStatus(view, blockStatus, actionUserId, true)
+}
+
+@BindingAdapter(value = ["bind:friendRequestStatus"], requireAll = true)
+fun updateFriendRequestStatus(view: TextView, friendRequestStatus: Int) {
+    LoggerUtils.debug(
+        "EventReminderBindingAdapter",
+        "updateFriendRequestStatus [friendRequestStatus : $friendRequestStatus]"
+    )
+
+    view.text = when (friendRequestStatus) {
+        FriendStatus.PENDING -> {
+            view.context.getString(R.string.pending)
+        }
+        FriendStatus.REJECTED -> {
+            view.context.getString(R.string.rejected)
+        }
+        else -> {
+            view.context.getString(R.string.unknown)
+        }
+    }
 }
 

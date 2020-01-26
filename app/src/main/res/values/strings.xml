@@ -131,7 +131,11 @@
     <string name="friend_request_sent">Friend Request Sent</string>
     <string name="un_friend">Un Friend</string>
     <string name="blocked">Blocked</string>
+    <string name="block">Block</string>
     <string name="un_blocked">Un Blocked</string>
+    <string name="un_block">Un Block</string>
+    <string name="pending">Pending</string>
+    <string name="rejected">Rejected</string>
     <string name="please_enter_otp">Please enter OTP</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="accept">Accept</string>
@@ -145,6 +149,7 @@
     <!--    Error Message-->
     <string name="unknown_error">Unknown Error</string>
     <string name="unknown_case">Unknown Case</string>
+    <string name="unknown">Unknown</string>
     <string name="invalid_username">Not a valid Username</string>
     <string name="invalid_name">Not a valid Name</string>
     <string name="invalid_field">Field can\'t be empty</string>

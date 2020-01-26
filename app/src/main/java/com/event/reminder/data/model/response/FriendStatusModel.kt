@@ -5,5 +5,6 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 data class FriendStatusModel(
     val userId: String,
     val friendId: String,
+    val actionUserId: String,
     val friendStatus: Int
 ) : BaseResponseModel()

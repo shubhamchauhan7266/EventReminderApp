@@ -9,7 +9,11 @@
             android:id="@+id/friendDetailsFragment"
             android:name="com.event.reminder.ui.dashboard.friends.FriendsFragment"
             android:label="FriendDetailsFragment"
-            tools:layout="@layout/fragment_friends" />
+            tools:layout="@layout/fragment_friends">
+        <action
+                android:id="@+id/action_friendDetailsFragment_to_profileDetailsFragment"
+                app:destination="@id/profileDetailsFragment" />
+    </fragment>
     <fragment
             android:id="@+id/homeFragment"
             android:name="com.event.reminder.ui.dashboard.home.HomeFragment"
@@ -25,6 +29,14 @@
             android:name="com.event.reminder.ui.dashboard.profile.ProfileDetailsFragment"
             android:label="ProfileDetailsFragment"
             tools:layout="@layout/fragment_profile_details">
+        <argument
+                android:name="friendId"
+                app:argType="string"
+                app:nullable="true" />
+        <argument
+                android:name="isFriendProfile"
+                app:argType="boolean"
+                android:defaultValue="false" />
         <action
                 android:id="@+id/action_profileDetailsFragment_to_OTPVerificationFragment"
                 app:destination="@id/OTPVerificationFragment" />
