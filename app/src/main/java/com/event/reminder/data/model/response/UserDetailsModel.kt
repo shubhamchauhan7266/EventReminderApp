@@ -3,6 +3,11 @@ package com.event.reminder.data.model.response
 import com.android.mvvmandroidlib.data.BaseResponseModel
 import java.io.Serializable
 
+/**
+ * This data class is used as a response for User Details API.
+ *
+ * @author Shubham Chauhan
+ */
 data class UserDetailsModel(
     var userDetails: UserDetails
 ) : BaseResponseModel()

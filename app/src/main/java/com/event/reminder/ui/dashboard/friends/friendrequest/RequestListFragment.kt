@@ -21,6 +21,11 @@ import com.event.reminder.databinding.RequestListFragmentBinding
 import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for request list screen.
+ *
+ * @author Shubham Chauhan
+ */
 class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestListViewModel>(),
     RequestListAdapter.IRequestListAdapterCallBack {
     private var requestType: Int = RequestType.REQUEST_TYPE_RECEIVED
@@ -60,30 +65,30 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
 
         viewModel.getFriendRequestDetailsApiResult(requestType)
             .observe(this@RequestListFragment, Observer {
-            val result = it ?: return@Observer
+                val result = it ?: return@Observer
 
-            when {
-                result.success != null -> {
+                when {
+                    result.success != null -> {
 
-                    val friendRequestDetails = result.success
-                    if (friendRequestDetails?.success == true) {
+                        val friendRequestDetails = result.success
+                        if (friendRequestDetails?.success == true) {
 
-                        val adapter: RequestListAdapter =
-                            binding.rvRequestList.adapter as RequestListAdapter
-                        adapter.setFriendRequestList(friendRequestDetails.friendRequestDetailsList)
-                        adapter.notifyDataSetChanged()
-                    } else {
-                        result.success?.errorMessage?.let { error ->
-                            viewModel.failedEventErrorMessage.sendEvent(error)
+                            val adapter: RequestListAdapter =
+                                binding.rvRequestList.adapter as RequestListAdapter
+                            adapter.setFriendRequestList(friendRequestDetails.friendRequestDetailsList)
+                            adapter.notifyDataSetChanged()
+                        } else {
+                            result.success?.errorMessage?.let { error ->
+                                viewModel.failedEventErrorMessage.sendEvent(error)
+                            }
+                        }
+                    }
+                    result.errorMessage != null -> {
+                        result.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
                         }
                     }
                 }
-                result.errorMessage != null -> {
-                    result.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
-                    }
-                }
-            }
-        })
+            })
     }
 
     override fun getObservableViewModel(): RequestListViewModel {

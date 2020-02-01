@@ -15,6 +15,11 @@ import com.event.reminder.databinding.SignUpFragmentBinding
 import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for sign up screen.
+ *
+ * @author Shubham Chauhan
+ */
 class SignUpFragment : BaseFragment<SignUpFragmentBinding, SignUpViewModel>() {
 
     private var iNavigationCallback: INavigationCallback? = null

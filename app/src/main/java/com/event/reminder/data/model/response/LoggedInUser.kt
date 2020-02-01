@@ -4,7 +4,9 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
 import java.io.Serializable
 
 /**
- * Data class that captures userModel information for logged in users retrieved from LoginRepository
+ * This data class is used as a response for Login API.
+ *
+ * @author Shubham Chauhan
  */
 data class LoggedInUserModel(
     val accessToken: String?,

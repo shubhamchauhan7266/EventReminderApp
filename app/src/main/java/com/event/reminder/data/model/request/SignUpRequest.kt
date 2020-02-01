@@ -3,6 +3,11 @@ package com.event.reminder.data.model.request
 import com.android.mvvmandroidlib.data.BaseRequestModel
 import com.event.reminder.constant.ErrorConstant
 
+/**
+ * This data class is used as a request for Sign up API.
+ *
+ * @author Shubham Chauhan
+ */
 data class SignUpRequest(
     var firstName: String? = null,
     var lastName: String? = "Chauhan",

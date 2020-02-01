@@ -14,6 +14,11 @@ import com.event.reminder.constant.ErrorConstant
 import com.event.reminder.databinding.ProfileDetailsFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
 
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for profile details screen.
+ *
+ * @author Shubham Chauhan
+ */
 class ProfileDetailsFragment :
     BaseFragment<ProfileDetailsFragmentBinding, ProfileDetailsViewModel>() {
 

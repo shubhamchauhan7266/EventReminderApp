@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
@@ -15,7 +14,10 @@ import com.event.reminder.databinding.ForgetPasswordFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
 
 /**
- * A simple [Fragment] subclass.
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for forget password
+ * screen.
+ *
+ * @author Shubham Chauhan
  */
 class ForgetPasswordFragment :
     BaseFragment<ForgetPasswordFragmentBinding, ForgetPasswordViewModel>() {

@@ -13,6 +13,11 @@ import com.event.reminder.adapter.NotificationListAdapter
 import com.event.reminder.databinding.NotificationFragmentBinding
 import com.event.reminder.ui.ViewModelFactory
 
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for notification screen.
+ *
+ * @author Shubham Chauhan
+ */
 class NotificationFragment : BaseFragment<NotificationFragmentBinding, NotificationViewModel>() {
 
     override fun onCreateViewBinding(savedInstanceState: Bundle?) {

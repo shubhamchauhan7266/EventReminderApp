@@ -18,6 +18,11 @@ import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for login screen.
+ *
+ * @author Shubham Chauhan
+ */
 class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
 
     private val TAG: String = LoginFragment::class.java.simpleName

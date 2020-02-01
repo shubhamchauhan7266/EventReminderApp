@@ -14,6 +14,11 @@ import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for splash screen.
+ *
+ * @author Shubham Chauhan
+ */
 class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
 
     private var iNavigationCallback: INavigationCallback? = null

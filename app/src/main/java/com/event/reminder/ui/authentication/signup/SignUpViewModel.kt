@@ -11,6 +11,14 @@ import com.event.reminder.BR
 import com.event.reminder.data.model.request.SignUpRequest
 import com.event.reminder.data.repository.SignUpRepository
 
+/**
+ * This ViewModel class is worked as a Observable ViewModel that is responsible for preparing and managing
+ * the data for an [android.app.Activity] or a [androidx.fragment.app.Fragment].
+ * It also handles the communication of the Activity / Fragment with the rest of the application
+ * (e.g. calling the business logic classes).
+ *
+ * @author Shubham Chauhan
+ */
 class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObservableViewModel() {
 
     private val _signUpResult: MutableLiveData<ApiResult<BaseResponseModel>> = MutableLiveData()
@@ -65,6 +73,9 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObse
             notifyPropertyChanged(BR.confirmPassword)
         }
 
+    /**
+     * Method is used to sign up or Registration to create a user.
+     */
     fun signUp() {
 
         if (isDataValid()) {
@@ -77,6 +88,11 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : BaseObse
         }
     }
 
+    /**
+     * Method is used to validate user details.
+     *
+     * @return true if valid otherwise false.
+     */
     private fun isDataValid(): Boolean {
         return StringUtils.isPhoneNumberValid(phoneNumber)
                 && !StringUtils.isNullOrEmpty(fullName)

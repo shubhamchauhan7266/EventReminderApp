@@ -22,7 +22,11 @@ import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.google.android.gms.auth.api.phone.SmsRetriever
 
-
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for OTP screen.
+ *
+ * @author Shubham Chauhan
+ */
 class OTPVerificationFragment :
     BaseFragment<OTPVerificationFragmentBinding, OTPVerificationViewModel>() {
 

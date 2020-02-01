@@ -18,6 +18,11 @@ import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.friends.friendrequest.RequestListFragment
 import com.event.reminder.ui.dashboard.friends.friends.FriendListFragment
 
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for friends section screen.
+ *
+ * @author Shubham Chauhan
+ */
 class FriendsFragment : BaseFragment<FriendsFragmentBinding, FriendsViewModel>() {
 
     override fun onCreateViewBinding(savedInstanceState: Bundle?) {

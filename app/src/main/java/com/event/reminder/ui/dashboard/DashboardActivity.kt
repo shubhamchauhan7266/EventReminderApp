@@ -19,7 +19,12 @@ import com.event.reminder.ui.dashboard.friends.FriendsFragmentDirections
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
+/**
+ * This Activity Class is used to provide layout and lifecycle callback to handle UI for Dashboard section.
+ * This class also contain [androidx.fragment.app.Fragment] to handle dynamic UI changes.
+ *
+ * @author Shubham Chauhan
+ */
 class DashboardActivity : BaseActivity<DashboardActivityBinding, DashboardViewModel>(),
     INavigationCallback {
 

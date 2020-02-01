@@ -13,6 +13,14 @@ import com.event.reminder.data.model.request.ValidateOTPRequest
 import com.event.reminder.data.repository.OTPVerificationRepository
 import com.event.reminder.utills.EventReminderSharedPrefUtils
 
+/**
+ * This ViewModel class is worked as a Observable ViewModel that is responsible for preparing and managing
+ * the data for an [android.app.Activity] or a [androidx.fragment.app.Fragment].
+ * It also handles the communication of the Activity / Fragment with the rest of the application
+ * (e.g. calling the business logic classes).
+ *
+ * @author Shubham Chauhan
+ */
 class OTPVerificationViewModel(private val otpVerificationRepository: OTPVerificationRepository) :
     BaseObservableViewModel() {
 

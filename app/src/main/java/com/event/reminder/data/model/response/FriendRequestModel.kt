@@ -5,6 +5,11 @@ import com.event.reminder.constant.FriendStatus
 import com.event.reminder.constant.RequestType
 import java.io.Serializable
 
+/**
+ * This data class is used as a response for Friend Request Details API.
+ *
+ * @author Shubham Chauhan
+ */
 data class FriendRequestDetailsModel(
     var friendRequestDetailsList: ArrayList<FriendRequestDetails>
 ) : BaseResponseModel()

@@ -17,7 +17,11 @@ import com.event.reminder.databinding.HomeFragmentBinding
 import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 
-
+/**
+ * This Fragment Class is used to provide layout and lifecycle callback to handle UI for home screen.
+ *
+ * @author Shubham Chauhan
+ */
 class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     private var iNavigationCallback: INavigationCallback? = null

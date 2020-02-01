@@ -3,6 +3,11 @@ package com.event.reminder.data.model.request
 import com.android.mvvmandroidlib.data.BaseRequestModel
 import com.event.reminder.constant.ErrorConstant
 
+/**
+ * This data class is used as a request for Update User Details API.
+ *
+ * @author Shubham Chauhan
+ */
 data class UpdateUserDetailsRequest(
     var userId: String?,
     var firstName: String?,
