@@ -121,6 +121,10 @@ class RequestListFragment : BaseFragment<RequestListFragmentBinding, RequestList
             }
     }
 
+    /**
+     * Navigate to profile screen by clicking on profile.
+     * @param position
+     */
     override fun onProfileClick(position: Int) {
         val adapter: RequestListAdapter =
             binding.rvRequestList.adapter as RequestListAdapter

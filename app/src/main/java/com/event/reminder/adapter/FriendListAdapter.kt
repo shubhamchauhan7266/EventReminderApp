@@ -52,7 +52,7 @@ class FriendListAdapter(
     ) {
 
         val friendDetailsViewHolder: FriendDetailsViewHolder = viewholder as FriendDetailsViewHolder
-        friendDetailsViewHolder.binding!!.friendDetail = friendList?.get(position)
+        friendDetailsViewHolder.binding?.friendDetail = friendList?.get(position)
     }
 
     fun getFriendDetailsList(): ArrayList<FriendDetails>? {
@@ -64,5 +64,5 @@ class FriendListAdapter(
     }
 
     inner class FriendDetailsViewHolder(val binding: FriendListAdapterBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding?.root!!)
 }

@@ -42,7 +42,8 @@ class FriendListFragment : BaseFragment<FriendListFragmentBinding, FriendListVie
                         adapter.setFriendDetailsList(friendDetails.friendDetailsList)
                         adapter.notifyDataSetChanged()
                     } else {
-                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
+                        result.success?.errorMessage?.let { error ->
+                            viewModel.failedEventErrorMessage.sendEvent(error)
                         }
                     }
                 }

@@ -42,7 +42,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         setHasOptionsMenu(true)
         val activity = activity as AppCompatActivity?
         activity?.setSupportActionBar(binding.toolbar)
-        activity?.supportActionBar!!.setDisplayShowTitleEnabled(false)
+        activity?.supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     /**

@@ -65,7 +65,11 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                         savedDataToLocalStorage(loggedInUser)
                         iNavigationCallback?.navigateTo(NavigationScreen.DASHBOARD_SCREEN, null)
                     } else {
-                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error) }
+                        result.success?.errorMessage?.let { error ->
+                            viewModel.failedEventErrorMessage.sendEvent(
+                                error
+                            )
+                        }
                     }
                 }
                 result.errorMessage != null -> {

@@ -17,6 +17,9 @@ class HomeViewModel(homeRepository: HomeRepository) : BaseObservableViewModel() 
 
     val navigationEvent = EventLiveData<NavigationScreen>()
 
+    /**
+     * Navigate to profile screen by click on profile icon.
+     */
     fun onProfileClick() {
         navigationEvent.sendEvent(NavigationScreen.PROFILE_SCREEN)
     }

@@ -72,16 +72,16 @@ class OTPVerificationFragment :
             viewModel.validateOTP(emailId, OTPType.EMAIL_ID)
         }
 
-        viewModel.validateOTPResult!!.observe(this@OTPVerificationFragment, Observer {
+        viewModel.validateOTPResult?.observe(this@OTPVerificationFragment, Observer {
             val result = it ?: return@Observer
 
             when {
                 result.success != null -> {
 
-                    if (result.success!!.success) {
+                    if (result.success?.success == true) {
                         iNavigationCallback?.navigateTo(NavigationScreen.LOGIN_SCREEN, null)
                     } else {
-                        result.success!!.errorMessage?.let { error ->
+                        result.success?.errorMessage?.let { error ->
                             viewModel.failedEventErrorMessage.sendEvent(
                                 error
                             )
@@ -98,16 +98,16 @@ class OTPVerificationFragment :
             }
         })
 
-        viewModel.generateOTPResult!!.observe(this@OTPVerificationFragment, Observer {
+        viewModel.generateOTPResult?.observe(this@OTPVerificationFragment, Observer {
             val result = it ?: return@Observer
 
             when {
                 result.success != null -> {
 
-                    if (result.success!!.success) {
+                    if (result.success?.success == true) {
                         startSMSRetrieverAPI()
                     } else {
-                        result.success!!.errorMessage?.let { error ->
+                        result.success?.errorMessage?.let { error ->
                             viewModel.failedEventErrorMessage.sendEvent(
                                 error
                             )
@@ -172,8 +172,8 @@ class OTPVerificationFragment :
         return "899789"  // TODO Change the logic to extract the otp from message.
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         unRegisterReceiver()
     }
 

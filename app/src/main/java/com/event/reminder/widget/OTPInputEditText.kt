@@ -113,9 +113,9 @@ class OTPInputEditText : AppCompatEditText {
 
         // When tapped, move cursor to end of text.
         super.setOnClickListener { v ->
-            setSelection(text!!.length)
+            setSelection(text?.length ?: 0)
             if (mClickListener != null) {
-                mClickListener!!.onClick(v)
+                mClickListener?.onClick(v)
             }
         }
 
@@ -143,7 +143,7 @@ class OTPInputEditText : AppCompatEditText {
 
         //Text Width
         val text = text
-        val textLength = text!!.length
+        val textLength = text?.length ?: 0
         val textWidths = FloatArray(textLength)
         paint.getTextWidths(getText(), 0, textLength, textWidths)
 
@@ -161,7 +161,7 @@ class OTPInputEditText : AppCompatEditText {
             if (getText()?.length ?: 0 > index) {
                 val middle = startX + mCharSize / 2
                 canvas.drawText(
-                    text,
+                    text!!,
                     index,
                     index + 1,
                     middle - textWidths[0] / 2,
@@ -202,14 +202,14 @@ class OTPInputEditText : AppCompatEditText {
      */
     private fun updateColorForLines(next: Boolean) {
         if (isFocused) {
-            mLinesPaint!!.strokeWidth = mLineStrokeSelected
-            mLinesPaint!!.color = getColorForState(android.R.attr.state_focused)
+            mLinesPaint?.strokeWidth = mLineStrokeSelected
+            mLinesPaint?.color = getColorForState(android.R.attr.state_focused)
             if (next) {
-                mLinesPaint!!.color = getColorForState(android.R.attr.state_selected)
+                mLinesPaint?.color = getColorForState(android.R.attr.state_selected)
             }
         } else {
-            mLinesPaint!!.strokeWidth = mLineStroke
-            mLinesPaint!!.color = getColorForState(-android.R.attr.state_focused)
+            mLinesPaint?.strokeWidth = mLineStroke
+            mLinesPaint?.color = getColorForState(-android.R.attr.state_focused)
         }
     }
 }

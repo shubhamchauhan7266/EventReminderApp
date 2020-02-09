@@ -20,6 +20,10 @@ class NotificationViewModel(private val notificationRepository: NotificationRepo
 
     private val _notificationDetailsResult: MutableLiveData<ApiResult<NotificationDetailsModel>> = MutableLiveData()
 
+    /**
+     * Method is used to fetch notification details list.
+     * @return LiveData object to observe notification details.
+     */
     fun getNotificationDetailsApiResult(): LiveData<ApiResult<NotificationDetailsModel>> {
         // can be launched in a separate asynchronous job
         notificationRepository.getNotificationDetails(EventReminderSharedPrefUtils.getUserId(), _notificationDetailsResult)

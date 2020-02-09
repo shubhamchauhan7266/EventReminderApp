@@ -52,7 +52,7 @@ object NetworkUtils {
             val wifiNetwork = connectivityManager?.activeNetwork
             wifiNetwork != null && connectivityManager?.getNetworkCapabilities(wifiNetwork)?.hasTransport(
                 NetworkCapabilities.TRANSPORT_WIFI
-            )!!
+            ) ?: false
         } else {
             val wifiNetwork = connectivityManager?.activeNetworkInfo
             wifiNetwork != null && wifiNetwork.type == ConnectivityManager.TYPE_WIFI && wifiNetwork.isConnected
@@ -74,7 +74,7 @@ object NetworkUtils {
             val mobileNetwork = connectivityManager?.activeNetwork
             mobileNetwork != null && connectivityManager?.getNetworkCapabilities(mobileNetwork)?.hasTransport(
                 NetworkCapabilities.TRANSPORT_CELLULAR
-            )!!
+            ) ?: false
         } else {
             val mobileNetwork = connectivityManager?.activeNetworkInfo
             mobileNetwork != null && mobileNetwork.type == ConnectivityManager.TYPE_MOBILE && mobileNetwork.isConnected
@@ -98,7 +98,7 @@ object NetworkUtils {
                 bluetoothNetwork
             )?.hasTransport(
                 NetworkCapabilities.TRANSPORT_BLUETOOTH
-            )!!
+            ) ?: false
         } else {
             val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
             return bluetoothAdapter?.isEnabled ?: false
@@ -122,7 +122,7 @@ object NetworkUtils {
                 ethernetNetwork
             )?.hasTransport(
                 NetworkCapabilities.TRANSPORT_ETHERNET
-            )!!
+            ) ?: false
         } else {
             return false
         }

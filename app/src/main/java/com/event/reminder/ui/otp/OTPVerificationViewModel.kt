@@ -37,6 +37,11 @@ class OTPVerificationViewModel(private val otpVerificationRepository: OTPVerific
             notifyPropertyChanged(BR.otpValue)
         }
 
+    /**
+     * Method is used to validate OTP.
+     * @param otpSendTo
+     * @param otpType
+     */
     fun validateOTP(otpSendTo: String?, otpType: Int) {
         if (!StringUtils.isNullOrEmpty(otpSendTo)) {
             val request = ValidateOTPRequest(
@@ -51,6 +56,11 @@ class OTPVerificationViewModel(private val otpVerificationRepository: OTPVerific
         }
     }
 
+    /**
+     * Method is used to generate OTP by sending SMS to given phone number.
+     * @param otpSendTo
+     * @param otpType
+     */
     fun generateOTP(otpSendTo: String?, otpType: Int) {
 
         if (!StringUtils.isNullOrEmpty(otpSendTo)) {

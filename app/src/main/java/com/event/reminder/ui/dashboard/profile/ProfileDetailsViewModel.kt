@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.mvvmandroidlib.data.BaseResponseModel
 import com.android.mvvmandroidlib.helper.ApiResult
-import com.android.mvvmandroidlib.utills.StringUtils
 import com.android.mvvmandroidlib.viewmodel.BaseObservableViewModel
 import com.event.reminder.BR
 import com.event.reminder.constant.ErrorConstant
@@ -109,10 +108,14 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
             notifyPropertyChanged(BR.phoneNumber)
         }
 
+    /**
+     * Method is used to fetch User Details.
+     * @return LiveData object to observe user details.
+     */
     fun getUserDetailsApiResult(): LiveData<ApiResult<UserDetailsModel>> {
         // can be launched in a separate asynchronous job
-        val userId: String = if (friendProfile == true) {
-            friendID ?: StringUtils.EMPTY
+        val userId: String = if (friendProfile) {
+            friendID
         } else {
             EventReminderSharedPrefUtils.getUserId()
         }
@@ -123,6 +126,9 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         return _userDetailsResult
     }
 
+    /**
+     * Method is used to get Friend Status.
+     */
     fun getFriendStatus() {
         // can be launched in a separate asynchronous job
         profileDetailsRepository.getFriendStatus(
@@ -134,14 +140,23 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         )
     }
 
+    /**
+     * Action performed by click on edit button.
+     */
     fun onEditClick() {
         editableProfile = true
     }
 
+    /**
+     * Action performed by click on cancel button.
+     */
     fun onCancelClick() {
         editableProfile = false
     }
 
+    /**
+     * Method is used to update User Details.
+     */
     fun updateProfile() {
         profileDetailsRepository.updateUserDetails(
             UpdateUserDetailsRequest(
@@ -157,6 +172,10 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
         )
     }
 
+    /**
+     * Method is used to update Friend Status.
+     * @param isFriendStatus
+     */
     fun updateFriendStatus(isFriendStatus: Boolean) {
         profileDetailsRepository.updateFriendStatus(
             UpdateFriendStatusRequest(

@@ -21,6 +21,10 @@ class RequestListViewModel(private val requestListRepository: RequestListReposit
 
     private val _friendRequestDetailsResult: MutableLiveData<ApiResult<FriendRequestDetailsModel>> = MutableLiveData()
 
+    /**
+     * Method is used to fetch friend request details.
+     * @return LiveData object to observe friend request details
+     */
     fun getFriendRequestDetailsApiResult(requestType: Int): LiveData<ApiResult<FriendRequestDetailsModel>> {
         // can be launched in a separate asynchronous job
         val request = FriendRequestDetailsListRequest(

@@ -51,7 +51,8 @@ class FriendsFragment : BaseFragment<FriendsFragmentBinding, FriendsViewModel>()
         if (ContextUtils.isActivityDestroyed(activity)) {
             return
         }
-        binding.viewPager.adapter = ViewPagerAdapter(activity!!.supportFragmentManager, fragmentModelList)
+        binding.viewPager.adapter =
+            ViewPagerAdapter(activity?.supportFragmentManager!!, fragmentModelList)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
         binding.viewPager.setPageTransformer(true, ZoomOutPageTransformer())
         binding.viewPager.addOnPageChangeListener(object : ViewPagerPageChangeListener() {

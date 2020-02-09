@@ -18,26 +18,34 @@ import com.event.reminder.data.model.request.SignUpRequest
  */
 object SignUpRepository : BaseRepository() {
 
+    /**
+     * Method is used to register user by creating account.
+     * @param signUpRequest SignUpRequest
+     * @param _signUpResult LiveData object
+     */
     fun signUp(
         signUpRequest: SignUpRequest,
         _signUpResult: MutableLiveData<ApiResult<BaseResponseModel>>
     ) {
 
         try {
-            RequestNetworkManager.addRequest(
-                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.signUp(signUpRequest),
-                object : SubscriptionCallback<BaseResponseModel> {
+            EventReminderApiHandler.getAPIHandler()?.getAPIClient()?.signUp(signUpRequest)?.let {
+                RequestNetworkManager.addRequest(
+                    it,
+                    object : SubscriptionCallback<BaseResponseModel> {
 
-                    override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
+                        override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
-                        _signUpResult.value = ApiResult(success = response)
-                    }
+                            _signUpResult.value = ApiResult(success = response)
+                        }
 
-                    override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        _signUpResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
-                    }
+                        override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
+                            _signUpResult.value =
+                                ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                        }
 
-                })
+                    })
+            }
         } catch (e: Throwable) {
             _signUpResult.value = ApiResult(errorMessage = e.localizedMessage)
         }

@@ -153,7 +153,7 @@ object RequestNetworkManager {
                     NetworkConstant.ERROR_CODE_UNAUTHORISED ->{
                         var error: String? = null
                         try {
-                            error = response.errorBody()!!.string()
+                            error = response.errorBody()?.string()
                             if (error?.isNotEmpty() == true) {
                                 return Observable.error(
                                     NetworkException(

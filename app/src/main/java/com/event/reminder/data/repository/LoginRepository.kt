@@ -19,6 +19,11 @@ import com.event.reminder.data.model.response.LoggedInUserModel
  */
 object LoginRepository : BaseRepository() {
 
+    /**
+     * Method is used to login by validating credentials from database.
+     * @param request LoginRequest
+     * @param _loginResult LiveData object
+     */
     fun login(
         request: LoginRequest,
         _loginResult: MutableLiveData<ApiResult<LoggedInUserModel>>
@@ -26,28 +31,31 @@ object LoginRepository : BaseRepository() {
         // handle login
         try {
 
-            RequestNetworkManager.addRequest(
-                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.login(request),
-                object : SubscriptionCallback<LoggedInUserModel> {
+            EventReminderApiHandler.getAPIHandler()?.getAPIClient()?.login(request)?.let {
+                RequestNetworkManager.addRequest(
+                    it,
+                    object : SubscriptionCallback<LoggedInUserModel> {
 
-                    override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
+                        override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
-                        if (response is LoggedInUserModel) {
-                            _loginResult.value = ApiResult(success = response)
-                        } else {
-                            _loginResult.value =
-                                ApiResult(
-                                    errorMessage = response.errorMessage,
-                                    errorCode = response.statusCode
-                                )
+                            if (response is LoggedInUserModel) {
+                                _loginResult.value = ApiResult(success = response)
+                            } else {
+                                _loginResult.value =
+                                    ApiResult(
+                                        errorMessage = response.errorMessage,
+                                        errorCode = response.statusCode
+                                    )
+                            }
                         }
-                    }
 
-                    override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        _loginResult.value = ApiResult(errorMessage = errorMsg, errorCode = errCode)
-                    }
+                        override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
+                            _loginResult.value =
+                                ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                        }
 
-                })
+                    })
+            }
 
         } catch (e: Throwable) {
             _loginResult.value = ApiResult(errorMessage = e.localizedMessage)

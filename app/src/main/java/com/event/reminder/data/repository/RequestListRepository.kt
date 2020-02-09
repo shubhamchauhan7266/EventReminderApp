@@ -19,40 +19,47 @@ import com.event.reminder.data.model.response.FriendRequestDetailsModel
  */
 object RequestListRepository : BaseRepository() {
 
+    /**
+     * Method is used to fetch friend request details from database.
+     * @param request FriendRequestDetailsListRequest
+     * @param _friendRequestDetailsApiResult LiveData object
+     */
     fun getFriendRequestDetails(
         request: FriendRequestDetailsListRequest,
         _friendRequestDetailsApiResult: MutableLiveData<ApiResult<FriendRequestDetailsModel>>
     ) {
         try {
 
-            RequestNetworkManager.addRequest(
-                EventReminderApiHandler.getAPIHandler()?.getAPIClient()!!.getFriendRequestDetailsList(
-                    request
-                ),
-                object : SubscriptionCallback<FriendRequestDetailsModel> {
+            EventReminderApiHandler.getAPIHandler()?.getAPIClient()?.getFriendRequestDetailsList(
+                request
+            )?.let {
+                RequestNetworkManager.addRequest(
+                    it,
+                    object : SubscriptionCallback<FriendRequestDetailsModel> {
 
-                    override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
+                        override fun onSuccess(requestCode: Int, response: BaseResponseModel) {
 
-                        if (response is FriendRequestDetailsModel) {
-                            response.friendRequestDetailsList.forEach {
-                                it.requestType = request.requestType
+                            if (response is FriendRequestDetailsModel) {
+                                response.friendRequestDetailsList.forEach {
+                                    it.requestType = request.requestType
+                                }
+                                _friendRequestDetailsApiResult.value = ApiResult(success = response)
+                            } else {
+                                _friendRequestDetailsApiResult.value =
+                                    ApiResult(
+                                        errorMessage = response.errorMessage,
+                                        errorCode = response.statusCode
+                                    )
                             }
-                            _friendRequestDetailsApiResult.value = ApiResult(success = response)
-                        } else {
-                            _friendRequestDetailsApiResult.value =
-                                ApiResult(
-                                    errorMessage = response.errorMessage,
-                                    errorCode = response.statusCode
-                                )
                         }
-                    }
 
-                    override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
-                        _friendRequestDetailsApiResult.value =
-                            ApiResult(errorMessage = errorMsg, errorCode = errCode)
-                    }
+                        override fun onException(requestCode: Int, errCode: Int, errorMsg: String) {
+                            _friendRequestDetailsApiResult.value =
+                                ApiResult(errorMessage = errorMsg, errorCode = errCode)
+                        }
 
-                })
+                    })
+            }
 
         } catch (e: Throwable) {
             _friendRequestDetailsApiResult.value = ApiResult(errorMessage = e.localizedMessage)

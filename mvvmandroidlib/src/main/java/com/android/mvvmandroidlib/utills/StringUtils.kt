@@ -108,7 +108,7 @@ object StringUtils {
         if (isNullOrEmpty(username)) {
             return false
         }
-        return if (username!!.contains(EMAIL_SYMBOL)) {
+        return if (username?.contains(EMAIL_SYMBOL) == true) {
             Patterns.EMAIL_ADDRESS.matcher(username).matches()
         } else {
             Patterns.PHONE.matcher(username).matches()
@@ -173,6 +173,6 @@ object StringUtils {
      * @return length of data.
      */
     fun length(@Nullable str: String?): Int {
-        return if (isNullOrEmpty(str)) 0 else str!!.length
+        return if (isNullOrEmpty(str)) 0 else str?.length ?: 0
     }
 }

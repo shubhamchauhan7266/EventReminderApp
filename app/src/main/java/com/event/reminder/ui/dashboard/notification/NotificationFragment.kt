@@ -38,7 +38,8 @@ class NotificationFragment : BaseFragment<NotificationFragmentBinding, Notificat
                         adapter.setNotificationList(notificationDetails.notificationDetailsList)
                         adapter.notifyDataSetChanged()
                     } else {
-                        result.success!!.errorMessage?.let { error -> viewModel.failedEventErrorMessage.sendEvent(error)
+                        result.success?.errorMessage?.let { error ->
+                            viewModel.failedEventErrorMessage.sendEvent(error)
                         }
                     }
                 }

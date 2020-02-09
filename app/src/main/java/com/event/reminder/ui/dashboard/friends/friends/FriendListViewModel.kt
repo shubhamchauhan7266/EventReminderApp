@@ -21,6 +21,10 @@ class FriendListViewModel(private val friendListRepository: FriendListRepository
 
     private val _friendDetailsResult: MutableLiveData<ApiResult<FriendDetailsModel>> = MutableLiveData()
 
+    /**
+     * Method is used to fetch friend details.
+     * @return LiveData object to observe friend details
+     */
     fun getFriendDetailsApiResult(): LiveData<ApiResult<FriendDetailsModel>> {
         // can be launched in a separate asynchronous job
         val request = FriendListRequest(userId = EventReminderSharedPrefUtils.getUserId())

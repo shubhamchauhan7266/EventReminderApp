@@ -7,6 +7,7 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
+import com.android.mvvmandroidlib.utills.ContextUtils
 import com.android.mvvmandroidlib.utills.LoggerUtils
 import java.io.IOException
 
@@ -20,7 +21,11 @@ class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         LoggerUtils.debug(TAG, "onReceive")
-        getAlarmUri()?.let { playSound(context!!, it) }
+        getAlarmUri()?.let {
+            if (!ContextUtils.isContextNull(context)) {
+                playSound(context!!, it)
+            }
+        }
     }
 
     /**

@@ -93,10 +93,10 @@ class HomeEventListAdapter(
     ) {
         when (viewholder) {
             is NormalEventViewHolder -> {
-                viewholder.binding!!.homeEventDetails = homeEventDetailsList?.get(position)
+                viewholder.binding?.homeEventDetails = homeEventDetailsList?.get(position)
             }
             is ImportantEventViewHolder -> {
-                viewholder.binding!!.homeEventDetails = homeEventDetailsList?.get(position)
+                viewholder.binding?.homeEventDetails = homeEventDetailsList?.get(position)
             }
         }
     }
@@ -110,8 +110,8 @@ class HomeEventListAdapter(
     }
 
     inner class NormalEventViewHolder(val binding: NormalEventTypeBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding?.root!!)
 
     inner class ImportantEventViewHolder(val binding: ImportantEventTypeBinding?) :
-        RecyclerView.ViewHolder(binding!!.root)
+        RecyclerView.ViewHolder(binding?.root!!)
 }

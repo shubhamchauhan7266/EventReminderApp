@@ -71,11 +71,11 @@ class EventReminderApiHandler : ApiHandler() {
     /**
      * Get API Client instance with retrofit module(singleton)
      */
-    fun getAPIClient(): ApiClient {
+    fun getAPIClient(): ApiClient? {
 
         if (retrofitBuilder == null) {
             retrofitBuilder = getRetrofitBuilder()
         }
-        return retrofitBuilder?.build()?.create(ApiClient::class.java)!!
+        return retrofitBuilder?.build()?.create(ApiClient::class.java)
     }
 }

@@ -1,12 +1,14 @@
 package com.android.mvvmandroidlib.listener
 
+import androidx.viewpager.widget.ViewPager
+
 /**
  * This listener class is used to provide callback onPageSelected() for ViewPager.
  *
  * @author Shubham Chauhan
  */
 abstract class ViewPagerPageChangeListener :
-    androidx.viewpager.widget.ViewPager.OnPageChangeListener {
+    ViewPager.OnPageChangeListener {
     override fun onPageScrollStateChanged(state: Int) {
     }
 
