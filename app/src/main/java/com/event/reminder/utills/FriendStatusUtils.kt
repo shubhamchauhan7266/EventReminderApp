@@ -45,7 +45,7 @@ object FriendStatusUtils {
                     UserActionView.REJECT_VIEW -> {
                         FriendStatus.REJECTED
                     }
-                    UserActionView.BLOCKE_VIEW -> {
+                    UserActionView.BLOCK_VIEW -> {
                         FriendStatus.BLOCKED
                     }
                     else -> {
@@ -68,7 +68,7 @@ object FriendStatusUtils {
                 }
             }
             FriendStatus.BLOCKED -> {
-                if (userActionView == UserActionView.BLOCKE_VIEW) {
+                if (userActionView == UserActionView.BLOCK_VIEW) {
                     FriendStatus.UN_BLOCKED
                 } else {
                     FriendStatus.NOT_A_FRIEND
@@ -100,57 +100,66 @@ object FriendStatusUtils {
      * @param view
      * @param friendStatus
      * @param actionUserId
-     * @param isBlockStatusView
+     * @param userActionView
      */
     fun updateStatus(
         view: Button,
         friendStatus: Int,
         actionUserId: String,
-        isBlockStatusView: Boolean
+        userActionView: Int
     ) {
         LoggerUtils.debug(
             TAG,
-            "updateStatus [friendStatus : $friendStatus, isBlockStatusView : $isBlockStatusView]"
+            "updateStatus [friendStatus : $friendStatus, userActionView : $userActionView]"
         )
         try {
             val isActionUser = EventReminderSharedPrefUtils.getUserId() == actionUserId
             when (friendStatus) {
                 FriendStatus.NOT_A_FRIEND -> {
 
-                    view.text = if (isBlockStatusView) {
+                    view.text = if (userActionView == UserActionView.BLOCK_VIEW) {
                         view.context.getString(R.string.block)
                     } else {
                         view.context.getString(R.string.add_friend)
                     }
                 }
                 FriendStatus.PENDING -> {
-
-                    view.text = if (isBlockStatusView) {
-                        view.context.getString(R.string.block)
-                    } else {
-                        if (isActionUser) {
-                            view.context.getString(R.string.friend_request_sent)
-                        } else {
-                            view.context.getString(R.string.accept)
+                    when (userActionView) {
+                        UserActionView.FRIEND_VIEW -> {
+                            view.text = if (isActionUser) {
+                                view.context.getString(R.string.friend_request_sent)
+                            } else {
+                                view.context.getString(R.string.accept)
+                            }
+                        }
+                        UserActionView.REJECT_VIEW -> {
+                            // TODO handle reject view.
+                            view.text = view.context.getString(R.string.reject)
+                        }
+                        UserActionView.BLOCK_VIEW -> {
+                            view.text = view.context.getString(R.string.block)
+                        }
+                        else -> {
+                            view.text = view.context.getString(R.string.unknown)
                         }
                     }
                 }
                 FriendStatus.ACCEPTED -> {
-                    view.text = if (isBlockStatusView) {
+                    view.text = if (userActionView == UserActionView.BLOCK_VIEW) {
                         view.context.getString(R.string.block)
                     } else {
                         view.context.getString(R.string.un_friend)
                     }
                 }
                 FriendStatus.REJECTED -> {
-                    view.text = if (isBlockStatusView) {
+                    view.text = if (userActionView == UserActionView.BLOCK_VIEW) {
                         view.context.getString(R.string.block)
                     } else {
                         view.context.getString(R.string.add_friend)
                     }
                 }
                 FriendStatus.BLOCKED -> {
-                    if (isBlockStatusView) {
+                    if (userActionView == UserActionView.BLOCK_VIEW) {
                         if (isActionUser) {
                             view.text = view.context.getString(R.string.un_block)
                         } else {
@@ -161,7 +170,7 @@ object FriendStatusUtils {
                     }
                 }
                 FriendStatus.UN_BLOCKED -> {
-                    view.text = if (isBlockStatusView) {
+                    view.text = if (userActionView == UserActionView.BLOCK_VIEW) {
                         view.context.getString(R.string.block)
                     } else {
                         view.context.getString(R.string.add_friend)

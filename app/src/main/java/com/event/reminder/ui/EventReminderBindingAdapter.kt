@@ -12,6 +12,7 @@ import com.android.mvvmandroidlib.utills.LoggerUtils
 import com.android.mvvmandroidlib.utills.StringUtils
 import com.event.reminder.R
 import com.event.reminder.constant.FriendStatus
+import com.event.reminder.constant.UserActionView
 import com.event.reminder.constant.ValidationTypeConstant
 import com.event.reminder.utills.FriendStatusUtils
 import com.google.android.material.textfield.TextInputLayout
@@ -171,7 +172,7 @@ fun updateFriendStatus(view: Button, friendStatus: Int, actionUserId: String) {
         "EventReminderBindingAdapter",
         "updateFriendStatus [friendStatus : $friendStatus]"
     )
-    FriendStatusUtils.updateStatus(view, friendStatus, actionUserId, false)
+    FriendStatusUtils.updateStatus(view, friendStatus, actionUserId, UserActionView.FRIEND_VIEW)
 }
 
 @BindingAdapter(value = ["bind:blockStatus", "bind:actionUserId"], requireAll = true)
@@ -180,7 +181,16 @@ fun updateBlockStatus(view: Button, blockStatus: Int, actionUserId: String) {
         "EventReminderBindingAdapter",
         "updateBlockStatus [blockStatus : $blockStatus]"
     )
-    FriendStatusUtils.updateStatus(view, blockStatus, actionUserId, true)
+    FriendStatusUtils.updateStatus(view, blockStatus, actionUserId, UserActionView.BLOCK_VIEW)
+}
+
+@BindingAdapter(value = ["bind:rejectStatus", "bind:actionUserId"], requireAll = true)
+fun updateRejectStatus(view: Button, rejectStatus: Int, actionUserId: String) {
+    LoggerUtils.debug(
+        "EventReminderBindingAdapter",
+        "updateBlockStatus [rejectStatus : $rejectStatus]"
+    )
+    FriendStatusUtils.updateStatus(view, rejectStatus, actionUserId, UserActionView.REJECT_VIEW)
 }
 
 @BindingAdapter(value = ["bind:friendRequestStatus"], requireAll = true)
