@@ -16,6 +16,7 @@ import com.event.reminder.data.model.response.FriendStatusModel
 import com.event.reminder.data.model.response.UserDetailsModel
 import com.event.reminder.data.repository.ProfileDetailsRepository
 import com.event.reminder.utills.EventReminderSharedPrefUtils
+import com.event.reminder.utills.FriendStatusUtils
 
 /**
  * This ViewModel class is worked as a Observable ViewModel that is responsible for preparing and managing
@@ -174,15 +175,18 @@ class ProfileDetailsViewModel(private val profileDetailsRepository: ProfileDetai
 
     /**
      * Method is used to update Friend Status.
-     * @param isFriendStatus
+     * @param userActionView
      */
-    fun updateFriendStatus(isFriendStatus: Boolean) {
+    fun updateFriendStatus(userActionView: Int) {
         profileDetailsRepository.updateFriendStatus(
             UpdateFriendStatusRequest(
                 userId = EventReminderSharedPrefUtils.getUserId(),
                 friendId = friendID,
                 actionUserId = EventReminderSharedPrefUtils.getUserId(),
-                friendStatus = friendStatus  // TODO need to use updated friend status
+                friendStatus = FriendStatusUtils.getUpdatedFriendStatus(
+                    friendStatus,
+                    userActionView
+                )
             ),
             _friendStatusResult
         )

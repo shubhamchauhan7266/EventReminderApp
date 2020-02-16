@@ -23,12 +23,18 @@
     <color name="darkRed">#8B0000</color>
     <color name="maroon">#800000</color>
 
+    <color name="lightYellow50">#FFFFCC</color>
+    <color name="lightYellow">#FFFF99</color>
+    <color name="yellow">#FFFF33</color>
+    <color name="darkYellow">#FFFF00</color>
+    <color name="fontYellow">#CCCC00</color>
+
     <!-- Black Color -->
-    <color name="black80">#111111</color>
-    <color name="black60">#222222</color>
-    <color name="black40">#333333</color>
-    <color name="black20">#444444</color>
     <color name="black10">#555555</color>
+    <color name="black20">#444444</color>
+    <color name="black40">#333333</color>
+    <color name="black60">#222222</color>
+    <color name="black80">#111111</color>
 
     <!-- Grey Color -->
     <color name="colorLightGrey10">#DCDCDC</color>

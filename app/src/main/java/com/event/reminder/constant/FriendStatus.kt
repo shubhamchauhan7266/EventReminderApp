@@ -14,46 +14,4 @@ object FriendStatus {
     const val UN_FRIEND = 5
     const val UN_BLOCKED = 6
     const val CANCEL = 7
-
-    /*fun getUpdatedFriendStatus(currentFriendStatus: Int, isFriendStatus: Boolean) : Int{
-        return when(currentFriendStatus){
-            NOT_A_FRIEND -> {
-                if(isFriendStatus){
-                    PENDING
-                }else{
-                    BLOCKED
-                }
-            }
-            PENDING -> {
-                if(isFriendStatus){
-                    ACCEPTED
-                }else{
-                    BLOCKED
-                }
-            }
-            ACCEPTED -> {
-                if(isFriendStatus){
-                    REJECTED
-                }else{
-                    BLOCKED
-                }
-            }
-            REJECTED -> {
-                if(isFriendStatus){
-                    PENDING
-                }else{
-                    BLOCKED
-                }
-            }
-            BLOCKED -> {
-
-            }
-            UN_FRIEND -> {
-
-            }
-            UN_BLOCKED -> {
-
-            }
-        }
-    }*/
 }
