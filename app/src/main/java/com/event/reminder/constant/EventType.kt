@@ -5,8 +5,8 @@ package com.event.reminder.constant
  *
  * @author Shubham Chauhan
  */
-object EventsType {
-    const val NORMAL = 0
-    const val IMPORTANT = 1
-    const val ALARM_TYPE = 2
+object EventType {
+    const val SELF_EVENT = 1
+    const val FRIEND_EVENT = 2
+    const val GROUP_EVENT = 3
 }

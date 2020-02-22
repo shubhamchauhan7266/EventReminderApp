@@ -18,7 +18,11 @@
             android:id="@+id/homeFragment"
             android:name="com.event.reminder.ui.dashboard.home.HomeFragment"
             android:label="HomeFragment"
-            tools:layout="@layout/fragment_home" />
+            tools:layout="@layout/fragment_home">
+        <action
+                android:id="@+id/action_homeFragment_to_createEventFragment"
+                app:destination="@id/createEventFragment" />
+    </fragment>
     <fragment
             android:id="@+id/notificationFragment"
             android:name="com.event.reminder.ui.dashboard.notification.NotificationFragment"
@@ -45,4 +49,8 @@
             android:id="@+id/OTPVerificationFragment"
             android:name="com.event.reminder.ui.otp.OTPVerificationFragment"
             android:label="OTPVerificationFragment" />
+    <fragment
+            android:id="@+id/createEventFragment"
+            android:name="com.event.reminder.ui.dashboard.home.CreateEventFragment"
+            android:label="CreateEventFragment" />
 </navigation>

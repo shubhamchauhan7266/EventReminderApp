@@ -10,7 +10,7 @@ import com.event.reminder.BuildConfig
 object ApiConstant {
 
     // Base Url Constant
-    private const val DEV_BASE_URL: String = "http://192.168.1.80:5555/api/"
+    private const val DEV_BASE_URL: String = "http://192.168.1.70:5555/api/"
     private const val PROD_BASE_URL : String = "http://api.event.reminder.com"
     var API_BASE_URL = if (BuildConfig.DEBUG) DEV_BASE_URL else PROD_BASE_URL
 
@@ -31,15 +31,26 @@ object ApiConstant {
     // Api Constant
     const val LOGIN_API: String = "User/login"
     const val SIGN_UP_API: String = "User/signup"
+
     const val USER_DETAILS_API: String = "AuthenticatedUser/details"
     const val UPDATE_USER_DETAILS_API: String = "AuthenticatedUser/updateUser"
+    const val GENERATE_OTP_API: String = "AuthenticatedUser/generateOTP"
+    const val VALIDATE_OTP_API: String = "AuthenticatedUser/validateOTP"
+
     const val NOTIFICATION_DETAILS_LIST_API: String = "Notification/notificationsList"
+
     const val FRIEND_REQUEST_LIST_API: String = "Friends/friendRequestList"
     const val FRIEND_LIST_API: String = "Friends/friendList"
     const val UPDATE_FRIEND_STATUS_API: String = "Friends/updateFriendStatus"
     const val GET_FRIEND_STATUS_API: String = "Friends/getFriendStatus"
-    const val GENERATE_OTP_API: String = "AuthenticatedUser/generateOTP"
-    const val VALIDATE_OTP_API: String = "AuthenticatedUser/validateOTP"
+
+    const val CREATE_EVENT_API: String = "Events/createEvent"
+    const val UPDATE_EVENT_API: String = "Events/updateEvent"
+    const val EVENT_DETAILS_API: String = "Events/eventDetails"
+    const val SELF_EVENTS_LIST_API: String = "Events/selfEventList"
+    const val FRIEND_EVENTS_LIST_API: String = "Events/friendEventList"
+    const val GROUP_EVENTS_LIST_API: String = "Events/groupEventList"
+    const val ALL_EVENTS_LIST_API: String = "Events/allEventList"
 
 
     // Query Constant

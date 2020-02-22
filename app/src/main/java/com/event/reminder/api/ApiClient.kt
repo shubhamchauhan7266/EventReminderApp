@@ -48,4 +48,23 @@ interface ApiClient {
 
     @POST(ApiConstant.VALIDATE_OTP_API)
     fun validateOTP(@Body validateOTPRequest: ValidateOTPRequest): Observable<BaseResponseModel>
+
+    @POST(ApiConstant.CREATE_EVENT_API)
+    fun createEvent(@Body createEventRequest: CreateEventRequest): Observable<BaseResponseModel>
+
+    @POST(ApiConstant.UPDATE_EVENT_API)
+    fun updateEvent(@Body updateEventRequest: UpdateEventRequest): Observable<BaseResponseModel>
+
+    // TODO need to change request and response model.
+    @POST(ApiConstant.SELF_EVENTS_LIST_API)
+    fun getSelfEventList(@Body createEventRequest: CreateEventRequest): Observable<BaseResponseModel>
+
+    @POST(ApiConstant.FRIEND_EVENTS_LIST_API)
+    fun getFriendEventList(@Body createEventRequest: CreateEventRequest): Observable<BaseResponseModel>
+
+    @POST(ApiConstant.GROUP_EVENTS_LIST_API)
+    fun getGroupEventList(@Body createEventRequest: CreateEventRequest): Observable<BaseResponseModel>
+
+    @GET(ApiConstant.ALL_EVENTS_LIST_API)
+    fun getAllEventsList(@Query(ApiConstant.USER_ID) userId: String): Observable<BaseResponseModel>
 }

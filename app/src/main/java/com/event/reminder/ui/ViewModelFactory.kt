@@ -12,6 +12,7 @@ import com.event.reminder.ui.dashboard.DashboardViewModel
 import com.event.reminder.ui.dashboard.friends.FriendsViewModel
 import com.event.reminder.ui.dashboard.friends.friendrequest.RequestListViewModel
 import com.event.reminder.ui.dashboard.friends.friends.FriendListViewModel
+import com.event.reminder.ui.dashboard.home.CreateEventViewModel
 import com.event.reminder.ui.dashboard.home.HomeViewModel
 import com.event.reminder.ui.dashboard.notification.NotificationViewModel
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsViewModel
@@ -67,6 +68,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
             ) as T
             modelClass.isAssignableFrom(AuthenticationViewModel::class.java) -> AuthenticationViewModel(
                 authenticationRepository = AuthenticationRepository
+            ) as T
+            modelClass.isAssignableFrom(CreateEventViewModel::class.java) -> CreateEventViewModel(
+                createEventRepository = CreateEventRepository
             ) as T
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

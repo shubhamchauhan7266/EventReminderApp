@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.mvvmandroidlib.ui.BaseFragment
 import com.event.reminder.R
 import com.event.reminder.adapter.HomeEventListAdapter
 import com.event.reminder.callback.INavigationCallback
-import com.event.reminder.constant.EventsType
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.HomeFragmentBinding
 import com.event.reminder.enums.NavigationScreen
@@ -50,32 +52,14 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
      */
     private fun initializeAdapter() {
         val homeEventList = ArrayList<HomeEventDetails>()
-        homeEventList.add(
-            HomeEventDetails(
-                description = "You have a journey for Jaipur",
-                eventType = EventsType.NORMAL
-            )
-        )
-        homeEventList.add(
-            HomeEventDetails(
-                description = "Take a tablet",
-                eventType = EventsType.NORMAL
-            )
-        )
-        homeEventList.add(
-            HomeEventDetails(
-                description = "Please send screenshot in office group",
-                eventType = EventsType.NORMAL
-            )
-        )
 
         binding.rvHomeEventList.layoutManager =
-            androidx.recyclerview.widget.LinearLayoutManager(activity)
-        binding.rvHomeEventList.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+            LinearLayoutManager(activity)
+        binding.rvHomeEventList.itemAnimator = DefaultItemAnimator()
         binding.rvHomeEventList.addItemDecoration(
-            androidx.recyclerview.widget.DividerItemDecoration(
+            DividerItemDecoration(
                 activity,
-                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+                DividerItemDecoration.VERTICAL
             )
         )
         binding.rvHomeEventList.adapter = HomeEventListAdapter(homeEventList)
@@ -88,6 +72,9 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
             when (navigation) {
                 NavigationScreen.PROFILE_SCREEN -> {
                     iNavigationCallback?.navigateTo(NavigationScreen.PROFILE_SCREEN, null)
+                }
+                NavigationScreen.CREATE_EVENT_SCREEN -> {
+                    iNavigationCallback?.navigateTo(NavigationScreen.CREATE_EVENT_SCREEN, null)
                 }
                 else -> {
 

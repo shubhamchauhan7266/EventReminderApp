@@ -16,6 +16,7 @@ import com.event.reminder.databinding.DashboardActivityBinding
 import com.event.reminder.enums.NavigationScreen
 import com.event.reminder.ui.ViewModelFactory
 import com.event.reminder.ui.dashboard.friends.FriendsFragmentDirections
+import com.event.reminder.ui.dashboard.home.HomeFragmentDirections
 import com.event.reminder.ui.dashboard.profile.ProfileDetailsFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -71,6 +72,9 @@ class DashboardActivity : BaseActivity<DashboardActivityBinding, DashboardViewMo
             }
             NavigationScreen.PROFILE_TO_OTP_SCREEN -> {
                 navController.navigate(ProfileDetailsFragmentDirections.actionProfileDetailsFragmentToOTPVerificationFragment())
+            }
+            NavigationScreen.CREATE_EVENT_SCREEN -> {
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToCreateEventFragment())
             }
             NavigationScreen.REQUEST_LIST_TO_PROFILE_SCREEN -> {
                 val isFriendProfile =

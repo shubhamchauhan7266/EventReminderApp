@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
+
+    <data class="CreateEventFragmentBinding">
+
+        <import type="android.view.View" />
+
+        <import type="com.android.mvvmandroidlib.utills.DateUtils" />
+
+        <import type="com.event.reminder.constant.EventType" />
+
+        <import type="com.event.reminder.utills.BindingUtils" />
+
+        <import type="com.event.reminder.constant.ValidationTypeConstant" />
+
+        <variable
+                name="viewModel"
+                type="com.event.reminder.ui.dashboard.home.CreateEventViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/_10sdp" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/_10sdp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_title"
+                style="@style/TextInputLayoutAppearance"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:validationType="@{ValidationTypeConstant.NORMAL_EMPTY}"
+                bind:validatorValue="@{viewModel.eventTitle}">
+
+            <EditText
+                    android:id="@+id/et_title"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/title"
+                    android:inputType="text"
+                    android:text="@={viewModel.eventTitle}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_description"
+                style="@style/TextInputLayoutAppearance"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_title"
+                bind:validationType="@{ValidationTypeConstant.NORMAL_EMPTY}"
+                bind:validatorValue="@{viewModel.eventDescription}">
+
+            <EditText
+                    android:id="@+id/et_description"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/description"
+                    android:inputType="textShortMessage"
+                    android:text="@={viewModel.eventDescription}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_location"
+                style="@style/TextInputLayoutAppearance"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_description"
+                bind:validationType="@{ValidationTypeConstant.NORMAL_EMPTY}"
+                bind:validatorValue="@{viewModel.eventLocation}">
+
+            <EditText
+                    android:id="@+id/et_location"
+                    style="@style/AppTheme.EditText"
+                    android:hint="@string/location"
+                    android:inputType="text"
+                    android:text="@={viewModel.eventLocation}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+                android:id="@+id/tv_date_text"
+                style="@style/AppTheme.TextView.Small"
+                android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:text="@string/date"
+                app:layout_constraintEnd_toStartOf="@id/divider_vertical"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_location" />
+
+        <TextView
+                android:id="@+id/tv_date"
+                style="@style/AppTheme.TextView.Normal"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:hint="@string/dd_mm_yyyy"
+                app:layout_constraintEnd_toStartOf="@id/divider_vertical"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_date_text"
+                bind:timeFormat="@{DateUtils.DD_MM_YYYY}"
+                bind:timeStamp="@{viewModel.eventDate}" />
+
+        <TextView
+                android:id="@+id/tv_time_text"
+                style="@style/AppTheme.TextView.Small"
+                android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:text="@string/time"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toEndOf="@id/divider_vertical"
+                app:layout_constraintTop_toBottomOf="@id/il_location" />
+
+        <TextView
+                android:id="@+id/tv_time"
+                style="@style/AppTheme.TextView.Normal"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:hint="@string/hh_mm_aa"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toEndOf="@id/divider_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_time_text"
+                bind:timeFormat="@{DateUtils.HH_MM_AA}"
+                bind:timeStamp="@{viewModel.eventDate}" />
+
+        <View
+                android:id="@+id/divider_vertical"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/colorLightGrey50"
+                app:layout_constraintBottom_toTopOf="@id/divider_horizontal"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/il_location" />
+
+        <View
+                android:id="@+id/divider_horizontal"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/colorLightGrey50"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_date" />
+
+        <Switch
+                android:id="@+id/sw_alarm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:checked="@={viewModel.alarmRequired}"
+                android:text="@string/is_alarm_required"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/divider_horizontal" />
+
+        <Switch
+                android:id="@+id/sw_important"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:checked="@={viewModel.importentEvent}"
+                android:text="@string/is_event_important"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/sw_alarm" />
+
+        <View
+                android:id="@+id/divider_horizontal_2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/colorLightGrey50"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/sw_important" />
+
+        <TextView
+                android:id="@+id/tv_event_type_text"
+                style="@style/AppTheme.TextView.Normal"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@string/select_event_type"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/divider_horizontal_2" />
+
+        <RadioGroup
+                android:id="@+id/rg_event_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_event_type_text">
+
+            <RadioButton
+                    android:id="@+id/rb_self_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_selector"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:text="@string/self_event"
+                    android:textColor="@drawable/tv_color_selector_for_rb" />
+
+            <RadioButton
+                    android:id="@+id/rb_friend_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_selector"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:text="@string/single_friend_event"
+                    android:textColor="@drawable/tv_color_selector_for_rb" />
+
+            <RadioButton
+                    android:id="@+id/rb_group_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_selector"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:text="@string/group_event"
+                    android:textColor="@drawable/tv_color_selector_for_rb" />
+
+        </RadioGroup>
+
+        <View
+                android:id="@+id/divider_horizontal_3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/colorLightGrey50"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/rg_event_type" />
+
+        <Button
+                style="@style/AppTheme.Button"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/create_event"
+                android:onClick="@{(v) -> viewModel.createEvent()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -9,7 +9,6 @@ import com.android.mvvmandroidlib.data.BaseResponseModel
  */
 data class HomeEventDetails(
     val eventId: String = "",
-    val eventType: Int,
     val title: String = "",
     val description: String,
     val createdDate: Long = 1572002745

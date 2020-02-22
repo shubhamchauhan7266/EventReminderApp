@@ -6,8 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.event.reminder.R
 import com.event.reminder.adapter.HomeEventListAdapter.NormalEventViewHolder
-import com.event.reminder.constant.ErrorConstant
-import com.event.reminder.constant.EventsType
 import com.event.reminder.data.model.response.HomeEventDetails
 import com.event.reminder.databinding.ImportantEventTypeBinding
 import com.event.reminder.databinding.NormalEventTypeBinding
@@ -33,9 +31,20 @@ class HomeEventListAdapter(
             layoutInflater = LayoutInflater.from(parent.context)
         }
 
-        when (viewType) {
+        val binding: NormalEventTypeBinding? =
+            layoutInflater?.let {
+                DataBindingUtil.inflate(
+                    it,
+                    R.layout.item_normal_event,
+                    parent,
+                    false
+                )
+            }
+        return NormalEventViewHolder(binding)
 
-            EventsType.NORMAL -> {
+        /*when (viewType) {
+
+            EventType.kt.NORMAL -> {
                 val binding: NormalEventTypeBinding? =
                     layoutInflater?.let {
                         DataBindingUtil.inflate(
@@ -47,7 +56,7 @@ class HomeEventListAdapter(
                     }
                 return NormalEventViewHolder(binding)
             }
-            EventsType.IMPORTANT -> {
+            EventType.kt.IMPORTANT -> {
                 val binding: ImportantEventTypeBinding? =
                     layoutInflater?.let {
                         DataBindingUtil.inflate(
@@ -64,28 +73,28 @@ class HomeEventListAdapter(
                     layoutInflater?.let {
                         DataBindingUtil.inflate(
                             it,
-                            R.layout.item_request_received,
+                            R.layout.item_normal_event,
                             parent,
                             false
                         )
                     }
                 return NormalEventViewHolder(binding)
             }
-        }
+        }*/
     }
 
     override fun getItemCount(): Int {
         return homeEventDetailsList?.size ?: 0
     }
 
-    override fun getItemViewType(position: Int): Int {
+    /*override fun getItemViewType(position: Int): Int {
         return when (homeEventDetailsList?.get(position)?.eventType) {
-            EventsType.NORMAL -> EventsType.NORMAL
-            EventsType.IMPORTANT -> EventsType.IMPORTANT
-            EventsType.ALARM_TYPE -> EventsType.ALARM_TYPE
+            EventType.kt.NORMAL -> EventType.kt.NORMAL
+            EventType.kt.IMPORTANT -> EventType.kt.IMPORTANT
+            EventType.kt.ALARM_TYPE -> EventType.kt.ALARM_TYPE
             else -> ErrorConstant.INVALID_NUMBER
         }
-    }
+    }*/
 
     override fun onBindViewHolder(
         viewholder: RecyclerView.ViewHolder,

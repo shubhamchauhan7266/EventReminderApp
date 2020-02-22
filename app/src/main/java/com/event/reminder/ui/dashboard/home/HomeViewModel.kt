@@ -23,4 +23,11 @@ class HomeViewModel(homeRepository: HomeRepository) : BaseObservableViewModel() 
     fun onProfileClick() {
         navigationEvent.sendEvent(NavigationScreen.PROFILE_SCREEN)
     }
+
+    /**
+     * Navigate to create event screen by click on create icon.
+     */
+    fun createEvent() {
+        navigationEvent.sendEvent(NavigationScreen.CREATE_EVENT_SCREEN)
+    }
 }
